@@ -6,7 +6,8 @@ import Portfolio from "./components/Portfolio";
 import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import ClientCursor from "./components/cursor/clientCursor";
+
+// import ClientCursor from "./components/cursor/clientCursor";
 
 
 
@@ -15,7 +16,7 @@ export default function Home() {
     <>
       <div id="home">
 
-        <ClientCursor />
+        {/* <ClientCursor /> */}
         <Navbar />
         <HeroSection />
         <Services />
