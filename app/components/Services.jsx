@@ -1,228 +1,239 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
 
-const services = [
+// ─────────────────────────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────────────────────────
+const SERVICES = [
   {
-    num: "01", name: "Web\nDevelopment", tag: "Full Stack",
-    desc: "Blazing-fast websites and web apps. Next.js, React, custom dashboards — built for performance and conversion.",
-    feats: ["Next.js / React", "REST & GraphQL", "SEO Optimized"],
-    big: "WD",
+    num: "01",
+    tag: "Full Stack",
+    name: "Web Development",
+    desc: "Blazing-fast websites & web apps. Next.js, React, custom dashboards — built for performance, SEO, and conversion from day one.",
+    feats: ["Next.js / React", "REST & GraphQL APIs", "SEO Optimized"],
+    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=80&auto=format&fit=crop",
+    imgAlt: "Developer working on code",
+    caption: "Web & Frontend",
+  },
+   {
+    num: "02",
+    tag: "Branding",
+    name: "Brand & UI Design",
+    desc: "Logos, identity systems, and design languages that make you unforgettable. Every pixel crafted with intention and precision.",
+    feats: ["Logo Design", "Brand Guidelines", "UI/UX Systems"],
+    img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80&auto=format&fit=crop",
+    imgAlt: "Design tools and branding work",
+    caption: "Design & Branding",
+  },
+  
+   {
+    num: "03",
+    tag: "Growth",
+    name: "Digital Marketing",
+    desc: "SEO, paid ads, content strategy. Data-driven campaigns that bring qualified traffic and convert visitors into paying customers.",
+    feats: ["SEO & SEM", "Meta & Google Ads", "Analytics & CRO"],
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80&auto=format&fit=crop",
+    imgAlt: "Marketing analytics dashboard",
+    caption: "Growth & Marketing",
   },
   {
-    num: "02", name: "App\nDevelopment", tag: "Mobile",
-    desc: "Cross-platform iOS & Android apps that feel native. From MVPs to scale-ready products with stunning UX.",
-    feats: ["React Native", "Flutter", "App Store Ready"],
-    big: "APP",
+    num: "04",
+    tag: "Mobile",
+    name: "App Development",
+    desc: "Cross-platform iOS & Android apps that feel truly native. From MVPs to production-grade products with seamless, delightful UX.",
+    feats: ["React Native / Flutter", "Play & App Store", "Offline-first Design"],
+    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=80&auto=format&fit=crop",
+    imgAlt: "Mobile app on phone screen",
+    caption: "iOS & Android",
   },
   {
-    num: "03", name: "AI & LLM\nSolutions", tag: "AI / ML",
-    desc: "Custom chatbots, LLM integrations, RAG pipelines. Intelligent automation that actually solves real problems.",
-    feats: ["OpenAI / Claude", "RAG Pipelines", "Fine-tuning"],
-    big: "AI",
+    num: "05",
+    tag: "AI / ML",
+    name: "AI & LLM Solutions",
+    desc: "Custom chatbots, LLM integrations, RAG pipelines, and intelligent automation that actually solves real business problems.",
+    feats: ["OpenAI / Claude APIs", "RAG Pipelines", "Custom Fine-tuning"],
+    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80&auto=format&fit=crop",
+    imgAlt: "AI and machine learning visualization",
+    caption: "Artificial Intelligence",
+  },
+ 
+  {
+    num: "06",
+    tag: "DevOps",
+    name: "Cloud & Deployment",
+    desc: "CI/CD pipelines, cloud infrastructure, Docker, and zero-downtime deployments. Your product — always running, always fast.",
+    feats: ["AWS / Vercel / GCP", "Docker & CI/CD", "24/7 Monitoring"],
+    img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80&auto=format&fit=crop",
+    imgAlt: "Server room and cloud infrastructure",
+    caption: "Cloud Infrastructure",
   },
   {
-    num: "04", name: "Brand &\nUI Design", tag: "Branding",
-    desc: "Logo, identity, and design systems that make you unforgettable. Every pixel crafted with intent.",
-    feats: ["Logo Design", "Brand System", "UI/UX"],
-    big: "BR",
-  },
-  {
-    num: "05", name: "Digital\nMarketing", tag: "Growth",
-    desc: "SEO, paid ads, content. Strategies that bring qualified traffic and turn visitors into paying customers.",
-    feats: ["SEO & SEM", "Meta & Google Ads", "CRO"],
-    big: "DM",
-  },
-  {
-    num: "06", name: "Cloud &\nDeployment", tag: "DevOps",
-    desc: "CI/CD pipelines, cloud infra, Docker, zero-downtime deploys. Your product — always running.",
-    feats: ["AWS / Vercel / GCP", "Docker & CI/CD", "24/7 Uptime"],
-    big: "CD",
-  },
-  {
-    num: "07", name: "Tech\nConsulting", tag: "Strategy",
-    desc: "Architecture reviews, roadmap planning, tech audits. Build the right thing, the right way, first time.",
-    feats: ["Stack Audit", "Roadmap", "Team Training"],
-    big: "TC",
+    num: "07",
+    tag: "Strategy",
+    name: "Tech Consulting",
+    desc: "Architecture reviews, roadmap planning, and tech audits. We help you build the right thing, the right way — first time.",
+    feats: ["Tech Stack Audit", "Roadmap Planning", "Team Training"],
+    img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80&auto=format&fit=crop",
+    imgAlt: "Team discussing tech strategy",
+    caption: "Strategy & Consulting",
   },
 ];
 
-export default function Services() {
-  const cardRefs = useRef([]);
+// ─────────────────────────────────────────────────────────────────
+// SERVICE CARD (Sticky Stack)
+// ─────────────────────────────────────────────────────────────────
+function ServiceCard({ service, index, onVisible }) {
+  const cardRef = useRef(null);
 
   useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("s-visible");
-          }
-        });
-      },
-      { threshold: 0.4 }
+      ([entry]) => { if (entry.isIntersecting) onVisible(index); },
+      { threshold: 0.5 }
     );
-
-    cardRefs.current.forEach((el) => el && observer.observe(el));
+    observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [index, onVisible]);
+
+  return (
+    <div
+      ref={cardRef}
+      style={{
+        position: "sticky",
+        top: `calc(10% + ${index * 32}px)`, 
+        width: "100%",
+        maxWidth: 1000,
+        height: "clamp(460px, 56vh, 580px)",
+        background: "#0d0d0d",
+        border: "1px solid #1a1a1a",
+        borderRadius: 28,
+        overflow: "hidden",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        boxShadow: "0 -20px 50px rgba(0,0,0,0.9)",
+        marginBottom: "12vh", 
+      }}
+    >
+      {/* LEFT PANEL */}
+      <div style={{ position: "relative", zIndex: 2, padding: "clamp(32px,4vw,52px)", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#0d0d0d" }}>
+        <div style={{ position: "absolute", left: 0, top: "12%", bottom: "12%", width: 2, background: "linear-gradient(to bottom, transparent, #F5A623, transparent)", borderRadius: 2 }} />
+        
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 9, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "#F5A623", border: "1px solid rgba(245,166,35,0.2)", padding: "4px 12px", borderRadius: 30, background: "rgba(245,166,35,0.04)", width: "fit-content" }}>
+            <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#F5A623" }} />
+            {service.tag}
+          </span>
+          <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", color: "#F5A623", display: "flex", alignItems: "center", gap: 12 }}>
+            {service.num}
+            <span style={{ flex: 1, height: 1, background: "linear-gradient(to right, rgba(245,166,35,0.3), transparent)" }} />
+          </div>
+          <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(24px, 2.6vw, 34px)", fontWeight: 800, letterSpacing: "-0.025em", color: "#fff", lineHeight: 1.1 }}>
+            {service.name}
+          </h3>
+          <p style={{ fontSize: 13, lineHeight: 1.85, color: "#4a4a4a", maxWidth: 300 }}>{service.desc}</p>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+            {service.feats.map((f, fi) => (
+              <div key={fi} style={{ fontSize: 10, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#2e2e2e", display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#F5A623", opacity: 0.4 }} />
+                {f}
+              </div>
+            ))}
+          </div>
+          <ExploreButton />
+        </div>
+      </div>
+
+      {/* RIGHT PANEL */}
+      <div style={{ position: "relative", overflow: "hidden" }}>
+        <Image src={service.img} alt={service.imgAlt} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover", filter: "brightness(0.42) saturate(0.65)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #0d0d0d 0%, rgba(13,13,13,0.55) 38%, transparent 100%)", zIndex: 1 }} />
+      </div>
+    </div>
+  );
+}
+
+function ExploreButton() {
+  const [hov, setHov] = useState(false);
+  return (
+    <button onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} style={{ display: "inline-flex", alignItems: "center", gap: hov ? 16 : 10, fontSize: 10, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5A623", border: `1px solid ${hov ? "rgba(245,166,35,0.45)" : "rgba(245,166,35,0.2)"}`, padding: "10px 20px", borderRadius: 30, width: "fit-content", background: hov ? "rgba(245,166,35,0.07)" : "transparent", cursor: "pointer", transition: "all 0.22s ease" }}>
+      Explore service <span>→</span>
+    </button>
+  );
+}
+
+export default function Services() {
+  const [activeIdx, setActiveIdx] = useState(0);
 
   return (
     <>
       <style>{`
-        .s-card {
-          opacity: 0;
-          transform: translateY(60px) scale(0.97);
-          transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
-                      transform 0.55s cubic-bezier(0.22,1,0.36,1);
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+        @media (max-width: 640px) {
+          .svc-stack-wrapper { padding: 0 16px !important; }
         }
-        .s-card.s-visible {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-        .s-glow::after {
-          content: '';
-          position: absolute;
-          width: 300px; height: 300px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(245,166,35,0.09) 0%, transparent 70%);
-          top: -80px; right: -80px;
-          pointer-events: none;
-          z-index: 0;
-          opacity: 0;
-          transition: opacity 0.4s;
-        }
-        .s-card.s-visible.s-glow::after { opacity: 1; }
-        .s-bar { transition: opacity 0.4s, -webkit-text-stroke 0.4s; }
-        .s-card.s-visible:hover .s-bar {
-          -webkit-text-stroke: 1px rgba(245,166,35,0.3) !important;
-        }
-        .s-cta-btn {
-          display: inline-flex; align-items: center; gap: 10px;
-          font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-          text-transform: uppercase; color: #F5A623;
-          border: 1px solid rgba(245,166,35,0.25);
-          padding: 10px 20px; border-radius: 50px;
-          transition: all 0.25s ease; cursor: pointer;
-          background: transparent;
-        }
-        .s-cta-btn:hover {
-          background: rgba(245,166,35,0.07);
-          border-color: rgba(245,166,35,0.5);
-          gap: 14px;
-        }
-        .feat-row {
-          display: flex; align-items: center; gap: 10px;
-          font-size: 11px; color: #444;
-          letter-spacing: 0.08em; text-transform: uppercase;
-          transition: color 0.2s;
-        }
-        .feat-row:hover { color: #888; }
       `}</style>
 
-      <section className="bg-[#080808]" id="services">
+      <section
+        id="services"
+        style={{
+          background: "#080808",
+          position: "relative",
+          minHeight: "100vh",
+          paddingBottom: "100px"
+        }}
+      >
+        {/* YE RHA BHAI GRID BG (Yellow Lining) */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            backgroundImage:
+              "linear-gradient(rgba(245,166,35,0.02) 1px, transparent 1px)," +
+              "linear-gradient(90deg, rgba(245,166,35,0.02) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            pointerEvents: "none",
+          }}
+        />
 
-        {/* ── Header ── */}
-        <div className="text-center pt-24 pb-16 px-6">
-          <p className="inline-flex items-center gap-2 text-[10px] tracking-[.22em] uppercase text-neutral-700 mb-5">
-            <span className="block w-6 h-px bg-neutral-800" />
+        <div style={{ textAlign: "center", padding: "100px 24px 80px", position: "relative", zIndex: 1 }}>
+          <p style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 10, fontWeight: 500, letterSpacing: "0.24em", textTransform: "uppercase", color: "#444", marginBottom: 18 }}>
+            <span style={{ width: 22, height: 1, background: "#222" }} />
             What we build
-            <span className="block w-6 h-px bg-neutral-800" />
+            <span style={{ width: 22, height: 1, background: "#222" }} />
           </p>
-          <h2
-            className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
-            style={{ fontFamily: "'Syne', sans-serif", letterSpacing: "-0.03em" }}
-          >
-            Services that{" "}
-            <em className="not-italic text-yellow-400">move</em>
-            <br />the needle
+          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(32px, 5.5vw, 58px)", fontWeight: 800, color: "#fff", lineHeight: 1.05 }}>
+            Services that <em style={{ fontStyle: "normal", color: "#F5A623" }}>move</em> <br /> the needle
           </h2>
         </div>
 
-        {/* ── Sticky Scroll Track ── */}
-        <div className="relative">
-          {services.map((s, i) => (
-            <div key={i}>
-              {/* Sticky slide */}
-              <div
-                className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-8"
-                style={{ zIndex: i + 1, marginTop: i === 0 ? 0 : "-100vh" }}
-              >
-                <div
-                  ref={(el) => (cardRefs.current[i] = el)}
-                  className="s-card s-glow relative w-full max-w-4xl bg-[#0e0e0e] border border-[#1a1a1a] rounded-3xl p-8 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center overflow-hidden"
-                >
-                  {/* Service tag */}
-                  <span className="absolute top-6 right-6 z-10 text-[10px] tracking-[.15em] uppercase text-yellow-400/50 border border-yellow-400/10 px-3 py-1 rounded-full">
-                    {s.tag}
-                  </span>
-
-                  {/* LEFT */}
-                  <div className="relative z-10">
-                    <div
-                      className="flex items-center gap-3 mb-5 text-[11px] font-bold tracking-[.2em] text-yellow-400"
-                      style={{ fontFamily: "'Syne', sans-serif" }}
-                    >
-                      {s.num}
-                      <span className="flex-1 h-px bg-gradient-to-r from-yellow-400/30 to-transparent" />
-                    </div>
-
-                    <h3
-                      className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-5"
-                      style={{ fontFamily: "'Syne', sans-serif", letterSpacing: "-0.03em" }}
-                    >
-                      {s.name.split("\n").map((line, li) => (
-                        <span key={li}>
-                          {line}
-                          {li < s.name.split("\n").length - 1 && <br />}
-                        </span>
-                      ))}
-                    </h3>
-
-                    <p className="text-sm text-neutral-600 leading-relaxed mb-8">
-                      {s.desc}
-                    </p>
-
-                    <button className="s-cta-btn">
-                      Explore service
-                      <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-                    </button>
-                  </div>
-
-                  {/* RIGHT */}
-                  <div className="relative z-10 hidden md:flex flex-col gap-5">
-                    <div
-                      className="s-bar text-[120px] md:text-[140px] font-extrabold leading-none select-none"
-                      style={{
-                        fontFamily: "'Syne', sans-serif",
-                        color: "transparent",
-                        WebkitTextStroke: "1px #1e1e1e",
-                        letterSpacing: "-0.04em",
-                      }}
-                    >
-                      {s.big}
-                    </div>
-
-                    <div className="flex flex-col gap-3 mt-2">
-                      {s.feats.map((f, fi) => (
-                        <div key={fi} className="feat-row">
-                          <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 opacity-50 flex-shrink-0" />
-                          {f}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Spacer for scroll room */}
-              {i < services.length - 1 && (
-                <div style={{ height: "90vh" }} aria-hidden="true" />
-              )}
-            </div>
+        <div 
+            className="svc-stack-wrapper"
+            style={{ 
+                position: "relative", 
+                zIndex: 1,
+                display: "flex", 
+                flexDirection: "column", 
+                alignItems: "center",
+                padding: "0 40px"
+            }}
+        >
+          {SERVICES.map((service, i) => (
+            <ServiceCard
+              key={i}
+              service={service}
+              index={i}
+              onVisible={setActiveIdx}
+            />
           ))}
         </div>
-
-        <div className="h-20" />
       </section>
     </>
   );
