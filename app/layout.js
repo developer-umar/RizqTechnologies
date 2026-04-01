@@ -1,9 +1,5 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 import { Syne } from "next/font/google";
-import { DM_Sans } from "next/font/google";
-
-const syne = Syne({ subsets: ["latin"], weight: ["700", "800"] });
-const dmSans = DM_Sans({ subsets: ["latin"], weight: ["300", "400", "500"] });
 import "./globals.css";
 
 // const geistSans = Geist({
@@ -33,11 +29,15 @@ import "./globals.css";
 // }
 
 
-
+const syne = Syne({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-syne",
+});
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={syne.variable }>
+    <html lang="en" className={syne.variable}>
       <body>{children}</body>
     </html>
   );
