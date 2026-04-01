@@ -6,93 +6,59 @@ import Link from "next/link";
 
 const HeroSection = () => {
     return (
-        <section className="relative w-full h-screen overflow-hidden" id="home">
-            {/* Background Video */}
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-                poster="/images/hero-poster.jpg" // Optional: Add a poster image for better UX
-            >
-                <source src="/videos/hero.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+        <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col justify-center pt-32" id="home">
+            <div className="absolute inset-0 z-0">
+                <video autoPlay loop muted playsInline className="w-full h-full object-cover scale-110">
+                    <source src="/videos/hero.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-black/60 z-10" />
+                <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-black" />
+            </div>
 
-            {/* Dark Overlay + Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black/90"></div>
-
-            {/* Main Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-5xl mx-auto">
-                
-                {/* Animated Heading */}
-                <motion.h1 
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tighter"
-                >
-                    We Build Websites That{" "}
-                    <span className="bg-gradient-to-r from-yellow-400 to-amber-300 bg-clip-text text-transparent">
-                        Grow Your Business
-                    </span>
-                </motion.h1>
-
-                {/* Animated Subheading */}
-                <motion.p 
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl font-medium tracking-wide"
-                >
-                    Rizq Technologies crafts modern, lightning-fast, and conversion-focused digital experiences 
-                    that deliver measurable growth.
-                </motion.p>
-
-                {/* Animated Buttons */}
+            <div className="relative z-30 px-8 md:px-20 max-w-7xl mx-auto w-full pb-20">
                 <motion.div 
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs sm:max-w-none"
+                    className="mb-6 flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full w-fit"
                 >
-                    <Link href="#contact">
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500 text-black px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 shadow-xl shadow-yellow-400/30"
-                        >
-                            Get Started
-                        </motion.button>
-                    </Link>
-
-                    <Link href="#contact">
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="w-full sm:w-auto border-2 border-white/80 hover:border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300"
-                        >
-                            Book a Free Call
-                        </motion.button>
-                    </Link>
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                        <span className="relative h-2 w-2 rounded-full bg-yellow-500"></span>
+                    </span>
+                    <span className="text-white/60 text-[9px] font-black uppercase tracking-[0.3em]">Built for 2026</span>
                 </motion.div>
 
-                {/* Scroll Indicator */}
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-                >
-                    <span className="text-white/60 text-sm tracking-widest font-medium">SCROLL TO EXPLORE</span>
-                    <motion.div
-                        animate={{ y: [0, 8, 0] }}
-                        transition={{ duration: 1.8, repeat: Infinity }}
-                        className="w-5 h-8 border-2 border-white/50 rounded-full flex justify-center pt-1.5"
+                <div className="max-w-5xl">
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-5xl md:text-8xl lg:text-[10rem] font-black text-white leading-[0.85] tracking-tighter uppercase"
                     >
-                        <div className="w-1 h-2 bg-white/70 rounded-full" />
-                    </motion.div>
+                        Mastering <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-200 italic">Craft.</span>
+                    </motion.h1>
+                    <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="mt-8 text-lg text-gray-400 max-w-lg leading-relaxed font-medium"
+                    >
+                        We build high-performance digital products for elite brands.
+                    </motion.p>
+                </div>
+
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="mt-10 flex flex-wrap gap-4"
+                >
+                    <Link href="#contact">
+                        <button className="bg-yellow-400 hover:scale-105 transition-transform text-black px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest shadow-xl shadow-yellow-400/20">
+                            Start Project
+                        </button>
+                    </Link>
                 </motion.div>
             </div>
         </section>

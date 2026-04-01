@@ -1,103 +1,123 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    // Scroll effect for glassmorphism
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const navLinks = [
         { href: "#home", label: "Home" },
         { href: "#services", label: "Services" },
         { href: "#portfolio", label: "Portfolio" },
         { href: "#pricing", label: "Pricing" },
-        { href: "#contact", label: "Contact" },
     ];
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <header className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
-            <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <header 
+            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
+                scrolled ? "py-3 px-4 md:px-10" : "py-6 px-4 md:px-10"
+            }`}
+        >
+            <nav className={`max-w-7xl mx-auto transition-all duration-500 border rounded-[2rem] px-6 md:px-10 flex justify-between items-center h-[70px] md:h-[80px] ${
+                scrolled 
+                ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl" 
+                : "bg-transparent border-transparent"
+            }`}>
                 
-                {/* Logo */}
+                {/* Logo Section */}
                 <Link
                     href="#home"
-                    aria-label="Rizq Technologies - Go to homepage"
-                    className="flex items-center group"
+                    className="relative z-[110] flex items-center"
                     onClick={closeMenu}
                 >
                     <Image
                         src="/l9_new.png"
-                        alt="Rizq Technologies Logo"
-                        width={180}
-                        height={55}
-                        className="object-contain transition-all duration-300 group-hover:scale-105"
+                        alt="Rizq Logo"
+                        width={140}
+                        height={40}
+                        className="object-contain w-[120px] md:w-[150px] transition-transform hover:scale-105"
                         priority
                     />
                 </Link>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-10 text-sm font-medium tracking-wide">
+                {/* Desktop Links - Very Clean */}
+                <div className="hidden md:flex items-center gap-8 lg:gap-12">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-white/90 hover:text-yellow-400 transition-all duration-300 hover:-translate-y-0.5 relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 hover:after:w-full after:transition-all"
-                            onClick={closeMenu}
+                            className="text-white/70 hover:text-yellow-400 text-sm font-bold tracking-widest uppercase transition-colors"
                         >
                             {link.label}
                         </Link>
                     ))}
-                </nav>
-
-                {/* Desktop CTA */}
-                <div className="hidden md:block">
-                    <Link href="#contact" onClick={closeMenu}>
-                        <button className="bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500 text-black px-7 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 shadow-lg shadow-yellow-400/30 hover:shadow-xl hover:-translate-y-0.5">
+                    
+                    <Link href="#contact">
+                        <button className="bg-yellow-400 hover:bg-yellow-300 text-black px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-tighter transition-all hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] active:scale-95">
                             Get Started
                         </button>
                     </Link>
                 </div>
 
-                {/* Mobile Menu Button */}
+                {/* Mobile Hamburger */}
                 <button
                     onClick={toggleMenu}
-                    className="md:hidden text-white p-2 focus:outline-none"
-                    aria-label={isOpen ? "Close menu" : "Open menu"}
+                    className="md:hidden relative z-[110] text-white p-2"
                 >
-                    {isOpen ? <X size={30} /> : <Menu size={30} />}
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
-            </div>
 
-            {/* Mobile Menu */}
-            <div className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-2xl z-40 transition-all duration-500 ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}`}>
-                <div className="flex flex-col h-full pt-24 px-8">
-                    <nav className="flex flex-col gap-8 text-3xl font-medium">
-                        {navLinks.map((link, index) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="text-white hover:text-yellow-400 transition-all py-3 border-b border-white/10"
-                                onClick={closeMenu}
-                            >
-                                {link.label}
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="absolute top-0 left-0 w-full h-[100vh] bg-black/95 backdrop-blur-3xl flex flex-col justify-center items-center gap-10 z-[105]"
+                        >
+                            {navLinks.map((link, idx) => (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                    key={link.href}
+                                >
+                                    <Link
+                                        href={link.href}
+                                        onClick={closeMenu}
+                                        className="text-white text-4xl font-black italic hover:text-yellow-400 transition-colors"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                            <Link href="#contact" onClick={closeMenu}>
+                                <button className="bg-yellow-400 text-black px-10 py-4 rounded-full font-black text-xl uppercase italic shadow-2xl">
+                                    Let&apos;s Talk
+                                </button>
                             </Link>
-                        ))}
-                    </nav>
-
-                    <div className="mt-auto pb-16">
-                        <Link href="#contact" onClick={closeMenu}>
-                            <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black py-5 rounded-2xl font-semibold text-xl">
-                                Get Started
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </nav>
         </header>
     );
 };
