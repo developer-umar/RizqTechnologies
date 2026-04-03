@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -30,17 +31,15 @@ const Navbar = () => {
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <header 
-            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
-                scrolled ? "py-3 px-4 md:px-10" : "py-6 px-4 md:px-10"
-            }`}
+        <header
+            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled ? "py-3 px-4 md:px-10" : "py-6 px-4 md:px-10"
+                }`}
         >
-            <nav className={`max-w-7xl mx-auto transition-all duration-500 border rounded-[2rem] px-6 md:px-10 flex justify-between items-center h-[70px] md:h-[80px] ${
-                scrolled 
-                ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl" 
-                : "bg-transparent border-transparent"
-            }`}>
-                
+            <nav className={`max-w-7xl mx-auto transition-all duration-500 border rounded-[2rem] px-6 md:px-10 flex justify-between items-center h-[70px] md:h-[80px] ${scrolled
+                    ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl"
+                    : "bg-transparent border-transparent"
+                }`}>
+
                 {/* Logo Section */}
                 <Link
                     href="#home"
@@ -55,6 +54,8 @@ const Navbar = () => {
                         className="object-contain w-[120px] md:w-[150px] transition-transform hover:scale-105"
                         priority
                     />
+
+                   
                 </Link>
 
                 {/* Desktop Links - Very Clean */}
@@ -68,7 +69,7 @@ const Navbar = () => {
                             {link.label}
                         </Link>
                     ))}
-                    
+
                     <Link href="#contact">
                         <button className="bg-yellow-400 hover:bg-yellow-300 text-black px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-tighter transition-all hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] active:scale-95">
                             Get Started

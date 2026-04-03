@@ -20,7 +20,7 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <Services />
-        <Portfolio />
+        <Portfolio />   
         <Pricing />
         <CTA />
         <Contact />
