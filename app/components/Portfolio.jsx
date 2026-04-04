@@ -2,6 +2,12 @@
 
 import React, { Children, cloneElement, forwardRef, isValidElement, useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP Plugin outside the component lifecycle
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // ==================== ICONS ====================
 const ZapIcon = () => (
@@ -99,7 +105,7 @@ const MobileCarousel = ({ children }) => {
       },
       {
         root: containerRef.current,
-        threshold: 0.6, // Checks when card is 60% inside the view
+        threshold: 0.6,
       }
     );
 
@@ -112,7 +118,6 @@ const MobileCarousel = ({ children }) => {
   return (
     <div 
       ref={containerRef}
-      // CSS Native Snap Rules added here (Ensure globals.css has .hide-scrollbar { display: none; } for webkit)
       className="md:hidden flex w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar py-10 px-[10vw] gap-4"
     >
       {childArr.map((child, i) => (
@@ -125,7 +130,7 @@ const MobileCarousel = ({ children }) => {
             ? cloneElement(child, {
                 isActive: i === activeIndex,
                 isMobile: true,
-                className: "!relative !top-0 !left-0 !transform-none w-full h-full" // Negating absolute positioning on mobile
+                className: "!relative !top-0 !left-0 !transform-none w-full h-full" 
               })
             : child}
         </div>
@@ -137,6 +142,7 @@ const MobileCarousel = ({ children }) => {
 // ==================== MAIN COMPONENT ====================
 export default function PortfolioHero() {
   const [desktopActiveIndex, setDesktopActiveIndex] = useState(2);
+  const headerRef = useRef(null);
   
   const projects = [
     { title: "NEXUS", cat: "CORE SYSTEM", desc: "Enterprise cloud management for modern teams.", img: "https://picsum.photos/id/1/800/1200", tags: ["Next.js", "React"] },
@@ -146,7 +152,36 @@ export default function PortfolioHero() {
     { title: "VOID", cat: "WEB3", desc: "Decentralized spatial OS platform for the future.", img: "https://picsum.photos/id/251/800/1200", tags: ["WebGL", "Solidity"] }
   ];
 
-  // Map array into JSX once to pass to both renderers
+  // GSAP ScrollTrigger for Header Reveal
+  useEffect(() => {
+    // Wrap in gsap.context for React strict mode compatibility and automatic cleanup
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".header-reveal",
+        { 
+          y: 80, 
+          opacity: 0, 
+          rotationX: 15 // Adds a subtle premium 3D un-hinge effect 
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotationX: 0,
+          duration: 1.2,
+          stagger: 0.15, // Cascades the animation: Pill -> H1 -> P
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%", // Triggers when the top of the header hits 85% of the screen height
+            toggleActions: "play none none reverse", // Reverses animation if they scroll back up past it
+          }
+        }
+      );
+    }, headerRef);
+
+    return () => ctx.revert(); // Cleanup on unmount
+  }, []);
+
   const renderCards = () => projects.map((p, i) => (
     <Card key={i}>
       <div className="relative h-full w-full group">
@@ -186,23 +221,38 @@ export default function PortfolioHero() {
   return (
     <section className="relative min-h-screen bg-black flex flex-col items-center justify-center py-10 md:py-20 overflow-hidden">
       
-      {/* Background Decor */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-5%] left-[-5%] w-[50%] h-[40%] bg-yellow-400/5 blur-[100px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15]" />
+      {/* ==================== UPGRADED BACKGROUND DECOR ==================== */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        
+        <div className="absolute top-[-10%] left-[20%] w-[50%] h-[50%] bg-yellow-500/10 blur-[120px] rounded-full animate-pulse duration-1000" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[40%] h-[50%] bg-zinc-600/10 blur-[150px] rounded-full" />
+        
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.12] mix-blend-overlay" />
       </div>
 
-      {/* Header */}
-      <div className="z-10 text-center mb-8 md:mb-12 space-y-3 px-4">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-md text-yellow-400 font-mono text-[9px] md:text-[10px] tracking-[3px] uppercase mx-auto">
-          <ZapIcon /> Selected Works
+      {/* ==================== UPGRADED HEADER WITH GSAP REVEAL ==================== */}
+      {/* Added perspective for the 3D un-hinge animation and attached headerRef */}
+      <div ref={headerRef} className="z-10 text-center mb-10 md:mb-16 space-y-4 px-4 mt-8 md:mt-0 perspective-[1000px]">
+        
+        {/* Added .header-reveal class to elements we want to stagger */}
+        <div className="header-reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-yellow-400 font-mono text-[9px] md:text-[10px] tracking-[3px] uppercase mx-auto shadow-[0_0_15px_rgba(250,204,21,0.1)] opacity-0">
+          <ZapIcon /> Agency Portfolio
         </div>
-        <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
-          THE <span className="text-yellow-400">RIZQ</span> <br /> STUDIO.
+        
+        <h1 className="header-reveal text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.95] opacity-0">
+          SHIPPED <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-600 drop-shadow-[0_0_30px_rgba(250,204,21,0.3)]">
+            EXPERIENCES.
+          </span>
         </h1>
+        
+        <p className="header-reveal text-zinc-400 text-[11px] md:text-sm max-w-lg mx-auto font-medium tracking-wide leading-relaxed opacity-0">
+          A curated showcase of high-performance digital solutions, engineered and successfully delivered to our global clients.
+        </p>
       </div>
 
-      {/* Dual Carousel Architecture Wrapper */}
+      {/* ==================== UNTOUCHED CAROUSEL ARCHITECTURE ==================== */}
       <div className="w-full max-w-[1400px] z-10">
         <DesktopCarousel activeIndex={desktopActiveIndex} setActiveIndex={setDesktopActiveIndex}>
           {renderCards()}
