@@ -4,7 +4,7 @@ import React, { Children, cloneElement, forwardRef, isValidElement, useState, us
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Register GSAP Plugin outside the component lifecycle
+// ==================== GSAP REGISTRATION ====================
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -27,9 +27,12 @@ export const Card = forwardRef(({ children, isActive, isMobile, ...rest }, ref) 
   <div
     ref={ref}
     {...rest}
-    className={`absolute top-1/2 left-1/2 rounded-[32px] md:rounded-[48px] border-t border-l transition-all duration-500 
-                ${isActive ? 'border-yellow-400/50 shadow-[0_20px_50px_-10px_rgba(250,204,21,0.3)] ring-1 ring-yellow-400/20 md:scale-100 scale-105' : 'border-white/10 md:opacity-40 opacity-60 scale-95'} 
+    // Strict separation: CSS handles paints (borders/shadows), GSAP handles desktop transforms.
+    className={`absolute top-1/2 left-1/2 rounded-[32px] md:rounded-[48px] border-t border-l 
+                transition-[border-color,box-shadow] duration-500 ease-out
+                ${isActive ? 'border-yellow-400/50 shadow-[0_20px_50px_-10px_rgba(250,204,21,0.3)] ring-1 ring-yellow-400/20' : 'border-white/10'} 
                 bg-zinc-900/60 backdrop-blur-md overflow-hidden group cursor-pointer
+                ${isMobile ? (isActive ? 'scale-105 opacity-100 transition-[transform,opacity]' : 'scale-95 opacity-60 transition-[transform,opacity]') : ''}
                 ${rest.className ?? ''}`.trim()}
   >
     {children}
@@ -53,17 +56,19 @@ const DesktopCarousel = ({ children, activeIndex, setActiveIndex }) => {
 
       const diff = i - activeIndex;
       const absDiff = Math.abs(diff);
+      const targetZIndex = 100 - absDiff;
 
       gsap.to(el, {
-        x: diff * 260,
-        y: absDiff * 40,
-        z: -absDiff * 250,
+        x: diff * 280,
+        y: absDiff * 30,
+        z: -absDiff * 300,
         rotationY: diff * -35,
-        scale: 1 - (absDiff * 0.2),
+        rotationZ: diff * -2,
+        scale: 1 - (absDiff * 0.15),
         opacity: 1 - (absDiff * 0.4),
-        zIndex: 100 - absDiff,
-        duration: 0.5,
-        ease: "power3.out",
+        zIndex: targetZIndex,
+        duration: 0.85,
+        ease: "expo.out",
         xPercent: -50,
         yPercent: -50,
         overwrite: true
@@ -72,7 +77,7 @@ const DesktopCarousel = ({ children, activeIndex, setActiveIndex }) => {
   }, [activeIndex, childArr.length]);
 
   return (
-    <div className="hidden md:flex relative w-full h-[600px] perspective-[1500px] items-center justify-center">
+    <div className="hidden md:flex relative w-full h-[600px] perspective-[2000px] items-center justify-center">
       {childArr.map((child, i) =>
         isValidElement(child)
           ? cloneElement(child, {
@@ -145,7 +150,7 @@ export default function PortfolioHero() {
   const headerRef = useRef(null);
   
   const projects = [
-    { title: "NEXUS", cat: "CORE SYSTEM", desc: "Enterprise cloud management for modern teams.", img: "https://picsum.photos/id/1/800/1200", tags: ["Next.js", "React"] },
+    { title: "Leather Craft", cat: "CORE SYSTEM", desc: "Application for displaying Leather products.", img: "leather_Craft.png", tags: ["Next.js", "Tailwind"] },
     { title: "GLOW", cat: "BRANDING", desc: "Luxury skincare digital store experience.", img: "https://picsum.photos/id/20/800/1200", tags: ["Shopify", "Liquid"] },
     { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D brand identity for Rizq Technologies.", img: "https://picsum.photos/id/1015/800/1200", tags: ["Three.js", "GSAP"] },
     { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization with predictive analytics.", img: "https://picsum.photos/id/133/800/1200", tags: ["React", "D3"] },
@@ -154,32 +159,31 @@ export default function PortfolioHero() {
 
   // GSAP ScrollTrigger for Header Reveal
   useEffect(() => {
-    // Wrap in gsap.context for React strict mode compatibility and automatic cleanup
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".header-reveal",
         { 
           y: 80, 
           opacity: 0, 
-          rotationX: 15 // Adds a subtle premium 3D un-hinge effect 
+          rotationX: 15
         },
         {
           y: 0,
           opacity: 1,
           rotationX: 0,
           duration: 1.2,
-          stagger: 0.15, // Cascades the animation: Pill -> H1 -> P
+          stagger: 0.15,
           ease: "expo.out",
           scrollTrigger: {
             trigger: headerRef.current,
-            start: "top 85%", // Triggers when the top of the header hits 85% of the screen height
-            toggleActions: "play none none reverse", // Reverses animation if they scroll back up past it
+            start: "top 85%",
+            toggleActions: "play none none reverse",
           }
         }
       );
     }, headerRef);
 
-    return () => ctx.revert(); // Cleanup on unmount
+    return () => ctx.revert();
   }, []);
 
   const renderCards = () => projects.map((p, i) => (
@@ -221,7 +225,7 @@ export default function PortfolioHero() {
   return (
     <section className="relative min-h-screen bg-black flex flex-col items-center justify-center py-10 md:py-20 overflow-hidden">
       
-      {/* ==================== UPGRADED BACKGROUND DECOR ==================== */}
+      {/* ==================== BACKGROUND DECOR ==================== */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         
@@ -231,11 +235,8 @@ export default function PortfolioHero() {
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.12] mix-blend-overlay" />
       </div>
 
-      {/* ==================== UPGRADED HEADER WITH GSAP REVEAL ==================== */}
-      {/* Added perspective for the 3D un-hinge animation and attached headerRef */}
+      {/* ==================== HEADER ==================== */}
       <div ref={headerRef} className="z-10 text-center mb-10 md:mb-16 space-y-4 px-4 mt-8 md:mt-0 perspective-[1000px]">
-        
-        {/* Added .header-reveal class to elements we want to stagger */}
         <div className="header-reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-yellow-400 font-mono text-[9px] md:text-[10px] tracking-[3px] uppercase mx-auto shadow-[0_0_15px_rgba(250,204,21,0.1)] opacity-0">
           <ZapIcon /> Agency Portfolio
         </div>
@@ -252,7 +253,7 @@ export default function PortfolioHero() {
         </p>
       </div>
 
-      {/* ==================== UNTOUCHED CAROUSEL ARCHITECTURE ==================== */}
+      {/* ==================== CAROUSEL ==================== */}
       <div className="w-full max-w-[1400px] z-10">
         <DesktopCarousel activeIndex={desktopActiveIndex} setActiveIndex={setDesktopActiveIndex}>
           {renderCards()}
