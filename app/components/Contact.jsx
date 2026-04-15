@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -10,13 +11,22 @@ const Contact = () => {
     message: "",
   });
 
+  const [status, setStatus] = useState("idle"); // idle, loading, success
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted", formData);
+    setStatus("loading");
+    
+    // Simulate API call
+    setTimeout(() => {
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    }, 1500);
   };
 
   return (
@@ -29,10 +39,12 @@ const Contact = () => {
         
         {/* The user's image, massively integrated into the right side of the entire section */}
         <div className="absolute top-0 right-0 w-full lg:w-2/3 h-full opacity-50">
-          <img 
+          <Image 
             src="/contact.jpg" 
             alt="The Rizq Studio Contact"
+            fill
             className="w-full h-full object-cover"
+            sizes="(max-width: 1024px) 100vw, 66vw"
           />
           {/* Heavy gradients to melt the image into the black background seamlessly */}
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/80 to-black" />
@@ -146,22 +158,33 @@ const Contact = () => {
 
                 {/* Submit Button */}
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={status === "idle" ? { scale: 1.02 } : {}}
+                  whileTap={status === "idle" ? { scale: 0.98 } : {}}
                   type="submit"
-                  className="group relative inline-flex items-center gap-6 mt-8 py-5 px-10 bg-transparent border border-yellow-400 text-yellow-400 font-black text-xl md:text-2xl rounded-full overflow-hidden hover:text-black transition-colors duration-500 uppercase tracking-widest"
+                  disabled={status !== "idle"}
+                  className={`group relative inline-flex items-center gap-6 mt-8 py-5 px-10 bg-transparent border border-yellow-400 text-yellow-400 font-black text-xl md:text-2xl rounded-full overflow-hidden transition-all duration-500 uppercase tracking-widest ${
+                    status === "success" ? "border-green-500 text-green-500" : ""
+                  } ${status !== "idle" ? "cursor-default" : "hover:text-black"}`}
                 >
                   {/* Fill effect background */}
-                  <div className="absolute inset-0 bg-yellow-400 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" />
+                  <div className={`absolute inset-0 bg-yellow-400 translate-y-[100%] ${status === "idle" ? "group-hover:translate-y-0" : ""} transition-transform duration-500 ease-in-out z-0`} />
                   
-                  <span className="relative z-10">Send Request</span>
-                  <motion.span
-                    className="relative z-10 text-3xl"
-                    animate={{ x: [0, 6, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    →
-                  </motion.span>
+                  <span className="relative z-10 flex items-center gap-3">
+                    {status === "idle" && "Send Request"}
+                    {status === "loading" && "Sending..."}
+                    {status === "success" && "Success!"}
+                    
+                    {status === "idle" && (
+                      <motion.span
+                        className="text-3xl"
+                        animate={{ x: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        →
+                      </motion.span>
+                    )}
+                    {status === "success" && <span className="text-2xl">✓</span>}
+                  </span>
                 </motion.button>
               </form>
             </motion.div>

@@ -80,6 +80,7 @@ const Navbar = () => {
                 {/* Mobile Hamburger */}
                 <button
                     onClick={toggleMenu}
+                    aria-label={isOpen ? "Close menu" : "Open menu"}
                     className="md:hidden relative z-[110] text-white p-2"
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}

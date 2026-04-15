@@ -11,6 +11,15 @@ import Footer from "./components/Footer";
 
 
 
+export const metadata = {
+  title: "Mastering Craft | High-Performance Digital Products 2026",
+  description: "Rizq Technologies builds high-performance digital products for elite brands. Specializing in Web Development, Branding, and AI Solutions.",
+  openGraph: {
+    title: "Mastering Craft | High-Performance Digital Products",
+    description: "Built for 2026. Rizq Technologies is the premier digital agency for elite brands.",
+  },
+};
+
 export default function Home() {
   return (
     <>
