@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Children, cloneElement, forwardRef, isValidElement, useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -150,7 +151,7 @@ export default function PortfolioHero() {
   const headerRef = useRef(null);
   
   const projects = [
-    { title: "Leather Craft", cat: "CORE SYSTEM", desc: "Application for displaying Leather products.", img: "leather_Craft.png", tags: ["Next.js", "Tailwind"] },
+    { title: "Leather Craft", cat: "CORE SYSTEM", desc: "Application for displaying Leather products.", img: "/leather_craft_premium.png", tags: ["Next.js", "Tailwind"] },
     { title: "GLOW", cat: "BRANDING", desc: "Luxury skincare digital store experience.", img: "https://picsum.photos/id/20/800/1200", tags: ["Shopify", "Liquid"] },
     { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D brand identity for Rizq Technologies.", img: "https://picsum.photos/id/1015/800/1200", tags: ["Three.js", "GSAP"] },
     { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization with predictive analytics.", img: "https://picsum.photos/id/133/800/1200", tags: ["React", "D3"] },
@@ -189,7 +190,16 @@ export default function PortfolioHero() {
   const renderCards = () => projects.map((p, i) => (
     <Card key={i}>
       <div className="relative h-full w-full group">
-        <img loading="lazy" src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover transition-all duration-700 opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-80" />
+        <Image 
+          src={p.img} 
+          alt={p.title} 
+          fill 
+          sizes="(max-width: 768px) 100vw, 360px"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-30 group-hover:opacity-60 saturate-[0.8] group-hover:saturate-100 group-hover:scale-110" 
+          loading="lazy"
+        />
+        {/* Gradient Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[5]" />
         
         <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-10">
           <div className="space-y-1">
@@ -208,10 +218,10 @@ export default function PortfolioHero() {
             </div>
 
             <div className="flex gap-2 transition-all duration-500 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 mt-4">
-              <a href="#" className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[10px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
+              <a href="#" aria-label={`View ${p.title} project`} className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[10px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
                   <ExternalIcon /> View Project
               </a>
-              <a href="#" className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-xl text-white hover:bg-white/10 transition-colors bg-black/40 backdrop-blur-md">
+              <a href="#" aria-label={`View ${p.title} source on GitHub`} className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-xl text-white hover:bg-white/10 transition-colors bg-black/40 backdrop-blur-md">
                 <GithubIcon />
               </a>
             </div>
@@ -241,12 +251,12 @@ export default function PortfolioHero() {
           <ZapIcon /> Agency Portfolio
         </div>
         
-        <h1 className="header-reveal text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.95] opacity-0">
+        <h2 className="header-reveal text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.95] opacity-0">
           SHIPPED <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-600 drop-shadow-[0_0_30px_rgba(250,204,21,0.3)]">
             EXPERIENCES.
           </span>
-        </h1>
+        </h2>
         
         <p className="header-reveal text-zinc-400 text-[11px] md:text-sm max-w-lg mx-auto font-medium tracking-wide leading-relaxed opacity-0">
           A curated showcase of high-performance digital solutions, engineered and successfully delivered to our global clients.

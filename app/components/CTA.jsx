@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -10,11 +11,13 @@ const CTA = () => {
       
       {/* ==================== CINEMATIC IMAGE BACKGROUND (FIXED) ==================== */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* High-Res Unsplash Image - Opacity increased, blend mode removed for visibility */}
-        <img 
+        {/* High-Res Unsplash Image - Optimized with next/image */}
+        <Image 
           src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2070&q=80" 
           alt="The Rizq Studio Team"
+          fill
           className="w-full h-full object-cover opacity-40 grayscale"
+          sizes="100vw"
         />
         
         {/* Gradient Masks - Lightened to let the image show through */}
