@@ -20,6 +20,7 @@ const syne = Syne({
 });
 
 export const metadata = {
+<<<<<<< Updated upstream
   title: {
     default: "Rizq Technologies | Premier Digital Agency 2026",
     template: "%s | Rizq Technologies",
@@ -69,6 +70,12 @@ export const metadata = {
     apple: "/l9_new.png",
   },
   manifest: "/manifest.json",
+=======
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://rizqtechnologies.com'),
+  verification: {
+    google: "Yy3MgjgeIT1KzfiITWYJsXCEaJAIqiRauPjv7hNKs1Y",
+  },
+>>>>>>> Stashed changes
 };
 
 export default function RootLayout({ children }) {
