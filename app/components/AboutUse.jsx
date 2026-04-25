@@ -57,7 +57,7 @@ export default function AboutUsFluid() {
             <motion.div variants={fadeUpVariants} className="inline-flex items-center gap-4 mb-6">
               <span className="w-10 h-[2px] bg-amber-500" />
               <span className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">
-                Strategic Growth Partners
+                About Us
               </span>
             </motion.div>
 
@@ -77,7 +77,7 @@ export default function AboutUsFluid() {
               </motion.p>
               
               <motion.p variants={fadeUpVariants} className="text-lg md:text-xl text-zinc-500 leading-relaxed font-medium">
-                At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a collective of innovators obsessed with brand elevation. By leveraging <span className="text-zinc-800 italic">cutting-edge digital architectures</span>, we transform your vision into a high-performance revenue engine—delivering elite, industry-level quality without the bloated enterprise overhead.
+                At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a collective of innovators obsessed with brand elevation. By leveraging <span className="text-zinc-800 italic">cutting-edge digital architectures</span>, we transform your vision into a high-performance revenue engine—delivering elite, industry-level quality without the bloated enterprise overhead.<strong className="text-black font-bold">Our  sole focus is to build  your Brand   and Grow Your Business</strong>
               </motion.p>
             </div>
 
