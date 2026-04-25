@@ -1,74 +1,94 @@
 "use client";
 import React, { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Text, Sphere, MeshDistortMaterial, OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
+import { Float, Sphere, MeshDistortMaterial, OrbitControls, Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
 
-// --- Configuration ---
+// --- Technology Stack (Using Skill Icons CDN - No Downloads Needed) ---
 const techStack = [
-  { name: "React", color: "#61DAFB" },
-  { name: "Next.js", color: "#ffffff" },
-  { name: "Node.js", color: "#339933" },
-  { name: "Tailwind", color: "#06B6D4" },
-  { name: "Three.js", color: "#fcca03" },
-  { name: "MongoDB", color: "#47A248" },
-  { name: "Framer", color: "#E10098" },
-  { name: "GSAP", color: "#88CE02" },
+  { id: "react", name: "React" },
+  { id: "nextjs", name: "Next.js" },
+  { id: "nodejs", name: "Node.js" },
+  { id: "tailwind", name: "Tailwind" },
+  { id: "threejs", name: "Three.js" },
+  { id: "mongodb", name: "MongoDB" },
+  { id: "docker", name: "Docker" },
+  { id: "express", name: "Express" },
+  { id: "ts", name: "TypeScript" },
+  { id: "js", name: "JavaScript" },
+  { id: "figma", name: "Figma" },
+  { id: "aws", name: "AWS" },
+  { id: "firebase", name: "Firebase" },
+  { id: "redux", name: "Redux" },
+  { id: "postman", name: "Postman" },
+  { id: "git", name: "Git" },
 ];
+
+// Helper function to get CDN URL
+const getIconUrl = (id) => `https://skillicons.dev/icons?i=${id}`;
+
+const rizqCoreLogo = "/rizq-logo.png"; // Sirf ye ek file chahiye public folder mein
 
 // --- Sub-Components ---
 
-function TechIcon({ position, name, color }) {
-  const textRef = useRef();
-  
+function TechLogoBillboard({ position, iconId, name }) {
+  const groupRef = useRef();
+  const [hovered, setHovered] = useState(false);
+
   useFrame((state) => {
-    if (textRef.current) {
-      // Smooth vertical floating
-      textRef.current.position.y += Math.sin(state.clock.elapsedTime + position[0]) * 0.005;
+    if (groupRef.current) {
+      groupRef.current.position.y += Math.sin(state.clock.elapsedTime + position[0]) * 0.005;
+      groupRef.current.quaternion.copy(state.camera.quaternion);
     }
   });
 
   return (
-    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
-      <group position={position} ref={textRef}>
-        <Text
-          fontSize={0.45}
-          color={color}
-          anchorX="center"
-          anchorY="middle"
-          maxWidth={2}
-          textAlign="center"
+    <group position={position} ref={groupRef}>
+      <Html
+        distanceFactor={6}
+        transform
+        occlude="blending"
+      >
+        <div 
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          className="flex flex-col items-center justify-center p-2 rounded-2xl bg-black/50 backdrop-blur-md border border-white/10 shadow-2xl cursor-pointer transition-all duration-500"
+          style={{ transform: hovered ? 'scale(1.2)' : 'scale(1)' }}
         >
-          {name}
-        </Text>
-      </group>
-    </Float>
+          <img 
+            src={getIconUrl(iconId)} 
+            alt={name} 
+            className={`h-8 w-8 object-contain transition-all duration-500 ${hovered ? 'grayscale-0 scale-110' : 'grayscale opacity-60'}`} 
+          />
+          {hovered && (
+            <span className="text-[8px] text-yellow-500 font-bold uppercase mt-1 tracking-tighter">
+              {name}
+            </span>
+          )}
+        </div>
+      </Html>
+    </group>
   );
 }
 
-// Mobile Marquee for Performance
-const MobileMarquee = () => (
-  <div className="flex flex-col justify-center items-center h-full w-full px-4">
-    <h2 className="text-gray-500 text-sm tracking-[0.4em] uppercase mb-12">Core Technologies</h2>
-    <div className="relative flex overflow-hidden w-full py-8 border-y border-white/5 bg-white/[0.02]">
-      <motion.div 
-        className="flex whitespace-nowrap space-x-16 px-8"
+const MobileMarqueeLogos = () => (
+  <div className="flex flex-col justify-center items-center h-full w-full relative overflow-hidden bg-black">
+    <div className="text-center mb-10">
+      <h2 className="text-yellow-500/50 text-xs tracking-[0.5em] uppercase font-bold">Tech Ecosystem</h2>
+      <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mt-2 mx-auto" />
+    </div>
+
+    <div className="relative flex overflow-hidden w-full py-10 border-y border-white/5">
+      <motion.div
+        className="flex whitespace-nowrap space-x-10 px-10"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
       >
         {[...techStack, ...techStack].map((tech, i) => (
-          <span 
-            key={i} 
-            className="text-3xl font-bold uppercase italic tracking-tighter"
-            style={{ 
-              color: tech.color, 
-              textShadow: `0 0 20px ${tech.color}44`,
-              WebkitTextStroke: tech.name === "Next.js" ? "1px #ffffff33" : "none"
-            }}
-          >
-            {tech.name}
-          </span>
+          <div key={i} className="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 border border-white/10 flex-none w-20 h-20">
+            <img src={getIconUrl(tech.id)} alt={tech.name} className="h-10 w-10 object-contain" />
+            <span className="text-[7px] text-white/40 uppercase mt-2 font-mono">{tech.name}</span>
+          </div>
         ))}
       </motion.div>
     </div>
@@ -79,86 +99,87 @@ const MobileMarquee = () => (
 
 export default function TechUniverse() {
   const [mounted, setMounted] = useState(false);
+  const coreMeshRef = useRef();
 
-  // Client-side hydration check
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useFrame((state) => {
+    if (coreMeshRef.current) {
+      const s = 1 + Math.sin(state.clock.elapsedTime * 1.5) * 0.03;
+      coreMeshRef.current.scale.set(s, s, s);
+    }
+  });
 
   if (!mounted) return <div className="h-screen w-full bg-black" />;
 
   return (
     <section className="relative w-full h-[600px] md:h-screen bg-black overflow-hidden select-none">
       
-      {/* Visual Enhancements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#1a1a2e_0%,_#000000_80%)] pointer-events-none" />
+      {/* Black & Gold Gradient Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#221a0a_0%,_#000000_80%)] pointer-events-none" />
       
-      {/* Desktop Scene */}
       <div className="hidden md:block w-full h-full">
-        <Canvas 
-          dpr={[1, 2]} 
-          camera={{ position: [0, 0, 15], fov: 40 }}
-          gl={{ antialias: true }}
-        >
+        <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 20], fov: 35 }}>
           <Suspense fallback={null}>
             <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={2} color="#4f46e5" />
-            <pointLight position={[-10, -10, -10]} intensity={1} color="#7c3aed" />
+            <pointLight position={[10, 10, 10]} intensity={2} color="#facc15" />
+            <pointLight position={[-10, -10, -10]} intensity={1} color="#ca8a04" />
 
-            {/* Rizq Core: Animated Distorted Mesh */}
-            <Sphere args={[1.5, 128, 128]}>
+            {/* Rizq Core Sphere */}
+            <Sphere ref={coreMeshRef} args={[2, 100, 100]}>
               <MeshDistortMaterial 
                 color="#050505" 
-                speed={2.5} 
-                distort={0.4} 
-                roughness={0.2} 
-                metalness={0.9}
-                emissive="#111"
+                speed={2} 
+                distort={0.2} 
+                roughness={0.1} 
+                metalness={1}
+                emissive="#422006"
+                emissiveIntensity={0.5}
               />
+              <Html position={[0, 0, 0]} transform distanceFactor={6} className="pointer-events-none">
+                <img 
+                  src={rizqCoreLogo} 
+                  alt="Rizq Logo" 
+                  className="h-24 w-auto filter drop-shadow-[0_0_20px_rgba(250,204,21,0.4)]" 
+                />
+              </Html>
             </Sphere>
 
-            {/* Icons Cloud */}
+            {/* Orbiting Icons */}
             {techStack.map((tech, idx) => {
               const angle = (idx / techStack.length) * Math.PI * 2;
-              const radius = 6;
+              const radius = 8;
               const x = Math.cos(angle) * radius;
               const z = Math.sin(angle) * radius;
-              const y = (idx % 2 === 0 ? 1 : -1) * (Math.random() * 2 + 1);
+              const y = (idx % 2 === 0 ? 1 : -1) * (Math.random() * 4);
               
               return (
-                <TechIcon 
+                <TechLogoBillboard 
                   key={idx} 
                   position={[x, y, z]} 
+                  iconId={tech.id} 
                   name={tech.name} 
-                  color={tech.color} 
                 />
               );
             })}
 
-            {/* Smooth Controls */}
-            <OrbitControls 
-              enableZoom={false} 
-              autoRotate 
-              autoRotateSpeed={0.6} 
-              makeDefault
-            />
+            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.4} />
           </Suspense>
         </Canvas>
       </div>
 
-      {/* Mobile Scene */}
+      {/* Mobile View */}
       <div className="md:hidden w-full h-full flex items-center">
-        <MobileMarquee />
+        <MobileMarqueeLogos />
       </div>
 
-      {/* Overlay UI */}
-      <div className="absolute bottom-12 w-full flex flex-col items-center justify-center space-y-2 pointer-events-none">
-        <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-blue-500 to-transparent mb-2" />
-        <p className="text-[10px] text-white/30 uppercase tracking-[0.8em] font-light">
-          Rizq Technologies
+      <div className="absolute bottom-10 w-full text-center pointer-events-none">
+        <p className="text-[10px] text-yellow-600/40 uppercase tracking-[1em] font-medium">
+          Rizq Technologies • Future Ready
         </p>
       </div>
-
     </section>
   );
 }
