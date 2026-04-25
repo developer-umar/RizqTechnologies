@@ -6,7 +6,7 @@ import Portfolio from "./components/Portfolio";
 import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import AboutUsLight from "./components/AboutUse";
+import AboutUsPremium from "./components/AboutUse";
 
 // import ClientCursor from "./components/cursor/clientCursor";
 
@@ -29,7 +29,7 @@ export default function Home() {
         {/* <ClientCursor /> */}
         <Navbar />
         <HeroSection />
-        <AboutUsLight/>
+        <AboutUsPremium/>
         <Services />
         <Portfolio />   
         <Pricing />
