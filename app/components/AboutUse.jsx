@@ -102,7 +102,7 @@ export default function AboutUsFluid() {
         >
           {/* Unsplash Image: Young attractive professionals (girl & businessman) discussing growth */}
           <Image
-            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80" 
+            src="https://www.freepik.com/free-photo/colleagues-office_5403048.htm#fromView=keyword&page=1&position=26&uuid=57a55389-21b2-4510-903b-82a539b58077&query=Business+meeting+woman+man" 
             alt="Modern Business Growth Meeting"
             fill
             className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
