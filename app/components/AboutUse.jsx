@@ -116,7 +116,8 @@ export default function AboutUsFluid() {
               <div className="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-20 transition-opacity duration-700 z-10 mix-blend-overlay" />
               
               <Image
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80"
+                // src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80"
+                src="about.jpg"
                 alt="Rizq Technologies Premium Engineering Team" 
                 fill
                 className="object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out group-hover:scale-105"
