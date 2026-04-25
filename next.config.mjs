@@ -14,11 +14,7 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**", 
       },
-         {
-      protocol: "https",
-      hostname: "img.freepik.com", 
-      pathname: "/**",
-    },
+
     ],
   },
   async headers() {
