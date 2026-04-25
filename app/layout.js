@@ -34,7 +34,7 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://rizqtechnologies.com"), // Update with actual domain
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizqtechnologies.com"),
   alternates: {
     canonical: "/",
   },
@@ -69,6 +69,9 @@ export const metadata = {
     apple: "/l9_new.png",
   },
   manifest: "/manifest.json",
+  verification: {
+    google: "Yy3MgjgeIT1KzfiITWYJsXCEaJAIqiRauPjv7hNKs1Y",
+  },
 };
 
 export default function RootLayout({ children }) {
