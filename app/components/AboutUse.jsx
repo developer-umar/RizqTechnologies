@@ -44,7 +44,7 @@ export default function AboutUsFluid() {
           {/* Subtle Accent Label */}
           <motion.div variants={blurVariants} className="flex items-center gap-3 mb-8">
             <span className="w-8 h-[2px] bg-yellow-500" />
-            <span className="text-xs font-bold tracking-[3px] uppercase text-zinc-500">Who We Are</span>
+            <span className="text-xs font-bold tracking-[3px] uppercase text-zinc-500">Welcome to Rizq</span>
           </motion.div>
 
           {/* Heavy, Premium Typography with Blur Reveal */}
@@ -52,9 +52,9 @@ export default function AboutUsFluid() {
             variants={blurVariants} 
             className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.95] uppercase mb-8"
           >
-            Architecting <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900">
-              Global Brands.
+            We Don't Just <br className="hidden md:block" /> Build Tech. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 via-amber-600 to-yellow-700">
+              We Build Value.
             </span>
           </motion.h2>
 
@@ -62,29 +62,29 @@ export default function AboutUsFluid() {
             variants={blurVariants} 
             className="text-lg md:text-xl text-zinc-600 font-medium leading-relaxed mb-6"
           >
-            We are a modern engineering collective unburdened by legacy red tape. We partner with visionary businesses to transform their digital presence into dominant, high-performance revenue engines.
+            At <strong className="text-zinc-950 font-bold">Rizq Technologies</strong>, we are a collective of experienced, innovative professionals driven by fresh and creative thinking. Our core mission is simple: to uplift your brand and accelerate your business growth.
           </motion.p>
 
           <motion.p 
             variants={blurVariants} 
             className="text-base text-zinc-500 leading-relaxed mb-12"
           >
-            From conceptualizing UI architectures to deploying globally scalable MERN stack infrastructures, we handle the technology so you can focus on scaling your empire. We don't just write code; we engineer market dominance.
+            We go beyond just writing MERN stack code. By leveraging cutting-edge, new-age technologies, we architect high-performance digital experiences that deliver exceptional ROI. You get elite, industry-level execution without the bloated enterprise costs.
           </motion.p>
 
           {/* Clean, Borderless Stats Layout */}
           <motion.div variants={blurVariants} className="grid grid-cols-2 gap-8 pt-8 border-t border-zinc-200/80">
             <div>
               <p className="text-4xl font-black text-zinc-900 tracking-tighter mb-1">
-                100<span className="text-yellow-500">%</span>
+                Value<span className="text-yellow-500">+</span>
               </p>
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">In-House Code</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Driven Execution</p>
             </div>
             <div>
               <p className="text-4xl font-black text-zinc-900 tracking-tighter mb-1">
-                Global
+                100<span className="text-yellow-500">%</span>
               </p>
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Digital Footprint</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Client Growth Focus</p>
             </div>
           </motion.div>
 
@@ -100,10 +100,10 @@ export default function AboutUsFluid() {
           viewport={{ once: true }}
           className="absolute inset-0"
         >
-          {/* FLAW FIXED: Added the required 'alt' prop */}
+          {/* Maintained the fixed 'alt' prop and your selected image */}
           <Image
-            src="https://www.freepik.com/free-photo/business-meeting-office_38259657.htm#fromView=keyword&page=1&position=6&uuid=e06ed320-6ba3-492b-9cff-8c5d79cc61cd&query=Business+meeting+woman+man"
-            alt="Modern Business Growth Meeting" 
+            src="https://images.unsplash.com/photo-1758518731706-be5d5230e5a5?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Rizq Technologies Business Growth Meeting" 
             fill
             className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
             sizes="(max-width: 1024px) 100vw, 45vw"
