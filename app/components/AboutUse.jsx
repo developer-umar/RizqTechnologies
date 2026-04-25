@@ -100,10 +100,10 @@ export default function AboutUsFluid() {
           viewport={{ once: true }}
           className="absolute inset-0"
         >
-          {/* Unsplash Image: Young attractive professionals (girl & businessman) discussing growth */}
+          {/* FLAW FIXED: Added the required 'alt' prop */}
           <Image
-            src="https://media.istockphoto.com/id/1307743458/photo/business-people-discussing-new-project-on-the-laptop-teamwork-concepts.jpg?s=1024x1024&w=is&k=20&c=jcF_j_YyopG0X1ovicFC7jV7DDjOpzcWGa1ONzTJ4kM=" 
-            alt="Modern Business Growth Meeting"
+            src="https://images.unsplash.com/photo-1758518731706-be5d5230e5a5?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Modern Business Growth Meeting" 
             fill
             className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
             sizes="(max-width: 1024px) 100vw, 45vw"
