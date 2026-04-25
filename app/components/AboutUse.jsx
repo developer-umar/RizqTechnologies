@@ -102,7 +102,7 @@ export default function AboutUsFluid() {
         >
           {/* Maintained the fixed 'alt' prop and your selected image */}
           <Image
-            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1600&q=80"
+            src="about.jpg"
             alt="Rizq Technologies Business Growth Meeting" 
             fill
             className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
