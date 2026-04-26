@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Syne } from "next/font/google";
 import "./globals.css";
 import SEOExtras from "./components/SEOExtras";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,7 +71,7 @@ export const metadata = {
   },
   manifest: "/manifest.json",
   verification: {
-    google: "Yy3MgjgeIT1KzfiITWYJsXCEaJAIqiRauPjv7hNKs1Y",
+    google: "cfqK7OtRBaa1CFL5IYtIdcIgGhKSWvkLfB5W6IpgirU",
   },
 };
 
@@ -80,6 +81,7 @@ export default function RootLayout({ children }) {
       <body>
         <SEOExtras />
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
