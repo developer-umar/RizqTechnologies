@@ -71,7 +71,7 @@ export const metadata = {
   },
   manifest: "/manifest.json",
   verification: {
-    google: "cfqK7OtRBaa1CFL5IYtIdcIgGhKSWvkLfB5W6IpgirU",
+    google: "87OjsJskkYUyecHX0df2Ya9l0zi9OrEW9OHPElzeV1k",
   },
 };
 
