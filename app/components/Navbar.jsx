@@ -50,7 +50,7 @@ const Navbar = () => {
                         src="/hori-r.png"
                         alt="Rizq Logo"
                         width={240}
-                        height={80}
+                        height={150}
                         className="object-contain w-[120px] md:w-[150px] transition-transform hover:scale-105"
                         priority
                     />
