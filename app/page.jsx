@@ -7,7 +7,8 @@ import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AboutUsFluid from "./components/AboutUse";
-import TechUniverse from "./components/Technologies";
+import TechSection from "./components/Technologies";
+
 
 // import ClientCursor from "./components/cursor/clientCursor";
 
@@ -32,7 +33,8 @@ export default function Home() {
         <HeroSection />
         <AboutUsFluid/>
         <Services />
-        <TechUniverse/>
+        <TechSection/>
+        
         <Portfolio />   
         <Pricing />
         <CTA />
