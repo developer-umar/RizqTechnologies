@@ -8,21 +8,15 @@ const FallingIcons = dynamic(() => import('./Fall/FallingIcon'), {
 });
 
 export default function TechSection() {
-  const myIcons = [
-    "https://skillicons.dev/icons?i=react",
-    "https://skillicons.dev/icons?i=nextjs",
-    "https://skillicons.dev/icons?i=mongodb",
-    "https://skillicons.dev/icons?i=nodejs",
-    "https://skillicons.dev/icons?i=tailwind",
-    "https://skillicons.dev/icons?i=laravel",
-    "https://skillicons.dev/icons?i=php",
-    "https://skillicons.dev/icons?i=aws",
-    "https://skillicons.dev/icons?i=docker",
-    "https://skillicons.dev/icons?i=ts",
-    "https://skillicons.dev/icons?i=postman",
-    "https://skillicons.dev/icons?i=figma",
-  ];
-
+ const myIcons = [
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+];
   return (
     <section className="bg-black py-24 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">

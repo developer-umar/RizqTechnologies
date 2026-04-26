@@ -2,15 +2,10 @@
 import { useRef, useEffect, useState } from 'react';
 import Matter from 'matter-js';
 
-const FallingIcons = ({ 
-  icons = [], 
-  gravity = 0.6, 
-  mouseStiffness = 0.2 
-}) => {
+const FallingIcons = ({ icons = [] }) => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Intersection Observer to trigger animation only when in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -19,9 +14,8 @@ const FallingIcons = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.2 } // 20% section dikhte hi trigger hoga
+      { threshold: 0.1 }
     );
-
     if (containerRef.current) observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, []);
@@ -44,60 +38,51 @@ const FallingIcons = ({
         height,
         background: 'transparent',
         wireframes: false,
-        pixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 1 // Better quality on mobile
       }
     });
 
-    // Invisible boundaries
+    // Boundaries
     const wallOptions = { isStatic: true, render: { visible: false } };
-    const ground = Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions);
-    const leftWall = Bodies.rectangle(-25, height / 2, 50, height, wallOptions);
-    const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions);
-    const ceiling = Bodies.rectangle(width / 2, -100, width, 50, wallOptions);
+    World.add(engine.world, [
+      Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions), // Floor
+      Bodies.rectangle(-25, height / 2, 50, height, wallOptions),      // Left
+      Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions),// Right
+      Bodies.rectangle(width / 2, -100, width, 50, wallOptions)        // Ceiling
+    ]);
 
-    // Optimized Icon Bodies
+    // Create Icons with better scaling
     const iconBodies = icons.map((url) => {
-      // Adjusted size: 80px visual (scale 1.6 from 50px base)
-      const radius = 40; 
       return Bodies.circle(
         Math.random() * (width - 100) + 50, 
-        Math.random() * -600 - 100, // Spread them out vertically so they fall one by one
-        radius, 
+        Math.random() * -800, 
+        40, // Radius for the physics body
         {
-          restitution: 0.4, // Bounciness
+          restitution: 0.5,
           friction: 0.1,
-          density: 0.01,
           render: {
             sprite: {
               texture: url,
-              xScale: 1.6, // Scale 1.6 makes it roughly 3x-4x larger than standard 25px icons
-              yScale: 1.6
+              xScale: 1.5, // Check if your icons are 50px or 128px
+              yScale: 1.5
             }
           }
         }
       );
     });
 
-    // Mouse Interaction
-    const mouse = Mouse.create(render.canvas);
-    const mouseConstraint = MouseConstraint.create(engine, {
-      mouse: mouse,
-      constraint: {
-        stiffness: mouseStiffness,
-        render: { visible: false }
-      }
-    });
+    World.add(engine.world, iconBodies);
 
-    // Performance Optimization for Mobile
-    // Disable mouse interaction on small screens to save resources
+    // Mouse control (Desktop only for performance)
     if (window.innerWidth > 768) {
-      World.add(engine.world, [mouseConstraint]);
+      const mouse = Mouse.create(render.canvas);
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: { stiffness: 0.2, render: { visible: false } }
+      });
+      World.add(engine.world, mouseConstraint);
     }
 
-    World.add(engine.world, [ground, leftWall, rightWall, ceiling, ...iconBodies]);
-
-    const runner = Runner.create();
-    Runner.run(runner, engine);
+    Runner.run(Runner.create(), engine);
     Render.run(render);
 
     return () => {
@@ -105,9 +90,8 @@ const FallingIcons = ({
       World.clear(engine.world);
       Engine.clear(engine);
       if (render.canvas) render.canvas.remove();
-      Runner.stop(runner);
     };
-  }, [isVisible, icons, gravity, mouseStiffness]);
+  }, [isVisible, icons]);
 
   return <div ref={containerRef} className="w-full h-full relative" />;
 };
