@@ -1,22 +1,29 @@
 "use client";
 import dynamic from 'next/dynamic';
 
-// SSR: false is mandatory for Matter.js to work with Next.js/Vercel
 const FallingIcons = dynamic(() => import('./Fall/FallingIcon'), { 
   ssr: false,
-  loading: () => <div className="h-full w-full bg-zinc-900/20 animate-pulse" />
+  loading: () => <div className="h-full w-full bg-zinc-900/10 animate-pulse" />
 });
 
 export default function TechSection() {
- const myIcons = [
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-];
+  const myIcons = [
+    "https://skillicons.dev/icons?i=react",
+    "https://skillicons.dev/icons?i=nextjs",
+    "https://skillicons.dev/icons?i=mongodb",
+    "https://skillicons.dev/icons?i=nodejs",
+    "https://skillicons.dev/icons?i=tailwind",
+    "https://skillicons.dev/icons?i=laravel",
+    "https://skillicons.dev/icons?i=aws",
+    "https://skillicons.dev/icons?i=docker",
+    "https://skillicons.dev/icons?i=ts",
+    "https://skillicons.dev/icons?i=php",
+    "https://skillicons.dev/icons?i=figma",
+    "https://skillicons.dev/icons?i=postman",
+    "https://skillicons.dev/icons?i=git",
+    "https://skillicons.dev/icons?i=mysql",
+  ];
+
   return (
     <section className="bg-black py-24 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -29,12 +36,10 @@ export default function TechSection() {
           </h2>
         </div>
 
-        {/* Height increased for 4x bigger icons */}
-        <div className="h-[600px] w-full border border-white/5 rounded-[3rem] bg-gradient-to-b from-zinc-950 to-black relative shadow-3xl">
-          <FallingIcons icons={myIcons} gravity={0.5} />
-          
-          {/* Subtle overlay for depth */}
-          <div className="absolute inset-0 pointer-events-none rounded-[3rem] border border-white/10" />
+        {/* Physics Container */}
+        <div className="h-[600px] w-full border border-white/10 rounded-[3rem] bg-zinc-950/40 relative shadow-3xl backdrop-blur-sm cursor-crosshair">
+          <FallingIcons icons={myIcons} />
+          <div className="absolute inset-0 pointer-events-none rounded-[3rem] border border-white/5" />
         </div>
       </div>
     </section>

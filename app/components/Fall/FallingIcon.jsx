@@ -5,9 +5,8 @@ import Matter from 'matter-js';
 const FallingIcons = ({ icons = [] }) => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [items, setItems] = useState([]); // This will store our physics-synced icons
+  const [items, setItems] = useState([]);
 
-  // 1. Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -22,38 +21,51 @@ const FallingIcons = ({ icons = [] }) => {
     return () => observer.disconnect();
   }, []);
 
-  // 2. Physics Engine
   useEffect(() => {
     if (!isVisible || !containerRef.current || icons.length === 0) return;
 
-    const { Engine, World, Bodies, Runner, Events } = Matter;
+    const { Engine, World, Bodies, Runner, Events, Mouse, MouseConstraint } = Matter;
     const engine = Engine.create();
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    // Boundaries
-    const ground = Bodies.rectangle(width / 2, height + 25, width, 50, { isStatic: true });
-    const leftWall = Bodies.rectangle(-25, height / 2, 50, height, { isStatic: true });
-    const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, { isStatic: true });
+    // Physics Settings
+    engine.world.gravity.y = 1.0;
 
-    // Create Icon Bodies (Radius 25 for normal size)
+    // Boundaries
+    const wallOptions = { isStatic: true, render: { visible: false } };
+    const ground = Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions);
+    const leftWall = Bodies.rectangle(-25, height / 2, 50, height, wallOptions);
+    const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions);
+
+    // Create Icon Bodies (Radius 35 for a bolder look)
     const iconBodies = icons.map((url, i) => {
       return Bodies.circle(
         Math.random() * (width - 100) + 50,
-        Math.random() * -500 - 50, // Start just above
-        25, 
+        Math.random() * -600 - 100, // Spread fall
+        35, // Increased radius for interaction
         {
-          restitution: 0.5,
+          restitution: 0.6,
           friction: 0.1,
-          label: url // Store URL in label to identify in React
+          label: url
         }
       );
     });
 
-    World.add(engine.world, [ground, leftWall, rightWall, ...iconBodies]);
+    // Mouse Constraint (Enables the "Uchalna" effect on desktop)
+    const mouse = Mouse.create(container);
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: { visible: false }
+      }
+    });
 
-    // Update React State on every engine tick
+    World.add(engine.world, [ground, leftWall, rightWall, mouseConstraint, ...iconBodies]);
+
+    // Update State for React
     Events.on(engine, 'afterUpdate', () => {
       const updatedItems = iconBodies.map(body => ({
         url: body.label,
@@ -75,20 +87,24 @@ const FallingIcons = ({ icons = [] }) => {
   }, [isVisible, icons]);
 
   return (
-    <div ref={containerRef} className="w-full h-full relative overflow-hidden">
+    <div ref={containerRef} className="w-full h-full relative overflow-hidden touch-none">
       {items.map((item, idx) => (
-        <img
+        <div
           key={idx}
-          src={item.url}
-          alt="tech"
-          className="absolute w-12 h-12 pointer-events-none select-none active:cursor-grabbing"
+          className="absolute pointer-events-none select-none"
           style={{
             left: item.x,
             top: item.y,
             transform: `translate(-50%, -50%) rotate(${item.angle}rad)`,
             willChange: 'transform',
           }}
-        />
+        >
+          <img
+            src={item.url}
+            alt="tech-icon"
+            className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]"
+          />
+        </div>
       ))}
     </div>
   );
