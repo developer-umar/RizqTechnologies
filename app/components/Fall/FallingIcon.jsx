@@ -4,9 +4,6 @@ import Matter from 'matter-js';
 
 const FallingIcons = ({ icons = [] }) => {
   const containerRef = useRef(null);
-  const engineRef = useRef(null);
-  const renderRef = useRef(null);
-  const runnerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -24,20 +21,16 @@ const FallingIcons = ({ icons = [] }) => {
   }, []);
 
   useEffect(() => {
-    if (!isVisible || !containerRef.current) return;
+    if (!isVisible || !containerRef.current || icons.length === 0) return;
 
     const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } = Matter;
-    
-    // Create Engine
     const engine = Engine.create();
-    engineRef.current = engine;
-    engine.world.gravity.y = 1.2; // Optimized falling speed
+    engine.world.gravity.y = 1.0; 
 
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    // Create Renderer
     const render = Render.create({
       element: container,
       engine: engine,
@@ -46,43 +39,54 @@ const FallingIcons = ({ icons = [] }) => {
         height,
         background: 'transparent',
         wireframes: false,
-        pixelRatio: 1 // Performance boost for mobile
       }
     });
-    renderRef.current = render;
 
-    // Boundaries - Heavy boundaries to prevent "ghosting"
+    // Invisible Walls
     const wallOptions = { isStatic: true, render: { visible: false } };
     World.add(engine.world, [
-      Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions), // Floor
-      Bodies.rectangle(-25, height / 2, 50, height, wallOptions),      // Left
-      Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions),// Right
-      Bodies.rectangle(width / 2, -500, width, 50, wallOptions)        // Top ceiling
+      Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions),
+      Bodies.rectangle(-25, height / 2, 50, height, wallOptions),
+      Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions),
+      Bodies.rectangle(width / 2, -100, width, 50, wallOptions)
     ]);
 
-    // Create Icons - Reduced size by 30% (Radius 28 instead of 40)
-    const iconBodies = icons.map((url, index) => {
-      return Bodies.circle(
-        Math.random() * (width - 100) + 50, 
-        Math.random() * -300 - 50, // Icons start closer to the top for instant fall
-        28, // Body Radius
-        {
-          restitution: 0.5,
-          friction: 0.1,
-          render: {
-            sprite: {
-              texture: url,
-              xScale: 0.9, // Visual scale reduced to match body
-              yScale: 0.9
-            }
-          }
-        }
-      );
+    // PRE-LOAD IMAGES BEFORE STARTING PHYSICS
+    const promises = icons.map((url) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => resolve({ url, width: img.width, height: img.height });
+      });
     });
 
-    World.add(engine.world, iconBodies);
+    Promise.all(promises).then((loadedIcons) => {
+      const iconBodies = loadedIcons.map((icon, index) => {
+        // Normal size (roughly 50-60px)
+        const radius = 30;
+        
+        return Bodies.circle(
+          Math.random() * (width - 100) + 50,
+          Math.random() * -400 - 50, // Dropping from just above
+          radius,
+          {
+            restitution: 0.5,
+            friction: 0.1,
+            render: {
+              sprite: {
+                texture: icon.url,
+                // Automatically scale icons to fit the 30px radius body
+                xScale: (radius * 2) / 128, 
+                yScale: (radius * 2) / 128
+              }
+            }
+          }
+        );
+      });
 
-    // Mouse Interaction
+      World.add(engine.world, iconBodies);
+    });
+
     if (window.innerWidth > 768) {
       const mouse = Mouse.create(render.canvas);
       const mouseConstraint = MouseConstraint.create(engine, {
@@ -92,19 +96,16 @@ const FallingIcons = ({ icons = [] }) => {
       World.add(engine.world, mouseConstraint);
     }
 
-    // Run Engine & Render
     const runner = Runner.create();
-    runnerRef.current = runner;
     Runner.run(runner, engine);
     Render.run(render);
 
     return () => {
-      if (runnerRef.current) Runner.stop(runnerRef.current);
-      if (renderRef.current) {
-        Render.stop(renderRef.current);
-        renderRef.current.canvas.remove();
-      }
-      if (engineRef.current) World.clear(engineRef.current.world);
+      Render.stop(render);
+      World.clear(engine.world);
+      Engine.clear(engine);
+      if (render.canvas) render.canvas.remove();
+      Runner.stop(runner);
     };
   }, [isVisible, icons]);
 
