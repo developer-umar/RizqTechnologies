@@ -47,7 +47,7 @@ const Navbar = () => {
                     onClick={closeMenu}
                 >
                     <Image
-                        src="/l9_new.png"
+                        src="/hori-r.png"
                         alt="Rizq Logo"
                         width={140}
                         height={40}
