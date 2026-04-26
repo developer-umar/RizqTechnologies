@@ -29,7 +29,7 @@ export default function AboutUsFluid() {
   const yWatermark = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   return (
-    <section  id ="aboutus"className="relative w-full bg-[#fcfcfc] text-zinc-950 overflow-hidden py-24 md:py-32 lg:py-48" id="about">
+    <section className="relative w-full bg-[#fcfcfc] text-zinc-950 overflow-hidden py-24 md:py-32 lg:py-48" id="about">
       
       {/* 1. THE WATERMARK: Premium Parallax Branding */}
       <motion.div 
