@@ -51,8 +51,8 @@ const FallingIcons = ({
           render: {
             sprite: {
               texture: url,
-              xScale: 1, // Adjust scale if icons are too big/small
-              yScale: 1
+              xScale: 5, // Adjust scale if icons are too big/small
+              yScale: 5
             }
           }
         }
