@@ -1,30 +1,37 @@
 "use client";
-import FallingIcons from "./Fallingtext/FallingText";
-
-const techIcons = [
-  "https://skillicons.dev/icons?i=react",
-  "https://skillicons.dev/icons?i=nextjs",
-  "https://skillicons.dev/icons?i=mongodb",
-  "https://skillicons.dev/icons?i=nodejs",
-  "https://skillicons.dev/icons?i=tailwind",
-  "https://skillicons.dev/icons?i=laravel",
-  "https://skillicons.dev/icons?i=aws",
-  "https://skillicons.dev/icons?i=docker",
-  "https://skillicons.dev/icons?i=ts",
-  "https://skillicons.dev/icons?i=php",
-];
+import FallingIcons from "./FallingIcons";
 
 export default function TechSection() {
+  // Direct URLs to technology icons (optimized for Matter.js)
+  const myIcons = [
+    "https://skillicons.dev/icons?i=react",
+    "https://skillicons.dev/icons?i=nextjs",
+    "https://skillicons.dev/icons?i=mongodb",
+    "https://skillicons.dev/icons?i=nodejs",
+    "https://skillicons.dev/icons?i=tailwind",
+    "https://skillicons.dev/icons?i=laravel",
+    "https://skillicons.dev/icons?i=php",
+    "https://skillicons.dev/icons?i=aws",
+    "https://skillicons.dev/icons?i=docker",
+    "https://skillicons.dev/icons?i=ts",
+    "https://skillicons.dev/icons?i=postman",
+    "https://skillicons.dev/icons?i=figma",
+  ];
+
   return (
     <section className="bg-black py-20 px-6">
-      <div className="max-w-4xl mx-auto text-center mb-12">
-        <h2 className="text-4xl font-black text-white uppercase tracking-tighter">
-          Our <span className="text-yellow-400">Toolkit.</span>
-        </h2>
-      </div>
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-5xl font-black text-white tracking-tighter uppercase">
+            Our <span className="text-yellow-400">Toolkit</span>
+          </h2>
+          <p className="text-zinc-500 mt-4">Shake them, drag them, or just watch them fall.</p>
+        </div>
 
-      <div className="h-[400px] w-full max-w-5xl mx-auto border border-white/5 bg-zinc-950/30 rounded-[2rem] overflow-hidden backdrop-blur-xl">
-        <FallingIcons icons={techIcons} />
+        {/* This container must have a defined height */}
+        <div className="h-[500px] w-full border border-white/10 rounded-[2.5rem] bg-zinc-950/50 backdrop-blur-md overflow-hidden relative shadow-2xl">
+          <FallingIcons icons={myIcons} />
+        </div>
       </div>
     </section>
   );

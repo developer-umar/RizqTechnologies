@@ -1,14 +1,13 @@
 "use client";
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Matter from 'matter-js';
 
 const FallingIcons = ({ 
-  icons = [], // Array of icon URLs
-  gravity = 0.8,
-  mouseStiffness = 0.1 
+  icons = [], 
+  gravity = 0.6, 
+  mouseStiffness = 0.2 
 }) => {
   const containerRef = useRef(null);
-  const canvasRef = useRef(null);
   const engineRef = useRef(Matter.Engine.create());
 
   useEffect(() => {
@@ -17,7 +16,10 @@ const FallingIcons = ({
     const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } = Matter;
     const engine = engineRef.current;
     const container = containerRef.current;
-    const { width, height } = container.getBoundingClientRect();
+    
+    // Get container dimensions
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
     const render = Render.create({
       element: container,
@@ -26,54 +28,65 @@ const FallingIcons = ({
         width,
         height,
         background: 'transparent',
-        wireframes: false, // Set to true for debugging
+        wireframes: false, // Isse icons asli dikhenge, lines nahi
       }
     });
 
-    // Boundaries
-    const ground = Bodies.rectangle(width / 2, height + 25, width, 50, { isStatic: true });
-    const leftWall = Bodies.rectangle(-25, height / 2, 50, height, { isStatic: true });
-    const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, { isStatic: true });
+    // Invisible boundaries so icons stay inside the box
+    const wallOptions = { isStatic: true, render: { visible: false } };
+    const ground = Bodies.rectangle(width / 2, height + 25, width, 50, wallOptions);
+    const leftWall = Bodies.rectangle(-25, height / 2, 50, height, wallOptions);
+    const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions);
+    const ceiling = Bodies.rectangle(width / 2, -100, width, 50, wallOptions);
 
     // Create Icon Bodies
-    const iconBodies = icons.map((iconUrl) => {
-      const x = Math.random() * width;
-      const y = Math.random() * -500; // Start above screen
-      
-      return Bodies.circle(x, y, 25, { // 25 is radius (50px size)
-        restitution: 0.6,
-        friction: 0.1,
-        render: {
-          sprite: {
-            texture: iconUrl,
-            xScale: 0.5, // Adjust based on icon size
-            yScale: 0.5
+    const iconBodies = icons.map((url) => {
+      return Bodies.circle(
+        Math.random() * (width - 100) + 50, 
+        Math.random() * -500, // Starting high above for the "falling" effect
+        25, // Radius
+        {
+          restitution: 0.5,
+          friction: 0.1,
+          render: {
+            sprite: {
+              texture: url,
+              xScale: 1, // Adjust scale if icons are too big/small
+              yScale: 1
+            }
           }
         }
-      });
+      );
     });
 
-    // Mouse control
+    // Interactivity: Drag icons with mouse
     const mouse = Mouse.create(render.canvas);
     const mouseConstraint = MouseConstraint.create(engine, {
       mouse: mouse,
-      constraint: { stiffness: mouseStiffness, render: { visible: false } }
+      constraint: {
+        stiffness: mouseStiffness,
+        render: { visible: false }
+      }
     });
 
-    World.add(engine.world, [ground, leftWall, rightWall, mouseConstraint, ...iconBodies]);
+    World.add(engine.world, [ground, leftWall, rightWall, ceiling, mouseConstraint, ...iconBodies]);
 
-    Runner.run(Runner.create(), engine);
+    // Run the engine and renderer
+    const runner = Runner.create();
+    Runner.run(runner, engine);
     Render.run(render);
 
+    // Cleanup on unmount
     return () => {
       Render.stop(render);
       World.clear(engine.world);
       Engine.clear(engine);
       render.canvas.remove();
+      Runner.stop(runner);
     };
   }, [icons, gravity, mouseStiffness]);
 
-  return <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />;
+  return <div ref={containerRef} className="w-full h-full relative" />;
 };
 
 export default FallingIcons;
