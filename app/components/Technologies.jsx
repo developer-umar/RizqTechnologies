@@ -1,31 +1,30 @@
 "use client";
-import FallingText from "./Fallingtext/FallingText";
+import FallingIcons from "./Fallingtext/FallingText";
+
+const techIcons = [
+  "https://skillicons.dev/icons?i=react",
+  "https://skillicons.dev/icons?i=nextjs",
+  "https://skillicons.dev/icons?i=mongodb",
+  "https://skillicons.dev/icons?i=nodejs",
+  "https://skillicons.dev/icons?i=tailwind",
+  "https://skillicons.dev/icons?i=laravel",
+  "https://skillicons.dev/icons?i=aws",
+  "https://skillicons.dev/icons?i=docker",
+  "https://skillicons.dev/icons?i=ts",
+  "https://skillicons.dev/icons?i=php",
+];
 
 export default function TechSection() {
   return (
-    <section className="bg-black py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header Content */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter">
-            Our Tech <span className="text-yellow-400">Stack.</span>
-          </h2>
-          <p className="text-zinc-500 mt-4 text-lg">
-            Drag the blocks. Shake the stack. We build with the best.
-          </p>
-        </div>
+    <section className="bg-black py-20 px-6">
+      <div className="max-w-4xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-black text-white uppercase tracking-tighter">
+          Our <span className="text-yellow-400">Toolkit.</span>
+        </h2>
+      </div>
 
-        {/* The Physics Box */}
-        <div className="h-[500px] w-full border border-white/10 rounded-3xl bg-zinc-950/50 relative">
-          <FallingText
-            text="React Next.js Node.js MongoDB TailwindCSS TypeScript Laravel AWS Docker GraphQL Web3 GSAP PHP Framer-Motion"
-            highlightWords={["Next.js", "React", "Web3", "Laravel", "Node.js"]}
-            trigger="scroll"
-            gravity={0.8}
-            fontSize="2.5rem"
-            mouseConstraintStiffness={0.3}
-          />
-        </div>
+      <div className="h-[400px] w-full max-w-5xl mx-auto border border-white/5 bg-zinc-950/30 rounded-[2rem] overflow-hidden backdrop-blur-xl">
+        <FallingIcons icons={techIcons} />
       </div>
     </section>
   );
