@@ -30,7 +30,7 @@ const FallingIcons = ({ icons = [] }) => {
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    // Physics Settings
+    // Standard Gravity
     engine.world.gravity.y = 1.0;
 
     // Boundaries
@@ -39,12 +39,12 @@ const FallingIcons = ({ icons = [] }) => {
     const leftWall = Bodies.rectangle(-25, height / 2, 50, height, wallOptions);
     const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, wallOptions);
 
-    // Create Icon Bodies (Radius 35 for a bolder look)
+    // Create Icon Bodies (Radius 35)
     const iconBodies = icons.map((url, i) => {
       return Bodies.circle(
         Math.random() * (width - 100) + 50,
-        Math.random() * -600 - 100, // Spread fall
-        35, // Increased radius for interaction
+        Math.random() * -600 - 100,
+        35, 
         {
           restitution: 0.6,
           friction: 0.1,
@@ -53,19 +53,31 @@ const FallingIcons = ({ icons = [] }) => {
       );
     });
 
-    // Mouse Constraint (Enables the "Uchalna" effect on desktop)
-    const mouse = Mouse.create(container);
-    const mouseConstraint = MouseConstraint.create(engine, {
-      mouse: mouse,
-      constraint: {
-        stiffness: 0.2,
-        render: { visible: false }
-      }
-    });
+    // ==========================================
+    // CONDITIONAL INTERACTION (The Fix)
+    // ==========================================
+    const isDesktop = window.innerWidth > 768;
+    
+    if (isDesktop) {
+      const mouse = Mouse.create(container);
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.2,
+          render: { visible: false }
+        }
+      });
+      // Sirf desktop par interaction add karo
+      World.add(engine.world, [mouseConstraint]);
+      
+      // Mouse pixel ratio fix for high-res screens
+      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+    }
 
-    World.add(engine.world, [ground, leftWall, rightWall, mouseConstraint, ...iconBodies]);
+    World.add(engine.world, [ground, leftWall, rightWall, ...iconBodies]);
 
-    // Update State for React
+    // Sync State
     Events.on(engine, 'afterUpdate', () => {
       const updatedItems = iconBodies.map(body => ({
         url: body.label,
@@ -87,7 +99,8 @@ const FallingIcons = ({ icons = [] }) => {
   }, [isVisible, icons]);
 
   return (
-    <div ref={containerRef} className="w-full h-full relative overflow-hidden touch-none">
+    /* touch-pan-y allows normal scrolling on mobile even if touching the container */
+    <div ref={containerRef} className="w-full h-full relative overflow-hidden touch-pan-y">
       {items.map((item, idx) => (
         <div
           key={idx}
