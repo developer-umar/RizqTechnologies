@@ -36,8 +36,8 @@ const Navbar = () => {
                 }`}
         >
             <nav className={`max-w-7xl mx-auto transition-all duration-500 border rounded-[2rem] px-6 md:px-10 flex justify-between items-center h-[70px] md:h-[80px] ${scrolled
-                    ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl"
-                    : "bg-transparent border-transparent"
+                ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl"
+                : "bg-transparent border-transparent"
                 }`}>
 
                 {/* Logo Section */}
@@ -49,13 +49,13 @@ const Navbar = () => {
                     <Image
                         src="/hori-r.png"
                         alt="Rizq Logo"
-                        width={312}
-                        height={195}
-                        className="object-contain w-[120px] md:w-[150px] transition-transform hover:scale-105"
+                        width={437}
+                        height={273}
+                        className="object-contain w-[168px] md:w-[210px] transition-transform hover:scale-105"
                         priority
                     />
 
-                   
+
                 </Link>
 
                 {/* Desktop Links - Very Clean */}
