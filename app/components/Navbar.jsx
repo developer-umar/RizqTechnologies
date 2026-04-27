@@ -11,7 +11,7 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const btnRef = useRef(null);
 
-    // 1. Mouse Tracking for Magnetic Effect
+    // 1. Mouse Tracking for "Bento Magic Glow"
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
@@ -22,7 +22,7 @@ const Navbar = () => {
         mouseY.set(e.clientY - rect.top);
     };
 
-    const springConfig = { damping: 20, stiffness: 150 };
+    const springConfig = { damping: 25, stiffness: 200 };
     const dx = useSpring(mouseX, springConfig);
     const dy = useSpring(mouseY, springConfig);
 
@@ -42,7 +42,7 @@ const Navbar = () => {
     return (
         <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled ? "py-3 px-4 md:px-10" : "py-6 px-4 md:px-10"}`}>
             <nav className={`max-w-7xl mx-auto transition-all duration-500 border rounded-[2rem] px-6 md:px-10 flex justify-between items-center h-[70px] md:h-[80px] ${
-                scrolled ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl" : "bg-transparent border-white/5"
+                scrolled ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl" : "bg-transparent border-white/10"
             }`}>
 
                 {/* Logo */}
@@ -58,32 +58,35 @@ const Navbar = () => {
                         </Link>
                     ))}
 
-                    {/* 🔥 THE FLUID MAGNETIC BUTTON */}
+                    {/* 🔥 THE MAGIC BENTO FLUID BUTTON */}
                     <Link href="#contact">
                         <motion.button
                             ref={btnRef}
                             onMouseMove={handleMouseMove}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.96 }}
-                            className="group relative px-8 py-3 rounded-full overflow-hidden border border-yellow-400/50 bg-transparent transition-all duration-500 hover:border-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.1)] hover:shadow-[0_0_25px_rgba(250,204,21,0.3)]"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="group relative px-8 py-3 rounded-full overflow-hidden border border-yellow-400/30 bg-white/5 transition-all duration-500 hover:border-yellow-400"
                         >
-                            {/* 1. Fluid Fill Background (Niche se upar) */}
-                            <div className="absolute inset-0 bg-yellow-400 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0" />
-
-                            {/* 2. Magnetic Glow (Follows mouse) */}
+                            {/* Layer 1: The Bento Magic Glow (Always Active on Hover) */}
                             <motion.div
-                                className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-[1]"
+                                className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                                 style={{
                                     background: useTransform(
                                         [dx, dy],
-                                        ([x, y]) => `radial-gradient(80px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.3), transparent 80%)`
+                                        ([x, y]) => `radial-gradient(100px circle at ${x}px ${y}px, rgba(250, 204, 21, 0.4), transparent 80%)`
                                     ),
                                 }}
                             />
 
-                            {/* 3. Text Content */}
-                            <div className="relative z-10 flex items-center gap-2">
-                                <span className="text-yellow-400 group-hover:text-black font-bold text-[10px] uppercase tracking-[0.2em] transition-colors duration-500">
+                            {/* Layer 2: The Fluid Fill (Niche se upar) */}
+                            <div className="absolute inset-0 bg-yellow-400 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0" />
+
+                            {/* Layer 3: Persistent Border Glow (Takki button dikhe) */}
+                            <div className="absolute inset-0 rounded-full shadow-[inset_0_0_10px_rgba(250,204,21,0.2)] group-hover:shadow-none transition-all" />
+
+                            {/* Layer 4: Content */}
+                            <div className="relative z-20 flex items-center gap-2">
+                                <span className="text-yellow-400 group-hover:text-black font-bold text-[10px] uppercase tracking-[0.25em] transition-colors duration-500 drop-shadow-[0_0_5px_rgba(250,204,21,0.3)]">
                                     Get Started
                                 </span>
                                 <motion.span 
@@ -103,12 +106,12 @@ const Navbar = () => {
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
 
-                {/* Mobile Menu (Background black handle) */}
+                {/* Mobile Menu */}
                 <AnimatePresence>
                     {isOpen && (
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute top-0 left-0 w-full h-screen bg-black/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8 z-[105]">
+                        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="absolute top-0 left-0 w-full h-screen bg-black flex flex-col justify-center items-center gap-8 z-[105]">
                             {navLinks.map((link) => (
-                                <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className="text-white text-4xl font-bold uppercase tracking-tighter hover:text-yellow-400 transition-colors">
+                                <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className="text-white text-4xl font-bold uppercase tracking-tighter hover:text-yellow-400">
                                     {link.label}
                                 </Link>
                             ))}
