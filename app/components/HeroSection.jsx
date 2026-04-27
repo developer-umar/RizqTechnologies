@@ -67,8 +67,8 @@ const HeroSection = () => {
               whileTap={{ scale: 0.98 }}
               className="group relative w-[260px] h-[60px] rounded-full overflow-hidden border border-amber-500/20 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:border-amber-500/60"
             >
-              <div className="absolute inset-0 bg-amber-500 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
-              <div className="relative z-10 flex items-center justify-center h-full text-amber-500 group-hover:text-black transition-colors duration-500">
+              <div className="absolute inset-0 bg-yellow-400 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+              <div className="relative z-10 flex items-center justify-center h-full text-yellow-400 group-hover:text-black transition-colors duration-500">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={btnText}
@@ -115,7 +115,7 @@ const HeroSection = () => {
            <motion.div 
              animate={{ y: [-64, 64] }}
              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-transparent via-amber-500 to-transparent shadow-[0_0_15px_rgba(245,158,11,0.8)]"
+             className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-transparent via-yellow-400 to-transparent shadow-[0_0_15px_rgba(245,158,11,0.8)]"
            />
         </div>
       </motion.div>
