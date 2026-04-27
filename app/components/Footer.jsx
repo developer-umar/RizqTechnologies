@@ -53,7 +53,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-5">
             <div className="mb-8">
-              <Image src="/l9_new.png" alt="Logo" width={140} height={45} className="brightness-125" />
+              <Image src="/rizq-logo.png" alt="Logo" width={140} height={45} className="brightness-125" />
             </div>
             <p className="text-gray-400 text-base leading-relaxed max-w-sm mb-8">
               We craft premium digital experiences that combine design, performance, and innovation to elevate your brand.
