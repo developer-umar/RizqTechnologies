@@ -199,7 +199,7 @@ export default function PortfolioHero() {
           loading="lazy"
         />
         {/* Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[5]" />
+        <div id ="portfolio" className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[5]" />
         
         <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-10">
           <div className="space-y-1">
