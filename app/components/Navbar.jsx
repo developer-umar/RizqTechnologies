@@ -6,12 +6,10 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    // Scroll effect for glassmorphism
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -20,11 +18,12 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // ✅ Pricing हटाया + Blog add किया
     const navLinks = [
         { href: "#home", label: "Home" },
         { href: "#services", label: "Services" },
         { href: "#portfolio", label: "Portfolio" },
-        { href: "#pricing", label: "Pricing" },
+        { href: "#blog", label: "Blog" },
     ];
 
     const toggleMenu = () => setIsOpen(!isOpen);
@@ -32,15 +31,17 @@ const Navbar = () => {
 
     return (
         <header
-            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled ? "py-3 px-4 md:px-10" : "py-6 px-4 md:px-10"
-                }`}
+            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
+                scrolled ? "py-3 px-4 md:px-10" : "py-6 px-4 md:px-10"
+            }`}
         >
-            <nav className={`max-w-7xl mx-auto transition-all duration-500 border rounded-[2rem] px-6 md:px-10 flex justify-between items-center h-[70px] md:h-[80px] ${scrolled
-                ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl"
-                : "bg-transparent border-transparent"
-                }`}>
+            <nav className={`max-w-7xl mx-auto transition-all duration-500 border rounded-[2rem] px-6 md:px-10 flex justify-between items-center h-[70px] md:h-[80px] ${
+                scrolled
+                    ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl"
+                    : "bg-transparent border-transparent"
+            }`}>
 
-                {/* Logo Section */}
+                {/* Logo */}
                 <Link
                     href="#home"
                     className="relative z-[110] flex items-center"
@@ -54,11 +55,9 @@ const Navbar = () => {
                         className="object-contain w-[168px] md:w-[210px] transition-transform hover:scale-105"
                         priority
                     />
-
-
                 </Link>
 
-                {/* Desktop Links - Very Clean */}
+                {/* Desktop */}
                 <div className="hidden md:flex items-center gap-8 lg:gap-12">
                     {navLinks.map((link) => (
                         <Link
@@ -70,23 +69,33 @@ const Navbar = () => {
                         </Link>
                     ))}
 
+                    {/* 🔥 Premium Button */}
                     <Link href="#contact">
-                        <button className="bg-yellow-400 hover:bg-yellow-300 text-black px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-tighter transition-all hover:shadow-[0_0_20px_rgba(250,204,21,0.4)] active:scale-95">
-                            Get Started
+                        <button className="relative overflow-hidden group bg-yellow-400 text-black px-7 py-3 rounded-full font-black text-xs uppercase tracking-wider transition-all duration-300 active:scale-95">
+                            
+                            {/* Shine effect */}
+                            <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></span>
+
+                            {/* Text */}
+                            <span className="relative z-10 flex items-center gap-2">
+                                Get Started →
+                            </span>
+
+                            {/* Hover glow */}
+                            <span className="absolute inset-0 rounded-full shadow-[0_0_25px_rgba(250,204,21,0.6)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                         </button>
                     </Link>
                 </div>
 
-                {/* Mobile Hamburger */}
+                {/* Mobile Toggle */}
                 <button
                     onClick={toggleMenu}
-                    aria-label={isOpen ? "Close menu" : "Open menu"}
                     className="md:hidden relative z-[110] text-white p-2"
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
 
-                {/* Mobile Menu Overlay */}
+                {/* Mobile Menu */}
                 <AnimatePresence>
                     {isOpen && (
                         <motion.div
@@ -97,10 +106,10 @@ const Navbar = () => {
                         >
                             {navLinks.map((link, idx) => (
                                 <motion.div
+                                    key={link.href}
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: idx * 0.1 }}
-                                    key={link.href}
                                 >
                                     <Link
                                         href={link.href}
@@ -111,9 +120,11 @@ const Navbar = () => {
                                     </Link>
                                 </motion.div>
                             ))}
+
+                            {/* Mobile Button same upgrade */}
                             <Link href="#contact" onClick={closeMenu}>
-                                <button className="bg-yellow-400 text-black px-10 py-4 rounded-full font-black text-xl uppercase italic shadow-2xl">
-                                    Let&apos;s Talk
+                                <button className="bg-yellow-400 text-black px-10 py-4 rounded-full font-black text-xl uppercase italic shadow-[0_0_30px_rgba(250,204,21,0.6)] active:scale-95 transition">
+                                    Get Started →
                                 </button>
                             </Link>
                         </motion.div>
