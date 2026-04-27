@@ -47,7 +47,7 @@ const Navbar = () => {
 
                 {/* Logo */}
                 <Link href="#home" className="relative z-[110] flex items-center">
-                    <Image src="/hori-r.png" alt="Rizq Logo" width={210} height={100} className="object-contain w-[168px] md:w-[210px]" priority />
+                    <Image src="/l3.png" alt="Rizq Logo" width={250} height={150} className="object-contain w-[168px] md:w-[210px]" priority />
                 </Link>
 
                 {/* Desktop Links */}
