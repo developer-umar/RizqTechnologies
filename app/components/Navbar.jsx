@@ -21,10 +21,11 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { href: "#home", label: "Home" },
-        { href: "#services", label: "Services" },
-        { href: "#portfolio", label: "Portfolio" },
-        { href: "#pricing", label: "Pricing" },
+        { href: "/", label: "Home" },
+        { href: "/#services", label: "Services" },
+        { href: "/#portfolio", label: "Portfolio" },
+        { href: "/#pricing", label: "Pricing" },
+        { href: "/blog", label: "Blog" },
     ];
 
     const toggleMenu = () => setIsOpen(!isOpen);
@@ -42,7 +43,7 @@ const Navbar = () => {
 
                 {/* Logo Section */}
                 <Link
-                    href="#home"
+                    href="/"
                     className="relative z-[110] flex items-center"
                     onClick={closeMenu}
                 >
