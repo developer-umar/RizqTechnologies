@@ -7,7 +7,7 @@ import Link from "next/link";
 const HeroSection = () => {
   const [btnText, setBtnText] = useState("Connect With Us");
 
-  // 🔥 logic for flipping button text (React Bits Style)
+  // 🔥 Flip logic (React Bits inspired)
   useEffect(() => {
     const interval = setInterval(() => {
       setBtnText((prev) => 
@@ -18,56 +18,55 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-black flex items-center justify-center text-center px-4" id="home">
+    <section className="relative w-full min-h-screen overflow-hidden bg-black flex items-center justify-center text-center px-6" id="home">
       
-      {/* 1. CINEMATIC BACKGROUND */}
-      <div className="absolute inset-0 z-0">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover scale-105 opacity-50">
+      {/* 1. CINEMATIC BACKGROUND (Optimized) */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-black/60 z-10" />
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-black" />
       </div>
 
-      <div className="relative z-30 max-w-5xl mx-auto w-full pt-20">
+      <div className="relative z-30 max-w-6xl mx-auto w-full pt-10">
         
-        {/* 🔥 MAIN HEADING: CLEAN & PROFESSIONAL */}
+        {/* 🔥 BALANCED HEADING: SEMI-BOLD & CLEAN */}
         <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-6xl lg:text-8xl font-bold text-white leading-[1.1] tracking-tight"
+          className="text-4xl md:text-6xl lg:text-[5.5rem] font-semibold text-white leading-[1.1] tracking-tight"
         >
-          We engineer <span className="text-zinc-500 italic font-light">growth</span> <br />
-          for businesses using <span className="text-amber-500 font-extrabold drop-shadow-[0_0_15px_rgba(245,158,11,0.4)]">technology.</span>
+          We engineer <span className="text-zinc-400 italic font-light">growth</span> <br />
+          for businesses using <span className="text-amber-500 font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.3)]">technology.</span>
         </motion.h1>
 
-        {/* SUBTEXT: REFINED */}
+        {/* REFINED SUBTEXT */}
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-8 text-base md:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+          className="mt-8 text-sm md:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed tracking-wide font-medium"
         >
           Rizq Technologies turns ambitious ideas into high-performance <br className="hidden md:block" /> 
           digital experiences that deliver massive ROI.
         </motion.p>
 
-        {/* 🔥 ACTION HUB: ALIGNED & RESPONSIVE */}
+        {/* 🔥 ACTION HUB: FIXED MOBILE CLICKS */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 mb-20"
+          className="relative z-50 mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 mb-24 pointer-events-auto"
         >
-          {/* CONNECT BUTTON - Clean Fluid Fill */}
-          <Link href="#contact">
+          {/* CONNECT BUTTON */}
+          <Link href="#contact" className="cursor-pointer">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative w-[260px] h-[60px] rounded-full overflow-hidden border border-amber-500/40 bg-transparent transition-all duration-500 hover:border-amber-500 shadow-lg"
+              whileTap={{ scale: 0.95 }}
+              className="group relative w-[260px] h-[60px] rounded-full overflow-hidden border border-amber-500/30 bg-transparent transition-all duration-500 hover:border-amber-500"
             >
-              {/* Fluid Fill Layer */}
               <div className="absolute inset-0 bg-amber-500 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
               
               <div className="relative z-10 flex items-center justify-center h-full">
@@ -87,28 +86,33 @@ const HeroSection = () => {
             </motion.button>
           </Link>
 
-          {/* VIEW WORK - Clean Link Style */}
-          <Link href="#portfolio" className="group flex items-center gap-3">
+          {/* VIEW WORK - FIXED FOR TOUCH */}
+          <Link 
+            href="#portfolio" 
+            className="group flex items-center gap-3 py-2 cursor-pointer touch-manipulation"
+          >
             <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-amber-500 group-hover:border-amber-500 transition-all duration-500">
               <span className="text-white group-hover:text-black transition-colors text-lg">→</span>
             </div>
-            <span className="text-white/70 group-hover:text-white font-bold uppercase tracking-widest text-[10px] transition-colors">See the work</span>
+            <span className="text-white/60 group-hover:text-white font-bold uppercase tracking-widest text-[9px] transition-colors">
+              See the work
+            </span>
           </Link>
         </motion.div>
       </div>
 
-      {/* 🔥 CLEAN SCROLL INDICATOR (Fixed Overlap) */}
+      {/* 🔥 CLEAN SCROLL INDICATOR (Reduced Overlap) */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       >
-        <span className="text-[8px] text-zinc-500 uppercase tracking-[0.4em] font-medium">Scroll</span>
+        <span className="text-[8px] text-zinc-600 uppercase tracking-[0.4em] font-medium">Scroll</span>
         <motion.div 
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-[1px] h-8 bg-gradient-to-b from-amber-500 to-transparent"
+          animate={{ height: [20, 40, 20], opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-[1px] bg-amber-500/50"
         />
       </motion.div>
     </section>
