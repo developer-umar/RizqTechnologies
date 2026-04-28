@@ -32,9 +32,9 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center justify-start text-center px-6" id="home">
+    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center justify-start md:justify-center text-center px-6" id="home">
       
-      {/* 1. Cinematic Background - Optimized Visibility */}
+      {/* Cinematic Background - Optimized Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
           <source src="/videos/hero.mp4" type="video/mp4" />
@@ -43,30 +43,30 @@ const HeroSection = () => {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-transparent to-black" />
       </div>
 
-      {/* Main Content Container with proper padding-top and center alignment */}
-      <div className="relative z-30 max-w-5xl mx-auto w-full pt-40 md:pt-48 lg:pt-56 flex flex-col items-center justify-center mb-24 md:mb-36">
+      {/* Main Content Container */}
+      <div className="relative z-30 max-w-5xl mx-auto w-full pt-32 md:pt-0 flex flex-col items-center justify-center">
         
-        {/* 🔥 HEADING: Clear & Impactful with spacing */}
-        <div className="overflow-hidden mb-12 md:mb-16">
+        {/* 🔥 HEADING: Fully Responsive Scale */}
+        <div className="overflow-hidden mb-8 md:mb-16">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl lg:text-[4.75rem] font-semibold text-white leading-[1.2] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-semibold text-white leading-[1.2] md:leading-[1.1] tracking-tight"
           >
             We engineer <span className="text-zinc-500 italic font-light">growth</span> <br />
             for businesses using <span className="text-amber-400 font-medium drop-shadow-[0_0_15px_rgba(251,191,36,0.2)]">technology.</span>
           </motion.h1>
         </div>
 
-        {/* Action Hub: Spaced from header and properly aligned */}
+        {/* Action Hub: Desktop: Row | Mobile: Single Button Focus */}
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="relative z-[60] flex flex-row items-center justify-center gap-10 pointer-events-auto mt-6 md:mt-10"
+          className="relative z-[60] flex flex-row items-center justify-center gap-6 md:gap-10 pointer-events-auto"
         >
-          {/* CONNECT BUTTON - Clean & Professional */}
+          {/* CONNECT BUTTON */}
           <Link href="#contact" className="relative z-[70] block group">
             <motion.div
               animate={{ rotate: 360 }}
@@ -79,9 +79,8 @@ const HeroSection = () => {
               onMouseMove={handleMouseMove}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="relative w-[240px] h-[55px] rounded-full overflow-hidden border border-white/10 bg-zinc-950/40 backdrop-blur-lg transition-all duration-500 group-hover:border-amber-400/40"
+              className="relative w-[220px] sm:w-[240px] h-[55px] rounded-full overflow-hidden border border-white/10 bg-zinc-950/40 backdrop-blur-lg transition-all duration-500 group-hover:border-amber-400/40"
             >
-              {/* Mouse Glow */}
               <motion.div
                 className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
                 style={{
@@ -92,7 +91,6 @@ const HeroSection = () => {
                 }}
               />
 
-              {/* Fluid Fill */}
               <div className="absolute inset-0 bg-amber-400 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.2,1,0.25,1)] z-0" />
 
               <div className="relative z-20 flex items-center justify-center h-full text-amber-400 group-hover:text-black transition-colors duration-500">
@@ -112,8 +110,8 @@ const HeroSection = () => {
             </motion.button>
           </Link>
 
-          {/* VIEW WORK - Refined with clean layout logic */}
-          <Link href="#portfolio" className="relative z-[70] flex items-center gap-2 group transition-all duration-300">
+          {/* VIEW WORK - HIDDEN ON MOBILE (Consistent with Premium UI) */}
+          <Link href="#portfolio" className="relative z-[70] hidden md:flex items-center gap-2 group transition-all duration-300">
             <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/5 transition-all duration-500">
               <span className="text-white text-xs group-hover:text-amber-400 transition-colors">→</span>
             </div>
@@ -124,15 +122,15 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* 🔥 SCROLL INDICATOR: Standard Bottom Alignment */}
+      {/* 🔥 SCROLL INDICATOR */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center z-20"
+        className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center z-20"
       >
         <span className="text-[9px] text-zinc-600 uppercase tracking-[0.6em] font-medium mb-3">Scroll</span>
-        <div className="relative h-14 w-[1.2px] bg-zinc-900 rounded-full overflow-hidden">
+        <div className="relative h-10 md:h-14 w-[1.2px] bg-zinc-900 rounded-full overflow-hidden">
            <motion.div 
              animate={{ y: [-56, 56] }}
              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
