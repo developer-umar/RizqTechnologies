@@ -22,19 +22,20 @@ const HeroSection = () => {
   const dx = useSpring(mouseX, springConfig);
   const dy = useSpring(mouseY, springConfig);
 
+  // Button text toggle
   useEffect(() => {
     const interval = setInterval(() => {
       setBtnText((prev) => 
         prev === "Connect With Us" ? "+91 8127672157" : "Connect With Us"
       );
-    }, 2800); 
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center justify-start text-center px-6" id="home">
+    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center justify-center text-center px-6" id="home">
       
-      {/* 1. Cinematic Background - High Visibility Overlay */}
+      {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
           <source src="/videos/hero.mp4" type="video/mp4" />
@@ -43,30 +44,30 @@ const HeroSection = () => {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-black" />
       </div>
 
-      {/* Main Content Container: Fixed Vertical Offset */}
-      <div className="relative z-30 max-w-5xl mx-auto w-full pt-44 md:pt-64 flex flex-col items-center">
+      {/* Main Content - Better Vertical Centering + Responsive Padding */}
+      <div className="relative z-30 max-w-5xl mx-auto w-full flex flex-col items-center justify-center min-h-screen pt-20 pb-32 md:pt-0 md:pb-0">
         
-        {/* 🔥 HEADING: Optimized for desktop/mobile clearance */}
-        <div className="overflow-hidden mb-12 md:mb-20">
+        {/* Heading */}
+        <div className="overflow-hidden mb-12 md:mb-20 px-4">
           <motion.h1 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-semibold text-white leading-[1.2] md:leading-[1.1] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-semibold text-white leading-[1.15] md:leading-[1.1] tracking-tight"
           >
             We engineer <span className="text-zinc-500 italic font-light">growth</span> <br />
             for businesses using <span className="text-amber-400 font-medium drop-shadow-[0_0_20px_rgba(251,191,36,0.25)]">technology.</span>
           </motion.h1>
         </div>
 
-        {/* Action Hub: Spaced for balanced UI */}
+        {/* Action Buttons - Better Alignment & Responsive Gap */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 1 }}
-          className="relative z-[60] flex flex-row items-center justify-center gap-8 md:gap-12 pointer-events-auto mt-6 md:mt-10"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-12 z-[60] pointer-events-auto"
         >
-          {/* CONNECT BUTTON - Sharp Font & Spacing */}
+          {/* Connect Button */}
           <Link href="#contact" className="relative z-[70] block group">
             <motion.div
               animate={{ rotate: 360 }}
@@ -110,7 +111,7 @@ const HeroSection = () => {
             </motion.button>
           </Link>
 
-          {/* VIEW WORK - Only Desktop */}
+          {/* View Work - Desktop Only */}
           <Link href="#portfolio" className="relative z-[70] hidden md:flex items-center gap-3 group transition-all duration-300">
             <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/5 transition-all duration-500">
               <span className="text-white text-sm group-hover:text-amber-400 transition-colors">→</span>
@@ -122,20 +123,20 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* 🔥 SCROLL INDICATOR: Lowered for Breathing Room */}
+      {/* Scroll Indicator - Perfect Bottom Alignment */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center z-20"
+        className="absolute bottom-10 md:bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center z-20"
       >
         <span className="text-[10px] text-zinc-600 uppercase tracking-[0.6em] font-bold mb-4">Scroll</span>
         <div className="relative h-16 w-[1.5px] bg-zinc-900 rounded-full overflow-hidden">
-           <motion.div 
-             animate={{ y: [-64, 64] }}
-             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-transparent via-amber-400 to-transparent shadow-[0_0_15px_rgba(251,191,36,0.4)]"
-           />
+          <motion.div 
+            animate={{ y: [-64, 64] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-transparent via-amber-400 to-transparent shadow-[0_0_15px_rgba(251,191,36,0.4)]"
+          />
         </div>
       </motion.div>
     </section>
