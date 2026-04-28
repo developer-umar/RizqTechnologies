@@ -32,9 +32,9 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center justify-start text-center px-6" id="home">
+    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center px-6" id="home">
       
-      {/* Cinematic Background */}
+      {/* 1. Cinematic Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
           <source src="/videos/hero.mp4" type="video/mp4" />
@@ -43,23 +43,23 @@ const HeroSection = () => {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-black" />
       </div>
 
-      {/* Main Content Container: Optimized Top Padding for Navbar Clearance */}
-      <div className="relative z-30 max-w-5xl mx-auto w-full pt-44 md:pt-60 flex flex-col items-center">
+      {/* Main Content: Using Flex-1 to push Scroll Indicator down */}
+      <div className="relative z-30 max-w-5xl mx-auto w-full flex-1 flex flex-col items-center pt-48 md:pt-64 lg:pt-72">
         
-        {/* 🔥 HEADING: Reduced by 15% for balanced aesthetics */}
+        {/* 🔥 HEADING: Pixel-Perfect Scale */}
         <div className="overflow-hidden mb-12 md:mb-16">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.25rem] font-semibold text-white leading-[1.2] md:leading-[1.15] tracking-tight px-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.25rem] font-semibold text-white leading-[1.2] md:leading-[1.1] tracking-tight px-2"
           >
             We engineer <span className="text-zinc-500 italic font-light">growth</span> <br />
             for businesses using <span className="text-amber-400 font-medium drop-shadow-[0_0_15px_rgba(251,191,36,0.2)]">technology.</span>
           </motion.h1>
         </div>
 
-        {/* Action Hub: Perfectly Centered */}
+        {/* Action Hub: Anchor for buttons */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,12 +122,12 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* 🔥 SCROLL INDICATOR: Professionally Aligned to Bottom */}
+      {/* 🔥 SCROLL INDICATOR: Locked to bottom to prevent collision */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center z-20"
+        className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center z-20 pointer-events-none"
       >
         <span className="text-[9px] text-zinc-600 uppercase tracking-[0.6em] font-bold mb-4">Scroll</span>
         <div className="relative h-12 w-[1.2px] bg-zinc-900 rounded-full overflow-hidden">
