@@ -129,7 +129,7 @@ const HeroSection = () => {
         transition={{ delay: 1.4 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20 pointer-events-none"
       >
-        <span className="text-[9px] text-zinc-600 uppercase tracking-[0.5em] font-bold mb-4">Explore</span>
+      
         <div className="relative h-14 w-[1px] bg-zinc-800 rounded-full overflow-hidden">
            <motion.div 
              animate={{ y: [-56, 56] }}
