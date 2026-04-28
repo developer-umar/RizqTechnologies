@@ -43,30 +43,30 @@ const HeroSection = () => {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-black" />
       </div>
 
-      {/* Main Content: Perfectly Centered Container */}
-      <div className="relative z-30 max-w-5xl mx-auto w-full flex flex-col items-center pt-20">
+      {/* Main Content Container */}
+      <div className="relative z-30 max-w-5xl mx-auto w-full flex flex-col items-center justify-center pt-10">
         
-        {/* 🔥 HEADING: Clear & Proportional */}
-        <div className="overflow-hidden mb-12 md:mb-16">
+        {/* HEADING */}
+        <div className="overflow-hidden mb-10 md:mb-14">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.25rem] font-semibold text-white leading-[1.2] md:leading-[1.1] tracking-tight px-4"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-semibold text-white leading-[1.1] tracking-tight px-4"
           >
             We engineer <span className="text-zinc-500 italic font-light">growth</span> <br />
-            for businesses using <span className="text-amber-400 font-medium drop-shadow-[0_0_15px_rgba(251,191,36,0.2)]">technology.</span>
+            for businesses using <span className="text-amber-400 font-medium drop-shadow-[0_0_20px_rgba(251,191,36,0.3)]">technology.</span>
           </motion.h1>
         </div>
 
-        {/* Action Hub: Desktop: Row | Mobile: Stacked Center */}
+        {/* Action Hub */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 1 }}
-          className="relative z-[60] flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-12 pointer-events-auto"
+          className="relative z-[60] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
         >
-          {/* CONNECT BUTTON */}
+          {/* CONNECT BUTTON (Always Visible) */}
           <Link href="#contact" className="relative z-[70] block group">
             <motion.div
               animate={{ rotate: 360 }}
@@ -79,7 +79,7 @@ const HeroSection = () => {
               onMouseMove={handleMouseMove}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="relative w-[230px] sm:w-[260px] h-[58px] rounded-full overflow-hidden border border-white/10 bg-zinc-950/50 backdrop-blur-xl transition-all duration-500 group-hover:border-amber-400/40"
+              className="relative w-[240px] sm:w-[270px] h-[60px] rounded-full overflow-hidden border border-white/10 bg-zinc-950/50 backdrop-blur-xl transition-all duration-500 group-hover:border-amber-400/40"
             >
               <motion.div
                 className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
@@ -110,30 +110,30 @@ const HeroSection = () => {
             </motion.button>
           </Link>
 
-          {/* VIEW WORK - Desktop Only */}
-          <Link href="#portfolio" className="relative z-[70] hidden md:flex items-center gap-3 group transition-all duration-300">
-            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/5 transition-all duration-500">
-              <span className="text-white text-sm group-hover:text-amber-400 transition-colors">→</span>
+          {/* VIEW WORK (Desktop Only - Hidden on Mobile/Small Screens) */}
+          <Link href="#portfolio" className="relative z-[70] hidden md:flex items-center gap-4 group transition-all duration-300">
+            <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/5 transition-all duration-500">
+              <span className="text-white text-lg group-hover:text-amber-400 transition-all duration-300 transform group-hover:translate-x-1">→</span>
             </div>
-            <span className="text-zinc-500 group-hover:text-white font-bold uppercase tracking-[0.2em] text-[9px] transition-colors">
+            <span className="text-zinc-500 group-hover:text-white font-bold uppercase tracking-[0.2em] text-[10px] transition-colors">
               See the work
             </span>
           </Link>
         </motion.div>
       </div>
 
-      {/* 🔥 SCROLL INDICATOR: Standardized Bottom Positioning */}
+      {/* SCROLL INDICATOR */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-20 pointer-events-none"
       >
-        <span className="text-[10px] text-zinc-600 uppercase tracking-[0.5em] font-bold mb-3">Scroll</span>
-        <div className="relative h-12 w-[1.2px] bg-zinc-900 rounded-full overflow-hidden">
+        <span className="text-[9px] text-zinc-600 uppercase tracking-[0.5em] font-bold mb-4">Explore</span>
+        <div className="relative h-14 w-[1px] bg-zinc-800 rounded-full overflow-hidden">
            <motion.div 
-             animate={{ y: [-48, 48] }}
-             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+             animate={{ y: [-56, 56] }}
+             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
              className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-transparent via-amber-400 to-transparent"
            />
         </div>
