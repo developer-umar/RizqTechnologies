@@ -2,171 +2,153 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  Zap, Monitor, Rocket, Smartphone, 
-  Cpu, Cloud, Layout, ArrowUpRight 
-} from "lucide-react";
-
-// Icons mapping for services
-const icons = [
-  <Zap key="1" />, <Monitor key="2" />, <Rocket key="3" />, 
-  <Smartphone key="4" />, <Cpu key="5" />, <Cloud key="6" />, <Layout key="7" />
-];
+import { ArrowUpRight } from "lucide-react";
 
 const SERVICES = [
   {
     num: "01",
     tag: "Branding",
     name: "Brand & UI Design",
-    desc: "We craft bold identities and stunning interfaces that make your brand unrecognizable.",
+    desc: "Bold identities and stunning interfaces.",
+    img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?q=80&w=1000&auto=format&fit=crop",
     span: "md:col-span-4 md:row-span-1",
-    color: "from-amber-500/20",
+    glow: "rgba(245, 166, 35, 0.15)"
   },
   {
     num: "02",
-    tag: "Full Stack",
+    tag: "Engineering",
     name: "Web Development",
-    desc: "High-performance web apps built for speed and real business growth.",
+    desc: "High-performance systems built for global scale.",
+    img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop",
     span: "md:col-span-8 md:row-span-1",
-    color: "from-blue-500/20",
+    glow: "rgba(59, 130, 246, 0.15)"
   },
   {
     num: "03",
     tag: "Growth",
     name: "Digital Marketing",
-    desc: "Data-driven strategies that convert traffic into revenue.",
-    span: "md:col-span-8 md:row-span-1",
-    color: "from-green-500/20",
+    desc: "Data-driven strategies that convert traffic to revenue.",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+    span: "md:col-span-7 md:row-span-1",
+    glow: "rgba(34, 197, 94, 0.15)"
   },
   {
     num: "04",
     tag: "Mobile",
     name: "App Development",
-    desc: "Seamless user experiences across iOS and Android.",
-    span: "md:col-span-4 md:row-span-2",
-    color: "from-purple-500/20",
+    desc: "Seamless iOS & Android experiences.",
+    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop",
+    span: "md:col-span-5 md:row-span-2",
+    glow: "rgba(168, 85, 247, 0.15)"
   },
   {
     num: "05",
     tag: "AI / ML",
-    name: "AI & LLM Solutions",
-    desc: "Smart automation and LLM integrations to boost efficiency.",
+    name: "AI Solutions",
+    desc: "Smart automation & neural workflows.",
+    img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
     span: "md:col-span-4 md:row-span-1",
-    color: "from-red-500/20",
+    glow: "rgba(239, 68, 68, 0.15)"
   },
   {
     num: "06",
     tag: "DevOps",
-    name: "Cloud & Deployment",
-    desc: "Reliable infrastructure ensuring zero downtime.",
-    span: "md:col-span-4 md:row-span-1",
-    color: "from-cyan-500/20",
+    name: "Cloud Systems",
+    desc: "Reliable & scalable infrastructure.",
+    img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
+    span: "md:col-span-3 md:row-span-1",
+    glow: "rgba(6, 182, 212, 0.15)"
   },
   {
     num: "07",
-    tag: "Strategy",
-    name: "Tech Consulting",
-    desc: "Expert guidance for scalable architectures.",
+    tag: "Consulting",
+    name: "Tech Strategy",
+    desc: "Roadmaps for digital transformation.",
+    img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1000&auto=format&fit=crop",
     span: "md:col-span-12 md:row-span-1",
-    color: "from-orange-500/20",
-  },
+    glow: "rgba(249, 115, 22, 0.15)"
+  }
 ];
 
-export default function ServicesBento() {
+export default function ServicesBentoRefined() {
   return (
-    <section className="relative min-h-screen bg-[#050505] py-24 px-4 md:px-10 overflow-hidden font-sans" id="services">
-      {/* 1. BACKGROUND GRID LINES (Industry Standard) */}
+    <section className="relative min-h-screen bg-[#050505] py-24 px-4 md:px-10 overflow-hidden font-sans">
+      
+      {/* 1. BACKGROUND GRID & MESH */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:60px_60px]"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* HEADER AREA */}
-        <div className="mb-20 text-center md:text-left">
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-amber-500 font-mono text-xs tracking-[0.4em] uppercase mb-4"
-          >
-            Capabilities
-          </motion.p>
+        <div className="mb-16">
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-none"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-6xl md:text-8xl font-black text-white tracking-tighter"
           >
-            OUR PREMIUM <br/> <span className="text-zinc-700 italic">SERVICES.</span>
+            OUR <span className="text-amber-500">EXPERTISE.</span>
           </motion.h2>
         </div>
 
-        {/* 2. BENTO GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[280px] md:auto-rows-[320px]">
+        {/* 2. BENTO GRID WITH IMAGES */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-[300px] md:auto-rows-[340px]">
           {SERVICES.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className={`${service.span} relative group bg-zinc-900/40 border border-white/5 rounded-[32px] p-8 overflow-hidden backdrop-blur-sm flex flex-col justify-between hover:border-white/20 transition-all duration-500`}
+              whileHover={{ y: -5 }}
+              className={`${service.span} relative group rounded-[40px] border border-white/10 overflow-hidden bg-zinc-950`}
             >
-              {/* Radial Glow on Hover */}
-              <div className={`absolute -inset-px bg-gradient-to-br ${service.color} via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
+              {/* IMAGE LAYER: Background with desaturation */}
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={service.img} 
+                  alt={service.name} 
+                  className="w-full h-full object-cover opacity-20 grayscale group-hover:grayscale-0 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000 ease-out"
+                />
+                {/* Gradient overlay to ensure text is always readable */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent" />
+              </div>
 
-              <div className="relative z-10">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-zinc-950 border border-white/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform duration-500">
-                    {icons[i]}
+              {/* CONTENT LAYER */}
+              <div className="relative z-10 h-full p-8 md:p-10 flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="text-amber-500 font-mono text-xs tracking-widest uppercase font-bold">
+                      {service.tag}
+                    </span>
+                    <span className="text-zinc-600 font-mono text-xs">{service.num}</span>
                   </div>
-                  <span className="text-zinc-600 font-mono text-xs">{service.num}</span>
+                  <h3 className="text-3xl md:text-4xl font-black text-white leading-tight tracking-tight">
+                    {service.name}
+                  </h3>
+                  <p className="text-zinc-400 mt-3 text-sm md:text-base leading-relaxed max-w-[280px]">
+                    {service.desc}
+                  </p>
                 </div>
-                
-                <p className="text-amber-500 font-bold text-[10px] uppercase tracking-widest mb-2">
-                  {service.tag}
-                </p>
-                <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">
-                  {service.name}
-                </h3>
-                <p className="text-zinc-400 mt-3 text-sm leading-relaxed max-w-[280px]">
-                  {service.desc}
-                </p>
+
+                <div className="flex justify-between items-end">
+                    {/* Minimal Feats List */}
+                    <div className="flex gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_#f5a623]" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                    </div>
+
+                    {/* Explore Glass Button */}
+                    <button className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest hover:bg-amber-500 hover:text-black transition-all duration-300">
+                      Explore <ArrowUpRight className="w-3 h-3" />
+                    </button>
+                </div>
               </div>
 
-              {/* Bottom Interactive Layer */}
-              <div className="relative z-10 flex justify-between items-end">
-                <div className="flex gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-amber-500/40" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
-                </div>
-                <motion.button 
-                  whileHover={{ x: 3, y: -3 }}
-                  className="flex items-center gap-2 text-white/50 text-[10px] font-bold uppercase tracking-widest group-hover:text-amber-500 transition-colors"
-                >
-                  Explore <ArrowUpRight className="w-3 h-3" />
-                </motion.button>
-              </div>
+              {/* Subtle Edge Glow on Hover */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{ background: `radial-gradient(circle at top left, ${service.glow}, transparent 60%)` }}
+              />
             </motion.div>
           ))}
         </div>
-
-        {/* 3. FINAL FOOTER CTA */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="mt-20 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8"
-        >
-          <p className="text-zinc-500 text-sm max-w-md text-center md:text-left">
-            Need a custom solution? We engineer specific architectures for market-leading growth.
-          </p>
-          <a 
-            href="#contact" 
-            className="px-10 py-4 bg-white text-black font-black uppercase text-xs tracking-widest rounded-full hover:bg-amber-500 transition-colors"
-          >
-            Start Your Project
-          </a>
-        </motion.div>
       </div>
     </section>
   );
