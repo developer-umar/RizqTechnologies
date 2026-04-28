@@ -24,31 +24,31 @@ const HeroSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setBtnText((prev) =>
+      setBtnText((prev) => 
         prev === "Connect With Us" ? "+91 8127672157" : "Connect With Us"
       );
-    }, 2800);
+    }, 2800); 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center justify-center text-center px-6" id="home">
-
-      {/* 1. Cinematic Background - Deep contrast for professional readability */}
+    <section className="relative w-full min-h-screen overflow-hidden bg-black flex flex-col items-center justify-start text-center px-6" id="home">
+      
+      {/* 1. Cinematic Background - Optimized Visibility */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-20">
+        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/60 z-10" />
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-black" />
+        <div className="absolute inset-0 bg-black/30 z-10" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-transparent to-black" />
       </div>
 
-      {/* Main Content Container with improved padding-top and center alignment */}
-      <div className="relative z-30 max-w-5xl mx-auto w-full pt-28 md:pt-36 flex flex-col items-center justify-center">
-
-        {/* 🔥 HEADING: Clear & Impactful */}
-        <div className="overflow-hidden mb-6 md:mb-10">
-          <motion.h1
+      {/* Main Content Container with proper padding-top and center alignment */}
+      <div className="relative z-30 max-w-5xl mx-auto w-full pt-40 md:pt-48 lg:pt-56 flex flex-col items-center justify-center mb-24 md:mb-36">
+        
+        {/* 🔥 HEADING: Clear & Impactful with spacing */}
+        <div className="overflow-hidden mb-12 md:mb-16">
+          <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
@@ -59,23 +59,12 @@ const HeroSection = () => {
           </motion.h1>
         </div>
 
-        {/* 🔥 SUBTEXT: Clear Readability */}
-        <motion.p
+        {/* Action Hub: Spaced from header and properly aligned */}
+        <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="mt-6 md:mt-10 text-base md:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed tracking-normal font-normal px-4 opacity-90 mb-12 md:mb-20"
-        >
-          Rizq Technologies turns ambitious ideas into high-performance
-          digital experiences that deliver massive ROI.
-        </motion.p>
-
-        {/* Action Hub: Unified alignment for dynamic balance */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="relative z-[60] flex flex-row items-center justify-center gap-10 pointer-events-auto"
+          className="relative z-[60] flex flex-row items-center justify-center gap-10 pointer-events-auto mt-6 md:mt-10"
         >
           {/* CONNECT BUTTON - Clean & Professional */}
           <Link href="#contact" className="relative z-[70] block group">
@@ -135,20 +124,20 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* 🔥 SCROLL INDICATOR: Unified Alignment Logic & Pixel-Perfect */}
-      <motion.div
+      {/* 🔥 SCROLL INDICATOR: Standard Bottom Alignment */}
+      <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 1.2 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center z-20"
       >
         <span className="text-[9px] text-zinc-600 uppercase tracking-[0.6em] font-medium mb-3">Scroll</span>
         <div className="relative h-14 w-[1.2px] bg-zinc-900 rounded-full overflow-hidden">
-          <motion.div
-            animate={{ y: [-56, 56] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-transparent via-amber-400 to-transparent shadow-[0_0_10px_rgba(251,191,36,0.6)]"
-          />
+           <motion.div 
+             animate={{ y: [-56, 56] }}
+             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+             className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-transparent via-amber-400 to-transparent shadow-[0_0_10px_rgba(251,191,36,0.6)]"
+           />
         </div>
       </motion.div>
     </section>
