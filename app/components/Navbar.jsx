@@ -33,10 +33,10 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { href: "#home", label: "Home" },
-        { href: "#services", label: "Services" },
-        { href: "#portfolio", label: "Portfolio" },
-        { href: "#blog", label: "Blog" },
+        { href: "/#home", label: "Home" },
+        { href: "/#services", label: "Services" },
+        { href: "/#portfolio", label: "Portfolio" },
+        { href: "/blog", label: "Blog" },
     ];
 
     return (
@@ -46,7 +46,7 @@ const Navbar = () => {
             }`}>
 
                 {/* Logo */}
-                <Link href="#home" className="relative z-[110] flex items-center">
+                <Link href="/#home" className="relative z-[110] flex items-center">
                     <Image src="/rizq-logo.png" alt="Rizq Logo" width={250} height={150} className="object-contain w-[168px] md:w-[210px]" priority />
                 </Link>
 
