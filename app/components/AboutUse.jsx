@@ -57,7 +57,7 @@ export default function AboutUsFluid() {
             <motion.div variants={fadeUpVariants} className="inline-flex items-center gap-4 mb-6">
               <span className="w-10 h-[2px] bg-amber-500" />
               <span className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">
-                About Us
+                Who We Are
               </span>
             </motion.div>
 
@@ -65,35 +65,35 @@ export default function AboutUsFluid() {
               variants={fadeUpVariants} 
               className="text-6xl md:text-8xl lg:text-[8.5rem] font-black tracking-tighter leading-[0.8] uppercase mb-10"
             >
-              Scale <br />
+              Go <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-600">
-                Faster.
+                Global.
               </span>
             </motion.h3>
 
             <div className="max-w-2xl space-y-8">
               <motion.p variants={fadeUpVariants} className="text-2xl md:text-3xl text-zinc-800 font-semibold leading-tight">
-                We don't just build apps; we <span className="text-amber-600">engineer market leaders</span>. 
+                We build <span className="text-amber-600">scalable digital solutions</span> that turn growing businesses into global brands.
               </motion.p>
               
               <motion.p variants={fadeUpVariants} className="text-lg md:text-xl text-zinc-500 leading-relaxed font-medium">
-                At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a collective of innovators obsessed with brand elevation. By leveraging <span className="text-zinc-800 italic">cutting-edge digital architectures</span>, we transform your vision into a high-performance revenue engine—delivering elite, industry-level quality without the bloated enterprise overhead.<strong className="text-black font-bold">Our  sole focus is to build  your Brand   and Grow Your Business</strong>
+                At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a group of innovative professionals dedicated to your success. We don’t just build websites — we deliver complete digital ecosystems. From high-performance platforms to smart automation, our focus is simple: <span className="text-zinc-800 italic">drive real growth, not just an online presence.</span>
               </motion.p>
             </div>
 
-            {/* Performance Stats */}
+            {/* Performance Stats / Pillars */}
             <motion.div variants={fadeUpVariants} className="grid grid-cols-2 gap-8 mt-16 pt-12 border-t border-zinc-200">
               <div>
                 <p className="text-4xl md:text-5xl font-black text-black tracking-tighter">
-                  Brand<span className="text-amber-500">.</span>
+                  Scale<span className="text-amber-500">.</span>
                 </p>
-                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mt-2 font-mono">Architecture</p>
+                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mt-2 font-mono">Digital Brands</p>
               </div>
               <div>
                 <p className="text-4xl md:text-5xl font-black text-black tracking-tighter">
-                  ROI<span className="text-amber-500">+</span>
+                  Grow<span className="text-amber-500">+</span>
                 </p>
-                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mt-2 font-mono">Driven Growth</p>
+                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mt-2 font-mono">Global Impact</p>
               </div>
             </motion.div>
           </div>
@@ -104,10 +104,9 @@ export default function AboutUsFluid() {
               variants={fadeUpVariants}
               className="relative w-full aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] group bg-zinc-200"
             >
-              {/* IMAGE FIX: Added quality={100} and priority for crisp rendering */}
               <Image
                 src="/about.jpg" 
-                alt="Business Growth Strategy" 
+                alt="Rizq Technologies - Scalable Solutions" 
                 fill
                 quality={100} 
                 priority
@@ -125,13 +124,13 @@ export default function AboutUsFluid() {
                 transition={{ delay: 0.5 }}
                 className="absolute top-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl"
               >
-                <p className="text-white text-xs font-bold tracking-widest uppercase">Global Quality</p>
+                <p className="text-white text-xs font-bold tracking-widest uppercase">Innovation Hub</p>
                 <div className="h-1 w-full bg-amber-500 mt-2 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
               </motion.div>
 
               <div className="absolute bottom-10 left-10 right-10">
-                <p className="text-white text-3xl font-black leading-none mb-2">BUILT FOR <br/>SUCCESS</p>
-                <p className="text-zinc-300 text-sm font-medium tracking-wide">Optimized for Scalability & Conversion</p>
+                <p className="text-white text-3xl font-black leading-none mb-2">DRIVING <br/>REAL GROWTH</p>
+                <p className="text-zinc-300 text-sm font-medium tracking-wide">Custom Software & Smart Automation</p>
               </div>
             </motion.div>
 
