@@ -2,237 +2,169 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; // Client-side navigation ke liye best hai
+import Link from "next/link";
 
-// ─────────────────────────────────────────────────────────────────
-// DATA: Refined for Premium Branding
-// ─────────────────────────────────────────────────────────────────
 const SERVICES = [
   {
     num: "01",
-    tag: "Branding",
+    tag: "Identity",
     name: "Brand & UI Design",
     desc: "We craft bold identities and stunning interfaces that make your brand instantly recognizable and impossible to ignore.",
-    feats: ["Logo Design", "Brand Identity Systems", "UI/UX Design"],
+    feats: ["Logo Design", "Brand Systems", "UI/UX Design"],
     img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80&auto=format&fit=crop",
-    imgAlt: "Design tools and branding work",
   },
   {
     num: "02",
-    tag: "Full Stack",
-    name: "Website Development",
+    tag: "Engineering",
+    name: "Web Development",
     desc: "High-performance websites and web apps built with modern tech — optimized for speed, SEO, and real business growth.",
     feats: ["Next.js / React", "Backend & APIs", "SEO Optimization"],
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=80&auto=format&fit=crop",
-    imgAlt: "Developer working on code",
   },
   {
     num: "03",
-    tag: "Growth",
-    name: "Digital Marketing",
-    desc: "Data-driven marketing strategies that attract the right audience, boost visibility, and convert traffic into revenue.",
-    feats: ["SEO & SEM", "Meta & Google Ads", "Analytics & CRO"],
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80&auto=format&fit=crop",
-    imgAlt: "Marketing analytics dashboard",
+    tag: "Intelligence",
+    name: "AI & LLM Solutions",
+    desc: "Smart AI solutions including chatbots, automation, and LLM integrations to streamline operations and boost efficiency.",
+    feats: ["OpenAI / Claude", "RAG Systems", "Custom AI"],
+    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80&auto=format&fit=crop",
   },
   {
     num: "04",
-    tag: "Mobile",
-    name: "App Development",
-    desc: "Scalable, high-quality mobile apps designed for seamless user experience across both iOS and Android platforms.",
-    feats: ["React Native / Flutter", "App Store Deployment", "Performance Optimization"],
-    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&q=80&auto=format&fit=crop",
-    imgAlt: "Mobile app on phone screen",
-  },
-  {
-    num: "05",
-    tag: "AI / ML",
-    name: "AI & LLM Solutions",
-    desc: "Smart AI solutions including chatbots, automation, and LLM integrations to streamline operations and boost efficiency.",
-    feats: ["OpenAI / Claude APIs", "RAG Systems", "Custom AI Solutions"],
-    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80&auto=format&fit=crop",
-    imgAlt: "AI and machine learning visualization",
-  },
-  {
-    num: "06",
-    tag: "DevOps",
-    name: "Cloud & Deployment",
+    tag: "Scalability",
+    name: "Cloud & DevOps",
     desc: "Reliable cloud infrastructure and automated deployment pipelines ensuring speed, scalability, and zero downtime.",
-    feats: ["AWS / GCP / Vercel", "Docker & CI/CD", "Monitoring & Scaling"],
+    feats: ["AWS / Vercel", "Docker & CI/CD", "24/7 Monitoring"],
     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80&auto=format&fit=crop",
-    imgAlt: "Server room and cloud infrastructure",
-  },
-  {
-    num: "07",
-    tag: "Strategy",
-    name: "Tech Consulting",
-    desc: "Expert guidance to help you choose the right technologies, plan scalable systems, and execute with confidence.",
-    feats: ["Tech Audit", "Architecture Planning", "Team Guidance"],
-    img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80&auto=format&fit=crop",
-    imgAlt: "Team discussing tech strategy",
-  },
+  }
 ];
 
-// ─────────────────────────────────────────────────────────────────
-// SERVICE CARD
-// ─────────────────────────────────────────────────────────────────
 function ServiceCard({ service, index }) {
+  const [hov, setHov] = useState(false);
+
   return (
-    <div
-      style={{
-        position: "sticky",
-        top: `calc(15% + ${index * 32}px)`, 
-        width: "100%",
-        maxWidth: 1100,
-        height: "clamp(500px, 65vh, 650px)",
-        background: "#0a0a0a",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 40,
-        overflow: "hidden",
-        display: "grid",
-        gridTemplateColumns: "minmax(300px, 1.2fr) 1fr",
-        boxShadow: "0 -30px 60px rgba(0,0,0,0.9)",
-        marginBottom: "12vh", 
-      }}
-    >
-      {/* LEFT PANEL */}
-      <div style={{ position: "relative", zIndex: 2, padding: "clamp(40px,5vw,64px)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-        <div style={{ position: "absolute", left: 0, top: "20%", bottom: "20%", width: 2, background: "linear-gradient(to bottom, transparent, #F5A623, transparent)" }} />
+    <div className="service-card" style={{ top: `calc(10% + ${index * 32}px)` }}>
+      {/* CONTENT PANEL */}
+      <div className="card-content">
+        <div className="accent-line" />
         
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#F5A623", border: "1px solid rgba(245,166,35,0.15)", padding: "8px 18px", borderRadius: 40, background: "rgba(245,166,35,0.03)", width: "fit-content" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#F5A623", boxShadow: "0 0 12px #F5A623" }} />
+        <div className="card-top">
+          <span className="tag-badge">
+            <span className="dot" />
             {service.tag}
           </span>
-          <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 13, fontWeight: 700, color: "#F5A623", opacity: 0.6 }}>
-            {service.num} — SOLUTIONS
-          </div>
-          <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, color: "#fff", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
-            {service.name}
-          </h3>
-          <p style={{ fontSize: 16, lineHeight: 1.6, color: "#999", maxWidth: 400, fontWeight: 400 }}>{service.desc}</p>
+          <div className="service-number">{service.num} — SOLUTIONS</div>
+          <h3 className="service-title">{service.name}</h3>
+          <p className="service-desc">{service.desc}</p>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+        <div className="card-bottom">
+          <div className="feats-container">
             {service.feats.map((f, fi) => (
-              <span key={fi} style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", color: "#555", display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.03)", padding: "6px 12px", borderRadius: 4 }}>
-                <span style={{ width: 3, height: 3, borderRadius: "50%", background: "#F5A623" }} />
+              <span key={fi} className="feat-tag">
+                <span className="feat-dot" />
                 {f}
               </span>
             ))}
           </div>
-          <ContactCTAButton />
+          
+          <Link 
+            href="#contact" 
+            className={`cta-button ${hov ? 'active' : ''}`}
+            onMouseEnter={() => setHov(true)} 
+            onMouseLeave={() => setHov(false)}
+          >
+            Let's Connect <span>→</span>
+          </Link>
         </div>
       </div>
 
-      {/* RIGHT PANEL */}
-      <div style={{ position: "relative", overflow: "hidden" }}>
-        <Image src={service.img} alt={service.imgAlt} fill sizes="50vw" style={{ objectFit: "cover", filter: "grayscale(100%) contrast(1.2) brightness(0.5)" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #0a0a0a 0%, transparent 100%)" }} />
+      {/* IMAGE PANEL */}
+      <div className="card-image-wrapper">
+        <Image 
+          src={service.img} 
+          alt={service.name} 
+          fill 
+          className="card-image"
+        />
+        <div className="image-overlay" />
       </div>
     </div>
   );
 }
 
-function ContactCTAButton() {
-  const [hov, setHov] = useState(false);
-  return (
-    <Link href="#contact" scroll={true}
-      onMouseEnter={() => setHov(true)} 
-      onMouseLeave={() => setHov(false)} 
-      style={{ 
-        display: "inline-flex", 
-        alignItems: "center", 
-        gap: hov ? 16 : 10, 
-        fontSize: 12, 
-        fontWeight: 700, 
-        textTransform: "uppercase", 
-        color: hov ? "#000" : "#F5A623", 
-        border: "1px solid #F5A623", 
-        padding: "16px 32px", 
-        borderRadius: 40, 
-        width: "fit-content", 
-        background: hov ? "#F5A623" : "transparent", 
-        cursor: "pointer", 
-        transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
-        textDecoration: "none"
-      }}
-    >
-      Let's Connect <span style={{ transform: hov ? "translateX(4px)" : "none", transition: "transform 0.3s" }}>→</span>
-    </Link>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────
-// MAIN COMPONENT
-// ─────────────────────────────────────────────────────────────────
 export default function Services() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
-  };
-
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@300;400;600&display=swap');
+        
+        :root { --accent: #F5A623; --bg: #050505; --card-bg: #0d0d0d; }
         html { scroll-behavior: smooth; }
-        body { background: #050505; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); font-family: 'Inter', sans-serif; color: white; }
+
+        .services-section { position: relative; min-height: 250vh; padding: 100px 20px; overflow: clip; }
+        
+        .header-area { text-align: center; margin-bottom: 80px; position: relative; z-index: 10; }
+        .sub-heading { color: #555; text-transform: uppercase; letter-spacing: 0.4em; font-size: 12px; font-weight: 600; margin-bottom: 16px; display: block; }
+        .main-heading { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(40px, 7vw, 80px); font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+        .accent-text { color: var(--accent); }
+
+        .stack-container { display: flex; flexDirection: column; align-items: center; width: 100%; position: relative; z-index: 5; }
+
+        .service-card {
+          position: sticky; width: 100%; max-width: 1100px; 
+          min-height: 550px; background: var(--card-bg);
+          border: 1px solid rgba(255,255,255,0.08); border-radius: 32px;
+          display: grid; grid-template-columns: 1.2fr 1fr;
+          overflow: hidden; margin-bottom: 15vh; box-shadow: 0 -20px 40px rgba(0,0,0,0.5);
+        }
+
+        .card-content { padding: 50px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .accent-line { position: absolute; left: 0; top: 20%; bottom: 20%; width: 2px; background: linear-gradient(transparent, var(--accent), transparent); }
+        
+        .tag-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(245,166,35,0.2); padding: 6px 14px; border-radius: 20px; color: var(--accent); font-size: 10px; font-weight: 700; text-transform: uppercase; width: fit-content; margin-bottom: 20px; }
+        .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+        
+        .service-number { font-size: 12px; color: #555; font-weight: 600; margin-bottom: 10px; }
+        .service-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .service-desc { color: #888; line-height: 1.6; font-size: 16px; max-width: 400px; }
+
+        .feats-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .feat-tag { font-size: 11px; background: rgba(255,255,255,0.03); padding: 5px 12px; border-radius: 4px; color: #666; display: flex; align-items: center; gap: 6px; }
+        .feat-dot { width: 3px; height: 3px; background: var(--accent); border-radius: 50%; }
+
+        .cta-button { 
+          display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--accent);
+          padding: 14px 28px; border-radius: 30px; color: var(--accent); text-decoration: none;
+          font-weight: 700; font-size: 12px; text-transform: uppercase; transition: all 0.3s ease;
+        }
+        .cta-button.active { background: var(--accent); color: black; gap: 16px; }
+
+        .card-image-wrapper { position: relative; min-height: 300px; }
+        .card-image { object-fit: cover; filter: grayscale(100%) brightness(0.6); }
+        .image-overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--card-bg), transparent); }
+
+        @media (max-width: 900px) {
+          .service-card { grid-template-columns: 1fr; height: auto; min-height: unset; position: relative !important; top: 0 !important; margin-bottom: 40px; }
+          .card-content { order: 2; padding: 30px; }
+          .card-image-wrapper { order: 1; height: 250px; }
+          .image-overlay { background: linear-gradient(to top, var(--card-bg), transparent); }
+          .main-heading { font-size: 45px; }
+          .services-section { min-height: auto; }
+        }
       `}</style>
 
-      <section
-        id="services"
-        onMouseMove={handleMouseMove}
-        style={{
-          background: "#050505",
-          position: "relative",
-          minHeight: "300vh", 
-          paddingBottom: "20vh",
-          overflow: "clip"
-        }}
-      >
-        {/* GRID OVERLAY */}
-        <div
-          aria-hidden
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 0,
-            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(245,166,35,0.05) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-            maskImage: "radial-gradient(circle at center, black, transparent 80%)"
-          }}
-        />
-
-        {/* HEADER */}
-        <div style={{ textAlign: "center", padding: "160px 24px 120px", position: "relative", zIndex: 1 }}>
-          <p style={{ display: "inline-flex", alignItems: "center", gap: 12, fontSize: 12, fontWeight: 600, letterSpacing: "0.4em", textTransform: "uppercase", color: "#444", marginBottom: 24 }}>
-            <span style={{ width: 40, height: 1, background: "rgba(245,166,35,0.2)" }} />
-            Core Capabilities
-            <span style={{ width: 40, height: 1, background: "rgba(245,166,35,0.2)" }} />
-          </p>
-          <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(44px, 8vw, 92px)", fontWeight: 800, color: "#fff", lineHeight: 0.9, letterSpacing: "-0.04em" }}>
-            High-Performance <br/> <span style={{ color: "#F5A623" }}>Architectures.</span>
+      <section id="services" className="services-section">
+        <div className="header-area">
+          <span className="sub-heading">Expertise</span>
+          <h2 className="main-heading">
+            Our Premium <br/> <span className="accent-text">Services.</span>
           </h2>
         </div>
 
-        {/* THE STACK */}
-        <div 
-          style={{ 
-            position: "relative", 
-            zIndex: 1,
-            display: "flex", 
-            flexDirection: "column", 
-            alignItems: "center",
-            padding: "0 24px",
-            width: "100%"
-          }}
-        >
-          {SERVICES.map((service, i) => (
-            <ServiceCard key={i} service={service} index={i} />
-          ))}
+        <div className="stack-container">
+          {SERVICES.map((s, i) => <ServiceCard key={i} service={s} index={i} />)}
         </div>
       </section>
     </>
