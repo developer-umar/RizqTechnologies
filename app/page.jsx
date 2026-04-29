@@ -1,5 +1,4 @@
 import CTA from "./components/CTA";
-import Services from "./components/Services";
 import HeroSection from "./components/HeroSection";
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
@@ -8,6 +7,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AboutUsFluid from "./components/AboutUse";
 import TechSection from "./components/Technologies";
+import ServicesBentoMagic from "./components/Services";
 
 
 // import ClientCursor from "./components/cursor/clientCursor";
@@ -32,7 +32,7 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <AboutUsFluid/>
-        <Services />
+        <ServicesBentoMagic/>
         <TechSection/>
         
         <Portfolio />   
