@@ -1,10 +1,11 @@
+
+
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MessageSquareCode } from "lucide-react";
 import Link from "next/link";
-
 const SERVICES = [
   {
     num: "01",
@@ -71,39 +72,55 @@ const SERVICES = [
   }
 ];
 
+
+
+
+
 export default function ServicesBentoMagic() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+
+    window.addEventListener("resize", checkMobile);
+
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-[#050505] py-24 px-4 md:px-10 overflow-hidden font-sans cursor-none" id="expertise">
+    <section className="relative min-h-screen bg-[#050505] py-24 px-4 md:px-10 overflow-hidden font-sans" id="expertise">
 
-      {/* CURSOR GLOW */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{
-          background: `radial-gradient(
-            400px circle at ${mousePos.x}px ${mousePos.y}px,
-            rgba(250, 204, 21, 0.15),
-            transparent 70%
-          )`,
-        }}
-      />
+      {/* CURSOR GLOW (DESKTOP ONLY) */}
+      {!isMobile && (
+        <div
+          className="pointer-events-none fixed inset-0 z-0"
+          style={{
+            background: `radial-gradient(
+              400px circle at ${mousePos.x}px ${mousePos.y}px,
+              rgba(250, 204, 21, 0.12),
+              transparent 70%
+            )`,
+          }}
+        />
+      )}
 
-      {/* YELLOW GRID BACKGROUND */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
+      {/* STRONG YELLOW GRID (FIXED) */}
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 
-          bg-[linear-gradient(to_right,#facc15_1px,transparent_1px),
-          linear-gradient(to_bottom,#facc15_1px,transparent_1px)]
-          bg-[size:60px_60px] opacity-20" 
+          bg-[linear-gradient(to_right,#facc15_0.6px,transparent_1px),
+          linear-gradient(to_bottom,#facc15_0.6px,transparent_1px)]
+          bg-[size:50px_50px] opacity-40"
         />
       </div>
 
@@ -111,21 +128,12 @@ export default function ServicesBentoMagic() {
 
         {/* HEADER */}
         <div className="mb-20">
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-amber-500 font-mono text-[10px] uppercase font-black mb-4 tracking-[0.3em]"
-          >
+          <motion.p className="text-amber-500 font-mono text-[10px] uppercase font-black mb-4 tracking-[0.3em]">
             Core Capabilities
           </motion.p>
 
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none"
-          >
-            OUR ELITE <br/> 
+          <motion.h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">
+            OUR ELITE <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">
               EXPERTISE.
             </span>
@@ -137,84 +145,60 @@ export default function ServicesBentoMagic() {
           {SERVICES.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
               className={`${service.span} relative group rounded-[32px] overflow-hidden p-[1.5px]
-              transition-transform duration-500 hover:scale-[1.02]`}
+              transition-transform duration-500 active:scale-[0.98] md:hover:scale-[1.02]`}
             >
 
               {/* BORDER ANIMATION */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm animate-[shimmer_2s_infinite]" style={{ backgroundSize: '200% 100%' }} />
+              <div className="absolute inset-0 
+                bg-gradient-to-r from-transparent via-amber-500 to-transparent 
+                opacity-100 md:opacity-0 md:group-hover:opacity-100 
+                transition-opacity duration-700 blur-sm 
+                animate-[shimmer_3s_infinite]"
+                style={{ backgroundSize: '200% 100%' }}
+              />
 
               {/* CARD */}
               <div className="relative h-full w-full bg-zinc-950 rounded-[30.5px] overflow-hidden flex flex-col justify-between
-              transition-all duration-500 group-hover:shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
+              transition-all duration-500 md:group-hover:shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
 
                 {/* IMAGE */}
                 <div className="absolute inset-0 z-0">
-                  <img 
-                    src={service.img} 
-                    alt={service.name} 
-                    className="w-full h-full object-cover opacity-10 grayscale group-hover:grayscale-0 group-hover:opacity-20 transition-all duration-1000"
+                  <img
+                    src={service.img}
+                    alt={service.name}
+                    className="w-full h-full object-cover opacity-10 md:group-hover:opacity-20 transition-all duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent" />
                 </div>
 
                 {/* CONTENT */}
                 <div className="relative z-10 p-8 md:p-10">
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/5 text-amber-500 font-mono text-[9px] uppercase tracking-widest font-black">
-                      {service.tag}
-                    </span>
-                    <span className="text-zinc-700 font-mono text-[10px]">{service.num}</span>
-                  </div>
-
-                  <h3 className="text-3xl md:text-4xl font-black text-white leading-none tracking-tighter mb-4 group-hover:text-amber-400 transition-all duration-500">
+                  <h3 className="text-3xl md:text-4xl font-black text-white mb-4 md:group-hover:text-amber-400">
                     {service.name}
                   </h3>
-
-                  <p className="text-zinc-400 text-sm md:text-base font-medium leading-relaxed max-w-[320px]">
+                  <p className="text-zinc-400 text-sm md:text-base">
                     {service.desc}
                   </p>
                 </div>
 
-                {/* FOOTER */}
-                <div className="relative z-10 p-8 pt-0 flex justify-between items-center">
-                  <div className="flex gap-1.5 items-center">
-                    <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_10px_#f5a623] animate-pulse" />
-                    <span className="text-[10px] font-mono text-zinc-700 font-bold uppercase tracking-widest">
-                      Active System
-                    </span>
-                  </div>
-
-                  {/* BUTTON */}
-                  <Link 
-                    href="#contact" 
-                    className="group relative flex items-center gap-2 px-6 py-3 rounded-full 
-                    bg-white/5 border border-white/10 backdrop-blur-xl 
-                    text-white text-[10px] font-black uppercase tracking-[0.2em] 
-                    overflow-hidden transition-all duration-300 
-                    hover:bg-amber-500 hover:text-black hover:border-amber-500
-                    hover:shadow-[0_0_25px_rgba(245,166,35,0.4)]
-                    active:scale-95"
+                {/* BUTTON */}
+                <div className="p-8 pt-0">
+                  <Link
+                    href="#contact"
+                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-full 
+                    bg-white/5 border border-white/10 text-white text-xs font-bold 
+                    hover:bg-amber-500 hover:text-black transition-all"
                   >
-                    <span className="relative z-10 flex items-center gap-2">
-                      Start Project
-                      <MessageSquareCode className="w-3 h-3 transition-transform duration-300 group-hover:rotate-12" />
-                    </span>
-
-                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 blur-md transition duration-500"></span>
+                    Start Project <MessageSquareCode className="w-3 h-3" />
                   </Link>
                 </div>
               </div>
 
-              {/* CARD GLOW */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"
+              {/* MOBILE GLOW FIX */}
+              <div className="absolute inset-0 opacity-20 md:opacity-0 md:group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"
                 style={{ background: `radial-gradient(circle at center, ${service.glow}, transparent 70%)` }}
               />
-
             </motion.div>
           ))}
         </div>
@@ -226,7 +210,7 @@ export default function ServicesBentoMagic() {
           100% { background-position: 200% 0; }
         }
       `}</style>
-
     </section>
   );
 }
+
