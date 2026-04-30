@@ -6,6 +6,7 @@
 // ============================================================
 
 import Link from "next/link";
+import Image from "next/image";
 import { getAllBlogs } from "@/lib/blogData";
 
 // ── SEO Metadata ─────────────────────────────────────────────
@@ -203,44 +204,63 @@ function BlogCard({ blog, index }) {
     >
       {/* ── Top Accent Bar ─────────────────────────────────────
           Animated yellow bar that slides in on hover */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-yellow-400/0 via-yellow-400 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-yellow-400/0 via-yellow-400 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
 
-      {/* ── Card Header (Category Badge + Read Time) ───────── */}
-      <div className="p-6 pb-4 flex items-center justify-between">
-        {/* Category badge */}
-        <span
-          className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${badgeClass}`}
-        >
-          {blog.category}
-        </span>
-        {/* Read time */}
-        <span className="text-white/30 text-xs font-medium">
-          {blog.readTime}
-        </span>
+      {/* ── Cover Image ────────────────────────────────────────
+          Aspect ratio 16:9 container. Image zooms on card hover.
+          Gradient overlay at bottom ensures text readability. */}
+      <div className="relative w-full aspect-video overflow-hidden bg-zinc-900">
+        <Image
+          src={blog.coverImage}
+          alt={blog.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          // Priority for first 3 cards (above the fold), lazy load the rest
+          priority={index < 3}
+        />
+        {/* Dark gradient overlay at the bottom of image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+        {/* Category badge — floated over the image bottom-left */}
+        <div className="absolute bottom-3 left-4 z-10">
+          <span
+            className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border backdrop-blur-sm ${badgeClass}`}
+          >
+            {blog.category}
+          </span>
+        </div>
+
+        {/* Read time — floated over the image top-right */}
+        <div className="absolute top-3 right-4 z-10">
+          <span className="text-white/70 text-[10px] font-medium bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+            {blog.readTime}
+          </span>
+        </div>
       </div>
 
       {/* ── Card Body (Title + Excerpt) ────────────────────── */}
-      <div className="px-6 flex-1 flex flex-col">
+      <div className="px-5 pt-5 flex-1 flex flex-col">
         {/* Blog title — transitions to yellow on hover */}
-        <h2 className="text-white font-bold text-xl leading-[1.3] mb-3 group-hover:text-yellow-400 transition-colors duration-300 line-clamp-3">
+        <h2 className="text-white font-bold text-lg leading-[1.3] mb-2.5 group-hover:text-yellow-400 transition-colors duration-300 line-clamp-2">
           {blog.title}
         </h2>
-        {/* Excerpt — clamped to 3 lines */}
-        <p className="text-white/45 text-sm leading-relaxed line-clamp-3 flex-1">
+        {/* Excerpt — clamped to 2 lines */}
+        <p className="text-white/45 text-sm leading-relaxed line-clamp-2 flex-1">
           {blog.excerpt}
         </p>
       </div>
 
       {/* ── Card Footer (Author + Date + Arrow) ────────────── */}
-      <div className="p-6 pt-5 mt-auto">
+      <div className="p-5 pt-4 mt-auto">
         {/* Divider */}
-        <div className="h-[1px] bg-white/5 mb-5" />
+        <div className="h-[1px] bg-white/5 mb-4" />
 
         <div className="flex items-center justify-between">
           {/* Author info */}
           <div className="flex items-center gap-3">
             {/* Avatar placeholder with initials */}
-            <div className="w-8 h-8 rounded-full bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center flex-shrink-0">
               <span className="text-yellow-400 text-xs font-bold">
                 {/* First letter of author name */}
                 {blog.author.name.charAt(0)}
@@ -265,3 +285,4 @@ function BlogCard({ blog, index }) {
     </Link>
   );
 }
+
