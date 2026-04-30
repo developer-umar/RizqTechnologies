@@ -6,8 +6,18 @@
 // ============================================================
 
 import Link from "next/link";
+import Image from "next/image"; // ← was missing — caused ReferenceError at build time
 import { notFound } from "next/navigation";
 import { getBlogBySlug, getAllSlugs, getRelatedBlogs } from "@/lib/blogData";
+
+// ── generateViewport ──────────────────────────────────────────
+// Next.js 15+ requires themeColor to be in generateViewport,
+// NOT in the metadata export — otherwise build throws a warning.
+export function generateViewport() {
+  return {
+    themeColor: "#000000",
+  };
+}
 
 // ── generateStaticParams ─────────────────────────────────────
 // Tells Next.js to pre-render a page for every blog slug at build time.
