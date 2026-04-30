@@ -46,12 +46,20 @@ export const metadata = {
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
+    images: [
+    {
+      url: "https://rizqtechnologies.com/og-image.png",
+      width: 1200,
+      height: 630,
+    },
+  ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rizq Technologies | Premier Digital Agency",
     description: "Crafting elite digital experiences for modern brands.",
     creator: "@rizqtech",
+    images: ["https://rizqtechnologies.com/og-image.png"],  
   },
   robots: {
     index: true,
