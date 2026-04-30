@@ -75,6 +75,15 @@ export const metadata = {
   },
 };
 
+// ── Viewport Export ────────────────────────────────────────────
+// Next.js 15+ requires themeColor to be exported separately
+// via generateViewport or a viewport export — NOT inside metadata.
+// This controls the browser tab/address bar background color.
+export const viewport = {
+  themeColor: "#000000",
+};
+
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${syne.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}>

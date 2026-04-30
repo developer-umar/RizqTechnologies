@@ -6,8 +6,18 @@
 // ============================================================
 
 import Link from "next/link";
+import Image from "next/image"; // ← was missing — caused ReferenceError at build time
 import { notFound } from "next/navigation";
 import { getBlogBySlug, getAllSlugs, getRelatedBlogs } from "@/lib/blogData";
+
+// ── generateViewport ──────────────────────────────────────────
+// Next.js 15+ requires themeColor to be in generateViewport,
+// NOT in the metadata export — otherwise build throws a warning.
+export function generateViewport() {
+  return {
+    themeColor: "#000000",
+  };
+}
 
 // ── generateStaticParams ─────────────────────────────────────
 // Tells Next.js to pre-render a page for every blog slug at build time.
@@ -213,6 +223,26 @@ export default async function BlogPostPage({ params }) {
             </span>
           </nav>
         </div>
+
+        {/* ── Cover Image Hero ─────────────────────────────────
+            Full-width banner image at the top of the post.
+            Uses aspect-video (16:9) with object-cover fill. */}
+        <div className="max-w-4xl mx-auto px-6 mb-10">
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-zinc-900">
+            <Image
+              src={blog.coverImage}
+              alt={blog.title}
+              fill
+              priority // Hero image should always load first
+              sizes="(max-width: 896px) 100vw, 896px"
+              className="object-cover"
+            />
+            {/* Gradient overlay: darkens edges for premium look */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+          </div>
+        </div>
+
 
         {/* ── Article Hero ─────────────────────────────────────── */}
         <article
