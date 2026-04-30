@@ -33,10 +33,11 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { href: "#home", label: "Home" },
-        { href: "#services", label: "Services" },
-        { href: "#portfolio", label: "Portfolio" },
-        { href: "#blog", label: "Blog" },
+        { href: "/#home", label: "Home" },
+        { href: "/#services", label: "Services" },
+        { href: "/#portfolio", label: "Portfolio" },
+        // Changed from "#blog" (broken anchor) to "/blog" (real Next.js route)
+        { href: "/blog", label: "Blog" },
     ];
 
     return (
