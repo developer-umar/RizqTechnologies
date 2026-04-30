@@ -69,6 +69,12 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/l9_new.png",
   },
+  // Controls browser tab/address bar background color on Chrome, Edge, Safari
+  // Black matches the site's dark theme
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#000000" },
+  ],
   manifest: "/manifest.json",
   verification: {
     google: "87OjsJskkYUyecHX0df2Ya9l0zi9OrEW9OHPElzeV1k",
