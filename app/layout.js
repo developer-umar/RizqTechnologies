@@ -80,7 +80,7 @@ export const metadata = {
   },
   manifest: "/manifest.json",
   verification: {
-    google: "87OjsJskkYUyecHX0df2Ya9l0zi9OrEW9OHPElzeV1k",
+    google: "jj7Fer3uebcY-mk9DZeTF5FxZo_IEczd1qeYokAuaoM",
   },
 };
 
