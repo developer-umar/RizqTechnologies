@@ -24,11 +24,20 @@ export default function TechSection() {
   ];
 
   return (
-    <section className="bg-black py-32 px-6 overflow-hidden border-t border-white/5">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative bg-black py-32 px-6 overflow-hidden border-t border-white/5">
+      
+      {/* CREATIVE BACKGROUND ELEMENTS */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Subtle Spotlight */}
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-yellow-500/[0.03] blur-[120px] rounded-full" />
+        {/* Dark Mesh Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* LEFT SIDE: CONTENT */}
+          {/* LEFT SIDE: PROFESSIONAL CONTENT */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -36,55 +45,59 @@ export default function TechSection() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-yellow-400/20 bg-yellow-400/5 text-yellow-400 text-[10px] tracking-[3px] uppercase shadow-[0_0_15px_rgba(250,204,21,0.05)]">
-               <span className="w-1 h-1 rounded-full bg-yellow-400 animate-pulse" /> Our Stack
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-yellow-400/20 bg-yellow-400/5 text-yellow-400 text-[10px] tracking-[3px] uppercase">
+               <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse shadow-[0_0_8px_#facc15]" /> 
+               Tech Infrastructure
             </div>
             
             <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase leading-[0.9]">
-              Built with <br />
-              <span className="text-yellow-400">Cutting Edge</span> <br />
-              Tech.
+              Engineered with <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-600">Next-Gen</span> <br />
+              Systems.
             </h2>
 
             <div className="space-y-6 text-zinc-400 text-lg md:text-xl font-medium leading-relaxed max-w-lg">
               <p>
-                Rizq Technologies is highly dynamic. Hum leading cutting-edge technologies par kaam karte hain to ensure your project is built with the future in mind.
+                At Rizq Technologies, we prioritize a future-proof architecture. We leverage a high-performance stack to ensure every digital product is scalable, robust, and lightning-fast.
               </p>
-              <p className="text-zinc-500 text-sm md:text-base">
-                Jis bhi technology me aap bologe, usme aapka project build hoga. Performance, scalability, and security humari priority hai.
+              <p className="text-zinc-500 text-sm md:text-base italic">
+                Our expertise spans across modern frameworks and cloud infrastructures, allowing us to build tailored solutions that meet the specific performance and security demands of your business.
               </p>
             </div>
 
-            {/* Simple stats or trust marks */}
-            <div className="flex gap-8 pt-4 border-t border-white/10">
-                <div>
-                    <div className="text-white font-bold text-2xl">100%</div>
-                    <div className="text-zinc-600 text-xs uppercase tracking-widest">Optimized</div>
+            {/* Performance Stats */}
+            <div className="flex gap-12 pt-8 border-t border-white/10">
+                <div className="space-y-1">
+                    <div className="text-white font-black text-3xl tracking-tighter">99.9%</div>
+                    <div className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold">Uptime Reliable</div>
                 </div>
-                <div>
-                    <div className="text-white font-bold text-2xl">Tailored</div>
-                    <div className="text-zinc-600 text-xs uppercase tracking-widest">Solutions</div>
+                <div className="space-y-1">
+                    <div className="text-white font-black text-3xl tracking-tighter">Fast-Track</div>
+                    <div className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold">Delivery Cycle</div>
                 </div>
             </div>
           </motion.div>
 
-          {/* RIGHT SIDE: THE PHYSICS BOX (50% Container) */}
+          {/* RIGHT SIDE: THE PHYSICS BOX */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="h-[500px] md:h-[600px] w-full border border-white/10 rounded-[2.5rem] bg-zinc-950/40 relative shadow-[0_0_50px_rgba(0,0,0,0.5)] backdrop-blur-sm group"
+            className="h-[500px] md:h-[650px] w-full border border-white/10 rounded-[3rem] bg-zinc-950/20 relative shadow-2xl backdrop-blur-md group overflow-hidden"
           >
-            {/* Inner glow effect */}
-            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-yellow-400/[0.02] to-transparent pointer-events-none" />
+            {/* Box Inner Decoration */}
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,#facc150a,transparent_70%)]" />
             
             <FallingIcons icons={myIcons} />
             
-            {/* Subtle floating label */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/50 backdrop-blur-xl border border-white/10 rounded-xl text-zinc-500 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-               Interactive Toolkit
+            {/* Interaction Tooltip */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 px-5 py-2.5 bg-zinc-900/80 backdrop-blur-2xl border border-white/10 rounded-2xl text-zinc-400 text-[9px] font-bold uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-2 group-hover:translate-y-0">
+                Physics-Enabled Stack
             </div>
+
+            {/* Corner Accent */}
+            <div className="absolute top-6 right-6 h-2 w-2 rounded-full bg-zinc-800 group-hover:bg-yellow-500 transition-colors duration-500" />
           </motion.div>
 
         </div>
