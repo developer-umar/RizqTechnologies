@@ -20,7 +20,22 @@ export const metadata = {
   openGraph: {
     title: "Mastering Craft | High-Performance Digital Products",
     description: "Built for 2026. Rizq Technologies is the premier digital agency for elite brands.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mastering Craft | High-Performance Digital Products",
+    description: "Built for 2026. Rizq Technologies is the premier digital agency for elite brands.",
+    creator: "@rizqtech",
+    images: ["/og-image.png"],
+  },
+
 };
 
 export default function Home() {
@@ -31,11 +46,11 @@ export default function Home() {
         {/* <ClientCursor /> */}
         <Navbar />
         <HeroSection />
-        <AboutUsFluid/>
-        <ServicesBentoMagic/>
-        <TechSection/>
-        
-        <Portfolio />   
+        <AboutUsFluid />
+        <ServicesBentoMagic />
+        <TechSection />
+
+        <Portfolio />
         <Pricing />
         <CTA />
         <Contact />
