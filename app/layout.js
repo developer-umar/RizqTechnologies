@@ -49,7 +49,7 @@ export const metadata = {
     modifiedTime: new Date().toISOString(),
     images: [
     {
-      url: "https://rizq-technologies.com/og-image.png",
+      url: "https://rizq-technologies.vercel.app/og-image.png",
       width: 1200,
       height: 630,
       alt: "Rizq Technologies | Premier Digital Agency",
@@ -61,7 +61,7 @@ export const metadata = {
     title: "Rizq Technologies | Premier Digital Agency",
     description: "Crafting elite digital experiences for modern brands.",
     creator: "@rizqtech",
-    images: ["https://rizq-technologies.com/og-image.png"],
+    images: ["https://rizq-technologies.vercel.app/og-image.png"],
   },
   robots: {
     index: true,
