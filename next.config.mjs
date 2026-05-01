@@ -17,6 +17,20 @@ const nextConfig = {
 
     ],
   },
+  async redirects() {
+    return [
+      // ── WWW Canonicalization ─────────────────────────────────────────────
+      // Permanently redirect www → non-www so Google sees only one canonical URL.
+      // 308 = permanent redirect that preserves the HTTP method (better than 301).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.rizq-technologies.vercel.app" }],
+        destination: "https://rizq-technologies.vercel.app/:path*",
+        permanent: true, // Issues HTTP 308
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

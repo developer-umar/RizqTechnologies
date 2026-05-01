@@ -2,6 +2,7 @@
 
 import React, { Children, cloneElement, forwardRef, useRef, useEffect, isValidElement } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 
 if (typeof window !== "undefined") {
@@ -151,8 +152,19 @@ export default function PortfolioHero() {
             <p className="text-zinc-500 text-[10px] mt-2 leading-relaxed">{p.desc}</p>
           </div>
           <div className="space-y-4">
-            <div className="flex gap-1.5 flex-wrap">
-              {p.tags.map(t => <span key={t} className="text-[7px] text-white/40 border border-white/10 px-2 py-0.5 rounded bg-white/5 uppercase">{t}</span>)}
+            <div className="flex gap-2 flex-wrap">
+              {p.tags.map(t => (
+                <span key={t} className="text-[9px] text-white/70 px-2 py-1 border border-white/20 rounded-md bg-black/60 uppercase tracking-widest font-bold backdrop-blur-sm">{t}</span>
+              ))}
+            </div>
+
+            <div className="flex gap-2 transition-all duration-500 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 mt-4">
+              <Link href="/#contact" aria-label={`View ${p.title} project`} className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[10px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
+                  <ExternalIcon /> View Project
+              </Link>
+              <Link href="/#contact" aria-label={`View ${p.title} source on GitHub`} className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-xl text-white hover:bg-white/10 transition-colors bg-black/40 backdrop-blur-md">
+                <GithubIcon />
+              </Link>
             </div>
             <button className="w-full flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[9px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
               <ExternalIcon /> View Case

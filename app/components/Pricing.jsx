@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const plans = [
   {
@@ -122,17 +123,19 @@ const Pricing = () => {
               </ul>
 
               {/* CTA Button */}
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`mt-auto w-full py-4 rounded-xl font-bold text-sm tracking-wide uppercase transition-all duration-300
-                  ${plan.popular 
-                    ? "bg-yellow-400 text-black shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:bg-yellow-300" 
-                    : "bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/30"
-                  }`}
-              >
-                {plan.popular ? "Start Project" : "Inquire Now"}
-              </motion.button>
+              <Link href="#contact" className="mt-auto block w-full">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`w-full py-4 rounded-xl font-bold text-sm tracking-wide uppercase transition-all duration-300
+                    ${plan.popular 
+                      ? "bg-yellow-400 text-black shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:bg-yellow-300" 
+                      : "bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/30"
+                    }`}
+                >
+                  {plan.popular ? "Start Project" : "Inquire Now"}
+                </motion.button>
+              </Link>
             </motion.div>
           ))}
         </div>
