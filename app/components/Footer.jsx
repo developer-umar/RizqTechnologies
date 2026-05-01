@@ -51,7 +51,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           
           {/* Brand */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <div className="mb-8">
               <Image src="/rizq-logo.png" alt="Logo" width={250} height={150} />
             </div>
@@ -72,12 +72,37 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="text-white font-semibold mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
               <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full" />
-              Links
+              Company
             </h3>
             <ul className="space-y-4 text-gray-400">
-              {["Home", "Services", "Portfolio", "Pricing"].map((item) => (
+              {["Home", "About", "Services", "Portfolio", "Pricing", "Blog"].map((item) => (
                 <li key={item}>
-                  <Link href={`#${item.toLowerCase()}`} className="hover:text-yellow-400 transition-all hover:pl-1">
+                  <Link 
+                    href={item === "Blog" ? "/blog" : `/#${item.toLowerCase()}`} 
+                    className="hover:text-yellow-400 transition-all hover:pl-1"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services Links */}
+          <div className="md:col-span-3">
+            <h3 className="text-white font-semibold mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
+              <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full" />
+              Expertise
+            </h3>
+            <ul className="space-y-4 text-gray-400">
+              {[
+                "Web Development", 
+                "Brand & UI Design", 
+                "AI Solutions", 
+                "Digital Marketing"
+              ].map((item) => (
+                <li key={item}>
+                  <Link href="/#services" className="hover:text-yellow-400 transition-all hover:pl-1">
                     {item}
                   </Link>
                 </li>
@@ -86,7 +111,7 @@ const Footer = () => {
           </div>
 
           {/* Social */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-3">
             <h3 className="text-white font-semibold mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
               <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full" />
               Socials
@@ -97,6 +122,7 @@ const Footer = () => {
                   key={i}
                   href={social.href}
                   target="_blank"
+                  rel="nofollow noopener noreferrer"
                   whileHover={{ y: -3, backgroundColor: "rgba(255,255,255,0.05)" }}
                   className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-yellow-500/30 transition-all group"
                 >

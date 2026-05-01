@@ -7,6 +7,6 @@ export default function robots() {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://rizqtechnologies.com/sitemap.xml",
+    sitemap: "https://rizq-technologies.vercel.app/sitemap.xml",
   };
 }

@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: blog.title,
       description: blog.excerpt,
-      url: `https://rizqtechnologies.com/blog/${blog.slug}`,
+      url: `https://rizq-technologies.vercel.app/blog/${blog.slug}`,
       siteName: "Rizq Technologies",
       type: "article",
       // Article-specific OpenGraph fields
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }) {
     },
     // Canonical URL — prevents duplicate content issues
     alternates: {
-      canonical: `https://rizqtechnologies.com/blog/${blog.slug}`,
+      canonical: `https://rizq-technologies.vercel.app/blog/${blog.slug}`,
     },
   };
 }
@@ -111,12 +111,15 @@ export default async function BlogPostPage({ params }) {
   // 1. Article schema — tells Google this is an article (for rich results)
   // 2. FAQPage schema — feeds People Also Ask / AI answer engines (AEO)
   // 3. BreadcrumbList — shows "Home > Blog > Post Title" in search
+  const BASE_URL = "https://rizq-technologies.vercel.app";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       // Article Schema — used by Google for article-rich results
       {
         "@type": "Article",
+        "@id": `${BASE_URL}/blog/${blog.slug}/#article`,
         headline: blog.title,
         description: blog.excerpt,
         datePublished: blog.date,
@@ -125,22 +128,16 @@ export default async function BlogPostPage({ params }) {
           "@type": "Person",
           name: blog.author.name,
           worksFor: {
-            "@type": "Organization",
-            name: "Rizq Technologies",
+            // Links to the global Organization schema in SEOExtras.jsx
+            "@id": `${BASE_URL}/#organization`,
           },
         },
-        publisher: {
-          "@type": "Organization",
-          name: "Rizq Technologies",
-          url: "https://rizqtechnologies.com",
-          logo: {
-            "@type": "ImageObject",
-            url: "https://rizqtechnologies.com/rizq-logo.png",
-          },
-        },
-        url: `https://rizqtechnologies.com/blog/${blog.slug}`,
-        mainEntityOfPage: `https://rizqtechnologies.com/blog/${blog.slug}`,
+        // publisher links back to global Organization @id for cross-schema consistency
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        url: `${BASE_URL}/blog/${blog.slug}`,
+        mainEntityOfPage: `${BASE_URL}/blog/${blog.slug}`,
         keywords: blog.tags.join(", "),
+        image: blog.coverImage || `${BASE_URL}/og-image.png`,
       },
 
       // FAQPage Schema — this is the core AEO implementation.
@@ -166,19 +163,19 @@ export default async function BlogPostPage({ params }) {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://rizqtechnologies.com",
+            item: BASE_URL,
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Blog",
-            item: "https://rizqtechnologies.com/blog",
+            item: `${BASE_URL}/blog`,
           },
           {
             "@type": "ListItem",
             position: 3,
             name: blog.title,
-            item: `https://rizqtechnologies.com/blog/${blog.slug}`,
+            item: `${BASE_URL}/blog/${blog.slug}`,
           },
         ],
       },

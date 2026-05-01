@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // High-End Animation Variants
@@ -79,6 +80,15 @@ export default function AboutUsFluid() {
               <motion.p variants={fadeUpVariants} className="text-lg md:text-xl text-zinc-500 leading-relaxed font-medium">
                 At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a group of innovative professionals dedicated to your success. We don’t just build websites — we deliver complete digital ecosystems. From high-performance platforms to smart automation, our focus is simple: <span className="text-zinc-800 italic">drive real growth, not just an online presence.</span>
               </motion.p>
+              
+              <motion.div variants={fadeUpVariants} className="pt-4 flex gap-4">
+                <Link href="#services" className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
+                  Explore Services
+                </Link>
+                <Link href="/blog" className="px-6 py-3 border border-zinc-300 hover:border-black text-black font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
+                  Read Insights
+                </Link>
+              </motion.div>
             </div>
 
             {/* Performance Stats / Pillars */}
