@@ -1,125 +1,278 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { Children, cloneElement, forwardRef, isValidElement, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const ExternalIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-);
-
-const PROJECTS = [
-  { title: "Leather Craft", cat: "ECOMMERCE", desc: "Premium heritage leather display system engineered for luxury brands.", img: "/leather_craft_premium.png", tags: ["Next.js", "Tailwind"] },
-  { title: "GLOW", cat: "BRANDING", desc: "Luxury skincare digital store experience with seamless motion transitions.", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800", tags: ["Shopify", "Motion"] },
-  { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D brand identity and dashboard for RIZQ Technologies.", img: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=800", tags: ["Three.js", "GSAP"] },
-  { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization platform with real-time predictive analytics.", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800", tags: ["React", "D3.js"] },
-  { title: "VOID", cat: "WEB3", desc: "Decentralized spatial OS platform designed for the future of the web.", img: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=800", tags: ["WebGL", "Rust"] }
-];
-
-export default function PortfolioHero() {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end']
-  });
-
-  return (
-    <main ref={container} className="relative bg-[#020202]">
-      {/* PERFORMANCE FIX: Simple static glow instead of heavy moving radial */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="sticky top-0 h-screen w-full bg-[radial-gradient(circle_at_50%_20%,#facc150a,transparent_70%)]" />
-      </div>
-
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-20">
-        <header className="mb-24 text-center md:text-left">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex items-center gap-3 mb-6 justify-center md:justify-start">
-            <div className="h-1.5 w-1.5 rounded-full bg-yellow-500 shadow-[0_0_10px_#facc15]" />
-            <span className="text-yellow-500 font-mono text-[9px] tracking-[0.5em] uppercase font-black">Curated Works</span>
-          </motion.div>
-          
-          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-5xl md:text-[8.5rem] font-black text-white leading-[0.85] tracking-tighter uppercase">
-            OUR <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-700 italic">PORTFOLIO.</span>
-          </motion.h2>
-        </header>
-
-        <div className="flex flex-col gap-0 relative">
-          {PROJECTS.map((project, i) => {
-            const targetScale = 1 - ((PROJECTS.length - i) * 0.04);
-            return (
-              <ProjectCard key={i} i={i} {...project} progress={scrollYProgress} range={[i * 0.2, 1]} targetScale={targetScale} />
-            )
-          })}
-        </div>
-      </section>
-    </main>
-  );
+// ==================== GSAP REGISTRATION ====================
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
-const ProjectCard = ({ i, title, cat, desc, img, tags, progress, range, targetScale }) => {
-  const container = useRef(null);
-  const scale = useTransform(progress, range, [1, targetScale]);
+// ==================== ICONS ====================
+const ZapIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.71L15 3l-2 9h7L9 21l2-9H4z" /></svg>
+);
+
+const GithubIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+);
+
+const ExternalIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+);
+
+// ==================== PREMIUM CARD ====================
+export const Card = forwardRef(({ children, isActive, isMobile, ...rest }, ref) => (
+  <div
+    ref={ref}
+    {...rest}
+    // Strict separation: CSS handles paints (borders/shadows), GSAP handles desktop transforms.
+    className={`absolute top-1/2 left-1/2 rounded-[32px] md:rounded-[48px] border-t border-l 
+                transition-[border-color,box-shadow] duration-500 ease-out
+                ${isActive ? 'border-yellow-400/50 shadow-[0_20px_50px_-10px_rgba(250,204,21,0.3)] ring-1 ring-yellow-400/20' : 'border-white/10'} 
+                bg-zinc-900/60 backdrop-blur-md overflow-hidden group cursor-pointer
+                ${isMobile ? (isActive ? 'scale-105 opacity-100 transition-[transform,opacity]' : 'scale-95 opacity-60 transition-[transform,opacity]') : ''}
+                ${rest.className ?? ''}`.trim()}
+  >
+    {children}
+  </div>
+));
+Card.displayName = 'Card';
+
+// ==================== DESKTOP GSAP CAROUSEL ====================
+const DesktopCarousel = ({ children, activeIndex, setActiveIndex }) => {
+  const childArr = Children.toArray(children);
+  const refs = useRef([]);
+
+  if (refs.current.length !== childArr.length) {
+    refs.current = childArr.map((_, i) => refs.current[i] || React.createRef());
+  }
+
+  useEffect(() => {
+    childArr.forEach((_, i) => {
+      const el = refs.current[i].current;
+      if (!el) return;
+
+      const diff = i - activeIndex;
+      const absDiff = Math.abs(diff);
+      const targetZIndex = 100 - absDiff;
+
+      gsap.to(el, {
+        x: diff * 280,
+        y: absDiff * 30,
+        z: -absDiff * 300,
+        rotationY: diff * -35,
+        rotationZ: diff * -2,
+        scale: 1 - (absDiff * 0.15),
+        opacity: 1 - (absDiff * 0.4),
+        zIndex: targetZIndex,
+        duration: 0.85,
+        ease: "expo.out",
+        xPercent: -50,
+        yPercent: -50,
+        overwrite: true
+      });
+    });
+  }, [activeIndex, childArr.length]);
 
   return (
-    <div ref={container} className="h-screen flex items-center justify-center sticky top-0 md:top-6">
-      <motion.div 
-        style={{ 
-          scale, 
-          // MOBILE STACKING FIX: Smaller top offset for tighter stack
-          top: `calc(-2vh + ${i * 12}px)`,
-          willChange: "transform" // PERFORMANCE FIX: Hardware Acceleration
-        }} 
-        className="relative h-[520px] md:h-[580px] w-full max-w-[1000px] bg-[#0a0a0a] rounded-[2rem] md:rounded-[3rem] border border-white/5 overflow-hidden shadow-[0_40px_80px_-30px_rgba(0,0,0,1)] origin-top group"
-      >
-        <div className="flex flex-col md:flex-row h-full">
-          {/* IMAGE SIDE */}
-          <div className="relative w-full md:w-[50%] h-[40%] md:h-full overflow-hidden border-b md:border-b-0 md:border-r border-white/5">
-            <Image 
-              src={img} 
-              alt={title} 
-              fill 
-              priority={i < 2} // PERFORMANCE FIX: Load first 2 images instantly
-              sizes="(max-width: 768px) 100vw, 500px"
-              className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-50 group-hover:opacity-100"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent md:bg-gradient-to-r" />
+    <div className="hidden md:flex relative w-full h-[600px] perspective-[2000px] items-center justify-center">
+      {childArr.map((child, i) =>
+        isValidElement(child)
+          ? cloneElement(child, {
+            ref: refs.current[i],
+            isActive: i === activeIndex,
+            onClick: () => setActiveIndex(i),
+            className: "w-[360px] h-[480px]"
+          })
+          : child
+      )}
+    </div>
+  );
+};
+
+// ==================== MOBILE NATIVE CAROUSEL ====================
+const MobileCarousel = ({ children }) => {
+  const containerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const childArr = Children.toArray(children);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute('data-index'));
+            setActiveIndex(index);
+          }
+        });
+      },
+      {
+        root: containerRef.current,
+        threshold: 0.6,
+      }
+    );
+
+    const cards = containerRef.current?.querySelectorAll('.mobile-card-wrapper');
+    cards?.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="md:hidden flex w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar py-10 px-[10vw] gap-4"
+    >
+      {childArr.map((child, i) => (
+        <div
+          key={i}
+          data-index={i}
+          className="mobile-card-wrapper relative snap-center shrink-0 w-[80vw] max-w-[320px] h-[420px] flex items-center justify-center transition-all duration-500"
+        >
+          {isValidElement(child)
+            ? cloneElement(child, {
+              isActive: i === activeIndex,
+              isMobile: true,
+              className: "!relative !top-0 !left-0 !transform-none w-full h-full"
+            })
+            : child}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// ==================== MAIN COMPONENT ====================
+export default function PortfolioHero() {
+  const [desktopActiveIndex, setDesktopActiveIndex] = useState(2);
+  const headerRef = useRef(null);
+
+  const projects = [
+    { title: "Leather Craft", cat: "CORE SYSTEM", desc: "Application for displaying Leather products.", img: "/leather_craft_premium.png", tags: ["Next.js", "Tailwind"] },
+    { title: "GLOW", cat: "BRANDING", desc: "Luxury skincare digital store experience.", img: "https://picsum.photos/id/20/800/1200", tags: ["Shopify", "Liquid"] },
+    { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D brand identity for Rizq Technologies.", img: "https://picsum.photos/id/1015/800/1200", tags: ["Three.js", "GSAP"] },
+    { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization with predictive analytics.", img: "https://picsum.photos/id/133/800/1200", tags: ["React", "D3"] },
+    { title: "VOID", cat: "WEB3", desc: "Decentralized spatial OS platform for the future.", img: "https://picsum.photos/id/251/800/1200", tags: ["WebGL", "Solidity"] }
+  ];
+
+  // GSAP ScrollTrigger for Header Reveal
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".header-reveal",
+        {
+          y: 80,
+          opacity: 0,
+          rotationX: 15
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotationX: 0,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+    }, headerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const renderCards = () => projects.map((p, i) => (
+    <Card key={i}>
+      <div className="relative h-full w-full group">
+        <Image
+          src={p.img}
+          alt={p.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 360px"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-30 group-hover:opacity-60 saturate-[0.8] group-hover:saturate-100 group-hover:scale-110"
+          loading="lazy"
+        />
+        {/* Gradient Overlay for Text Readability */}
+        <div id="portfolio" className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[5]" />
+
+        <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-10">
+          <div className="space-y-1">
+            <span className="text-yellow-400 font-mono text-[10px] tracking-[3px] uppercase">{p.cat}</span>
+            <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none uppercase">{p.title}</h3>
+            <p className="text-zinc-300 text-[12px] leading-relaxed max-w-[200px] mt-2 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100">
+              {p.desc}
+            </p>
           </div>
 
-          {/* CONTENT SIDE */}
-          <div className="w-full md:w-[50%] p-8 md:p-12 flex flex-col justify-between">
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <span className="text-yellow-500 font-mono text-[9px] tracking-[0.3em] font-black uppercase">{cat}</span>
-                <div className="h-[1px] flex-grow bg-white/5" />
-              </div>
-
-              <h3 className="text-3xl md:text-6xl font-black text-white tracking-tighter leading-none uppercase">
-                {title}
-              </h3>
-
-              <p className="text-zinc-400 text-sm md:text-base font-medium leading-relaxed max-w-[300px]">
-                {desc}
-              </p>
+          <div className="space-y-4">
+            <div className="flex gap-2 flex-wrap">
+              {p.tags.map(t => (
+                <span key={t} className="text-[9px] text-white/70 px-2 py-1 border border-white/20 rounded-md bg-black/60 uppercase tracking-widest font-bold backdrop-blur-sm">{t}</span>
+              ))}
             </div>
 
-            <div className="space-y-6">
-              <div className="flex flex-wrap gap-1.5">
-                {tags.map((tag) => (
-                  <span key={tag} className="px-2.5 py-1 rounded bg-zinc-900 border border-white/5 text-zinc-400 text-[8px] font-bold uppercase tracking-widest">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <Link href="#contact" className="relative w-full flex items-center justify-center gap-3 py-4 bg-white text-black font-black rounded-xl uppercase text-[10px] tracking-widest hover:bg-yellow-500 transition-colors">
-                <ExternalIcon /> 
-                <span>Explore Work</span>
-              </Link>
+            <div className="flex gap-2 transition-all duration-500 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 mt-4">
+              <a href="#" aria-label={`View ${p.title} project`} className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[10px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
+                <ExternalIcon /> View Project
+              </a>
+              <a href="#" aria-label={`View ${p.title} source on GitHub`} className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-xl text-white hover:bg-white/10 transition-colors bg-black/40 backdrop-blur-md">
+                <GithubIcon />
+              </a>
             </div>
           </div>
         </div>
-      </motion.div>
-    </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 pointer-events-none" />
+      </div>
+    </Card>
+  ));
+
+  return (
+    <section className="relative min-h-screen bg-black flex flex-col items-center justify-center py-10 md:py-20 overflow-hidden">
+
+      {/* ==================== BACKGROUND DECOR ==================== */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
+        <div className="absolute top-[-10%] left-[20%] w-[50%] h-[50%] bg-yellow-500/10 blur-[120px] rounded-full animate-pulse duration-1000" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[40%] h-[50%] bg-zinc-600/10 blur-[150px] rounded-full" />
+
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.12] mix-blend-overlay" />
+      </div>
+
+      {/* ==================== HEADER ==================== */}
+      <div ref={headerRef} className="z-10 text-center mb-10 md:mb-16 space-y-4 px-4 mt-8 md:mt-0 perspective-[1000px]">
+        <div className="header-reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-yellow-400 font-mono text-[9px] md:text-[10px] tracking-[3px] uppercase mx-auto shadow-[0_0_15px_rgba(250,204,21,0.1)] opacity-0">
+          <ZapIcon /> Agency Portfolio
+        </div>
+
+        <h2 className="header-reveal text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.95] opacity-0">
+          SHIPPED <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-600 drop-shadow-[0_0_30px_rgba(250,204,21,0.3)]">
+            EXPERIENCES.
+          </span>
+        </h2>
+
+        <p className="header-reveal text-zinc-400 text-[11px] md:text-sm max-w-lg mx-auto font-medium tracking-wide leading-relaxed opacity-0">
+          A curated showcase of high-performance digital solutions, engineered and successfully delivered to our global clients.
+        </p>
+      </div>
+
+      {/* ==================== CAROUSEL ==================== */}
+      <div className="w-full max-w-[1400px] z-10">
+        <DesktopCarousel activeIndex={desktopActiveIndex} setActiveIndex={setDesktopActiveIndex}>
+          {renderCards()}
+        </DesktopCarousel>
+
+        <MobileCarousel>
+          {renderCards()}
+        </MobileCarousel>
+      </div>
+    </section>
   );
 }
