@@ -2,7 +2,7 @@ import CTA from "./components/CTA";
 import HeroSection from "./components/HeroSection";
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
-import Pricing from "./components/Pricing";
+// import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AboutUsFluid from "./components/AboutUse";
@@ -51,7 +51,7 @@ export default function Home() {
         <TechSection />
 
         <Portfolio />
-        <Pricing />
+        {/* <Pricing /> */}
         <CTA />
         <Contact />
         <Footer />
