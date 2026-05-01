@@ -1,22 +1,19 @@
 'use client';
 
-import React, { Children, cloneElement, forwardRef, isValidElement, useState, useRef, useEffect } from 'react';
+import React, { Children, cloneElement, forwardRef, useState, useRef, useEffect, isValidElement } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Draggable } from 'gsap/Draggable'; // Added for smooth mobile interaction
 
 // ==================== GSAP REGISTRATION ====================
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, Draggable);
 }
 
 // ==================== ICONS ====================
 const ZapIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.71L15 3l-2 9h7L9 21l2-9H4z" /></svg>
-);
-
-const GithubIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
 );
 
 const ExternalIcon = () => (
@@ -29,19 +26,19 @@ export const Card = forwardRef(({ children, isActive, isMobile, ...rest }, ref) 
     ref={ref}
     {...rest}
     // Strict separation: CSS handles paints (borders/shadows), GSAP handles desktop transforms.
-    className={`absolute top-1/2 left-1/2 rounded-[32px] md:rounded-[48px] border-t border-l 
-                transition-[border-color,box-shadow] duration-500 ease-out
-                ${isActive ? 'border-yellow-400/50 shadow-[0_20px_50px_-10px_rgba(250,204,21,0.3)] ring-1 ring-yellow-400/20' : 'border-white/10'} 
-                bg-zinc-900/60 backdrop-blur-md overflow-hidden group cursor-pointer
-                ${isMobile ? (isActive ? 'scale-105 opacity-100 transition-[transform,opacity]' : 'scale-95 opacity-60 transition-[transform,opacity]') : ''}
-                ${rest.className ?? ''}`.trim()}
+    className={`absolute rounded-[32px] md:rounded-[48px] border-t border-l 
+                transition-[border-color,box-shadow,transform] duration-500 ease-out
+                ${isActive ? 'border-yellow-400/50 shadow-[0_20px_50px_-10px_rgba(250,204,21,0.3)] ring-1 ring-yellow-400/20' : 'border-white/10'} 
+                bg-zinc-900/60 backdrop-blur-md overflow-hidden group cursor-pointer
+                ${isMobile ? 'relative top-0 left-0 transform-none w-full h-full' : 'top-1/2 left-1/2'}
+                ${rest.className ?? ''}`.trim()}
   >
     {children}
   </div>
 ));
 Card.displayName = 'Card';
 
-// ==================== DESKTOP GSAP CAROUSEL ====================
+// ==================== DESKTOP GSAP CAROUSEL (UNTOUCHED) ====================
 const DesktopCarousel = ({ children, activeIndex, setActiveIndex }) => {
   const childArr = Children.toArray(children);
   const refs = useRef([]);
@@ -93,54 +90,83 @@ const DesktopCarousel = ({ children, activeIndex, setActiveIndex }) => {
   );
 };
 
-// ==================== MOBILE NATIVE CAROUSEL ====================
+// ==================== MOBILE AUTO-MOTION CAROUSEL (PROFESSIONAL & RECTANGLE) ====================
 const MobileCarousel = ({ children }) => {
   const containerRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const proxyRef = useRef(null); // Used for dragging logic
   const childArr = Children.toArray(children);
+  const [currentIdx, setCurrentIdx] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.getAttribute('data-index'));
-            setActiveIndex(index);
-          }
-        });
-      },
-      {
-        root: containerRef.current,
-        threshold: 0.6,
+    const container = containerRef.current;
+    const cards = gsap.utils.toArray('.mobile-card-wrapper', container);
+    
+    if (!container || cards.length === 0) return;
+
+    // 1. Setup infinite loop logic
+    const loop = gsap.to(cards, {
+      xPercent: "-=" + (100 * cards.length),
+      duration: cards.length * 8, // Adjust speed here (higher = slower)
+      ease: "none",
+      paused: true,
+      repeat: -1,
+      modifiers: {
+        xPercent: gsap.utils.unitize(gsap.utils.wrap(-100 * cards.length, 0))
       }
-    );
+    });
 
-    const cards = containerRef.current?.querySelectorAll('.mobile-card-wrapper');
-    cards?.forEach((card) => observer.observe(card));
+    // 2. Start auto-play smoothly
+    gsap.to(loop, {timeScale: 1, duration: 1, ease: "power1.inOut"}).play();
 
-    return () => observer.disconnect();
-  }, []);
+    // 3. User Interaction - Pause on touch/drag, resume on release
+    const drag = Draggable.create(proxyRef.current, {
+      type: "x",
+      trigger: container,
+      onPress() {
+        gsap.to(loop, {timeScale: 0, duration: 0.3}); // Pause smoothly
+      },
+      onDrag() {
+        // Map drag progress to loop progress
+        loop.progress(gsap.utils.wrap(0, 1, this.x / (container.offsetWidth * 1.5)));
+      },
+      onRelease() {
+        gsap.to(loop, {timeScale: 1, duration: 0.5, ease: "power1.out"}); // Resume smoothly
+      }
+    });
+
+    return () => {
+      loop.kill();
+      drag[0].kill();
+    };
+  }, [childArr.length]);
 
   return (
-    <div
-      ref={containerRef}
-      className="md:hidden flex w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar py-10 px-[10vw] gap-4"
-    >
-      {childArr.map((child, i) => (
-        <div
-          key={i}
-          data-index={i}
-          className="mobile-card-wrapper relative snap-center shrink-0 w-[80vw] max-w-[320px] h-[420px] flex items-center justify-center transition-all duration-500"
-        >
-          {isValidElement(child)
-            ? cloneElement(child, {
-              isActive: i === activeIndex,
-              isMobile: true,
-              className: "!relative !top-0 !left-0 !transform-none w-full h-full"
-            })
-            : child}
-        </div>
-      ))}
+    <div className="md:hidden w-full overflow-hidden py-6 relative mt-[-20px]">
+      {/* Invisible proxy element for Draggable tracking */}
+      <div ref={proxyRef} className="absolute inset-0 z-20" />
+      
+      <div
+        ref={containerRef}
+        className="flex w-full will-change-transform"
+        style={{ width: `${childArr.length * 85}vw` }} // Ensures container is wide enough
+      >
+        {childArr.map((child, i) => (
+          <div
+            key={i}
+            className="mobile-card-wrapper shrink-0 w-[80vw] aspect-[3/4] max-w-[320px] px-2 flex items-center justify-center transition-all duration-500"
+          >
+            {isValidElement(child)
+              ? cloneElement(child, {
+                // In mobile loop, "isActive" is harder to define without heavy logic, 
+                // so we make them all look professional/active.
+                isActive: true, 
+                isMobile: true,
+                className: "w-full h-full shadow-xl"
+              })
+              : child}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -152,10 +178,11 @@ export default function PortfolioHero() {
 
   const projects = [
     { title: "Leather Craft", cat: "CORE SYSTEM", desc: "Application for displaying Leather products.", img: "/leather_craft_premium.png", tags: ["Next.js", "Tailwind"] },
-    { title: "GLOW", cat: "BRANDING", desc: "Luxury skincare digital store experience.", img: "https://picsum.photos/id/20/800/1200", tags: ["Shopify", "Liquid"] },
-    { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D brand identity for Rizq Technologies.", img: "https://picsum.photos/id/1015/800/1200", tags: ["Three.js", "GSAP"] },
-    { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization with predictive analytics.", img: "https://picsum.photos/id/133/800/1200", tags: ["React", "D3"] },
-    { title: "VOID", cat: "WEB3", desc: "Decentralized spatial OS platform for the future.", img: "https://picsum.photos/id/251/800/1200", tags: ["WebGL", "Solidity"] }
+    { title: "GLOW", cat: "BRANDING", desc: "Luxury skincare digital store experience.", img: "https://images.unsplash.com/photo-1631730486784-029750059e0a?q=80&w=600", tags: ["Shopify", "Liquid"] },
+    { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D brand identity for Rizq Technologies.", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=600", tags: ["Three.js", "GSAP"] },
+    { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization with predictive analytics.", img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600", tags: ["React", "D3"] },
+    { title: "VOID", cat: "WEB3", desc: "Decentralized spatial OS platform for the future.", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", tags: ["WebGL", "Solidity"] },
+    { title: "NEXUS", cat: "SAAS", desc: "Cloud collaboration tool for remote teams.", img: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=600", tags: ["Next.js", "AWS"] } // Added one more for mobile loop variety
   ];
 
   // GSAP ScrollTrigger for Header Reveal
@@ -194,59 +221,67 @@ export default function PortfolioHero() {
           src={p.img}
           alt={p.title}
           fill
-          sizes="(max-width: 768px) 100vw, 360px"
-          className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-30 group-hover:opacity-60 saturate-[0.8] group-hover:saturate-100 group-hover:scale-110"
-          loading="lazy"
+          sizes="(max-width: 768px) 80vw, 360px"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 opacity-40 group-hover:opacity-70 saturate-[0.8] group-hover:saturate-100 group-hover:scale-110"
+          loading={i === 0 ? "eager" : "lazy"} // Performance: Eager load the first image
+          priority={i === 0}
         />
         {/* Gradient Overlay for Text Readability */}
-        <div id="portfolio" className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[5]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-[5]" />
 
         <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-10">
           <div className="space-y-1">
-            <span className="text-yellow-400 font-mono text-[10px] tracking-[3px] uppercase">{p.cat}</span>
-            <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none uppercase">{p.title}</h3>
-            <p className="text-zinc-300 text-[12px] leading-relaxed max-w-[200px] mt-2 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100">
+            <span className="text-yellow-400 font-mono text-[9px] tracking-[3px] uppercase">{p.cat}</span>
+            <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-[0.9] uppercase">{p.title}</h3>
+            {/* Mobile: always show desc. Desktop: show on hover */}
+            <p className="text-zinc-300 text-[11px] md:text-[12px] leading-relaxed max-w-[220px] mt-2 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100">
               {p.desc}
-            </p>
+            </    p>
           </div>
 
           <div className="space-y-4">
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-1.5 md:gap-2 flex-wrap">
               {p.tags.map(t => (
-                <span key={t} className="text-[9px] text-white/70 px-2 py-1 border border-white/20 rounded-md bg-black/60 uppercase tracking-widest font-bold backdrop-blur-sm">{t}</span>
+                <span key={t} className="text-[8px] md:text-[9px] text-white/70 px-2 py-1 border border-white/10 rounded-md bg-black/60 uppercase tracking-widest font-bold backdrop-blur-sm">{t}</span>
               ))}
             </div>
 
-            <div className="flex gap-2 transition-all duration-500 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 mt-4">
-              <a href="#" aria-label={`View ${p.title} project`} className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[10px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
+            {/* GitHub Removed, View Project is primary action */}
+            <div className="flex gap-2 transition-all duration-500 translate-y-0 opacity-100 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 mt-2 md:mt-4">
+              <a href="#" aria-label={`View ${p.title} project`} className="flex-1 flex items-center justify-center gap-2.5 py-3.5 bg-yellow-400 text-black text-[10px] md:text-[11px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors shadow-lg shadow-yellow-900/20">
                 <ExternalIcon /> View Project
-              </a>
-              <a href="#" aria-label={`View ${p.title} source on GitHub`} className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-xl text-white hover:bg-white/10 transition-colors bg-black/40 backdrop-blur-md">
-                <GithubIcon />
               </a>
             </div>
           </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 pointer-events-none" />
+        {/* Background gradient for extra depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 pointer-events-none" />
       </div>
     </Card>
   ));
 
   return (
-    <section className="relative min-h-screen bg-black flex flex-col items-center justify-center py-10 md:py-20 overflow-hidden">
+    <section id="portfolio" className="relative min-h-screen bg-black flex flex-col items-center justify-center py-10 md:py-20 overflow-hidden">
 
-      {/* ==================== BACKGROUND DECOR ==================== */}
+      {/* ==================== BACKGROUND DECOR (ENHANCED YELLOW) ==================== */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        {/* Grid base */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-        <div className="absolute top-[-10%] left-[20%] w-[50%] h-[50%] bg-yellow-500/10 blur-[120px] rounded-full animate-pulse duration-1000" />
-        <div className="absolute bottom-[-10%] right-[10%] w-[40%] h-[50%] bg-zinc-600/10 blur-[150px] rounded-full" />
+        {/* Existing Pulse (smoothed) */}
+        <div className="absolute top-[-10%] left-[20%] w-[60%] h-[50%] bg-yellow-600/10 blur-[130px] rounded-full animate-pulse-slow" />
+        
+        {/* Added New Creative Yellow Blob (Abstract) */}
+        <div className="absolute top-[40%] right-[-10%] w-[30%] h-[40%] bg-yellow-500/10 blur-[110px] rounded-full rotate-12 opacity-70" />
 
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.12] mix-blend-overlay" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[40%] h-[50%] bg-zinc-700/10 blur-[150px] rounded-full" />
+
+        {/* Noise overlay */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] mix-blend-overlay" />
       </div>
 
       {/* ==================== HEADER ==================== */}
-      <div ref={headerRef} className="z-10 text-center mb-10 md:mb-16 space-y-4 px-4 mt-8 md:mt-0 perspective-[1000px]">
+      <div ref={headerRef} className="z-10 text-center mb-6 md:mb-16 space-y-4 px-4 mt-12 md:mt-0 perspective-[1000px]">
         <div className="header-reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-yellow-400 font-mono text-[9px] md:text-[10px] tracking-[3px] uppercase mx-auto shadow-[0_0_15px_rgba(250,204,21,0.1)] opacity-0">
           <ZapIcon /> Agency Portfolio
         </div>
@@ -273,6 +308,20 @@ export default function PortfolioHero() {
           {renderCards()}
         </MobileCarousel>
       </div>
+      
+      {/* CSS for Hide Scrollbar & Pulse */}
+      <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.8; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 8s infinite ease-in-out;
+        }
+      `}</style>
     </section>
   );
 }
