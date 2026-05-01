@@ -46,6 +46,7 @@ export const metadata = {
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
+    modifiedTime: new Date().toISOString(),
     images: [
     {
       url: "https://rizqtechnologies.com/og-image.png",

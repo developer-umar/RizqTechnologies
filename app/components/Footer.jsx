@@ -51,7 +51,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           
           {/* Brand */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <div className="mb-8">
               <Image src="/rizq-logo.png" alt="Logo" width={250} height={150} />
             </div>
@@ -111,7 +111,7 @@ const Footer = () => {
           </div>
 
           {/* Social */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <h3 className="text-white font-semibold mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
               <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full" />
               Socials

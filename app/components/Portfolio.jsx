@@ -17,6 +17,10 @@ const ExternalIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
 );
 
+const GithubIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+);
+
 // ==================== PREMIUM CARD ====================
 export const Card = forwardRef(({ children, isActive, isMobile, link = "#", ...rest }, ref) => (
   <div
@@ -134,10 +138,10 @@ const MobileCarousel = ({ children }) => {
 export default function PortfolioHero() {
   const projects = [
     { title: "Leather Craft", cat: "CORE SYSTEM", desc: "Premium Leather display.", img: "/leather_craft_premium.png", tags: ["Next.js"], link: "#" },
-    { title: "GLOW", cat: "BRANDING", desc: "Luxury digital store.", img: "https://images.unsplash.com/photo-1631730486784-029750059e0a?q=80&w=600", tags: ["Shopify"], link: "#" },
-    { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D identity.", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=600", tags: ["Three.js"], link: "#" },
-    { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization.", img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600", tags: ["GSAP"], link: "#" },
-    { title: "VOID", cat: "WEB3", desc: "Decentralized spatial OS.", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", tags: ["WebGL"], link: "#" }
+    { title: "GLOW", cat: "BRANDING", desc: "Luxury digital store.", img: "https://picsum.photos/id/20/800/1200", tags: ["Shopify"], link: "#" },
+    { title: "RIZQ", cat: "FINTECH", desc: "High-end 3D identity.", img: "https://picsum.photos/id/1015/800/1200", tags: ["Three.js"], link: "#" },
+    { title: "AETHER", cat: "AI ENGINE", desc: "Neural data visualization.", img: "https://picsum.photos/id/133/800/1200", tags: ["GSAP"], link: "#" },
+    { title: "VOID", cat: "WEB3", desc: "Decentralized spatial OS.", img: "https://picsum.photos/id/251/800/1200", tags: ["WebGL"], link: "#" }
   ];
 
   const renderCards = () => projects.map((p, i) => (
