@@ -5,7 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 
 if (typeof window !== "undefined") {
-  gsap.config({ force3D: true }); // Performance boost
+  gsap.config({ force3D: true, nullTargetWarn: false });
 }
 
 const ZapIcon = () => (
@@ -25,7 +25,7 @@ export const Card = forwardRef(({ children, isActive, isMobile, link = "#", ...r
     className={`absolute rounded-[24px] md:rounded-[40px] border-t border-l 
                 transition-[border-color,box-shadow] duration-500 ease-out
                 ${isActive ? 'border-yellow-400/40 shadow-[0_15px_40px_-10px_rgba(250,204,21,0.2)]' : 'border-white/5'} 
-                bg-zinc-950/80 backdrop-blur-xl overflow-hidden group cursor-pointer
+                bg-zinc-950/90 backdrop-blur-2xl overflow-hidden group cursor-pointer
                 ${isMobile ? 'relative w-full h-full' : 'top-1/2 left-1/2'}
                 ${rest.className ?? ''}`.trim()}
   >
@@ -43,33 +43,33 @@ const DesktopCarousel = ({ children }) => {
     const cards = gsap.utils.toArray(".desktop-card-wrap");
     const totalCards = cards.length;
     const angleStep = (Math.PI * 2) / totalCards;
-    const radiusX = 400; // Controlled width
-    const radiusY = 120; // Flattened ellipse to prevent vertical clipping
+    const radiusX = 420; // Perfect horizontal spread
 
     let rotationData = { value: 0 };
 
     const tl = gsap.to(rotationData, {
       value: Math.PI * 2,
-      duration: 25,
+      duration: 22,
       repeat: -1,
       ease: "none",
       onUpdate: () => {
         cards.forEach((card, i) => {
           const angle = rotationData.value + (i * angleStep);
           const x = Math.cos(angle) * radiusX;
-          const z = Math.sin(angle) * radiusX;
-          const y = Math.sin(angle) * radiusY; // Elliptical height
+          const z = Math.sin(angle) * 150; // Depth effect
           
-          const scale = gsap.utils.mapRange(-radiusX, radiusX, 0.5, 1, z);
-          const opacity = gsap.utils.mapRange(-radiusX, radiusX, 0.15, 1, z);
+          // Flattened circular motion so it doesn't go up/down and hide
+          const scale = gsap.utils.mapRange(-150, 150, 0.5, 1, z);
+          const opacity = gsap.utils.mapRange(-150, 150, 0.1, 1, z);
+          const blur = gsap.utils.mapRange(-150, 150, 4, 0, z);
 
           gsap.set(card, {
             x: x,
-            y: y,
             z: z,
             scale: scale,
             opacity: opacity,
-            zIndex: Math.round(opacity * 100),
+            filter: `blur(${blur}px)`,
+            zIndex: Math.round(gsap.utils.mapRange(-150, 150, 1, 100, z)),
             xPercent: -50,
             yPercent: -50,
           });
@@ -84,10 +84,10 @@ const DesktopCarousel = ({ children }) => {
   }, [childArr.length]);
 
   return (
-    <div ref={containerRef} className="hidden md:flex relative w-full h-[500px] perspective-[1500px] items-center justify-center overflow-visible">
+    <div ref={containerRef} className="hidden md:flex relative w-full h-[450px] perspective-[2000px] items-center justify-center overflow-visible z-10">
       {childArr.map((child, i) => (
         <div key={i} className="desktop-card-wrap absolute top-1/2 left-1/2">
-          {isValidElement(child) ? cloneElement(child, { className: "w-[300px] h-[400px]", isActive: true }) : child}
+          {isValidElement(child) ? cloneElement(child, { className: "w-[280px] h-[380px]", isActive: true }) : child}
         </div>
       ))}
     </div>
@@ -106,7 +106,7 @@ const MobileCarousel = ({ children }) => {
       gsap.to(items, {
         xPercent: `-=${items.length * 100}`,
         ease: "none",
-        duration: 35, // Very slow and premium
+        duration: 25, // Slightly faster than before for better fluid feel
         repeat: -1,
         modifiers: {
           xPercent: gsap.utils.unitize(x => parseFloat(x) % (items.length * 100))
@@ -117,10 +117,10 @@ const MobileCarousel = ({ children }) => {
   }, []);
 
   return (
-    <div className="md:hidden w-full overflow-hidden py-4" ref={scrollRef}>
+    <div className="md:hidden w-full overflow-hidden py-6" ref={scrollRef}>
       <div className="flex gap-4 px-4">
         {[...childArr, ...childArr].map((child, i) => (
-          <div key={i} className="mobile-item shrink-0 w-[240px] aspect-[3/4.2]">
+          <div key={i} className="mobile-item shrink-0 w-[250px] aspect-[3/4.2]">
             {isValidElement(child) ? cloneElement(child, { isMobile: true, isActive: true }) : child}
           </div>
         ))}
@@ -142,19 +142,19 @@ export default function PortfolioHero() {
   const renderCards = () => projects.map((p, i) => (
     <Card key={i} link={p.link}>
       <div className="relative h-full w-full">
-        <Image src={p.img} alt={p.title} fill className="object-cover opacity-30 group-hover:opacity-60 transition-all duration-700" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+        <Image src={p.img} alt={p.title} fill className="object-cover opacity-20 group-hover:opacity-50 transition-all duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10" />
         <div className="absolute inset-0 p-6 flex flex-col justify-between z-20">
           <div>
             <span className="text-yellow-400 font-mono text-[8px] tracking-[3px] uppercase">{p.cat}</span>
             <h3 className="text-2xl md:text-3xl font-black text-white uppercase leading-none mt-1">{p.title}</h3>
-            <p className="text-zinc-500 text-[10px] mt-2 leading-relaxed line-clamp-2">{p.desc}</p>
+            <p className="text-zinc-500 text-[10px] mt-2 leading-relaxed">{p.desc}</p>
           </div>
           <div className="space-y-4">
             <div className="flex gap-1.5 flex-wrap">
               {p.tags.map(t => <span key={t} className="text-[7px] text-white/40 border border-white/10 px-2 py-0.5 rounded bg-white/5 uppercase">{t}</span>)}
             </div>
-            <button className="w-full flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[9px] font-black rounded-xl uppercase">
+            <button className="w-full flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[9px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
               <ExternalIcon /> View Case
             </button>
           </div>
@@ -164,31 +164,31 @@ export default function PortfolioHero() {
   ));
 
   return (
-    <section className="relative min-h-screen bg-black flex flex-col items-center justify-center py-12 md:py-20 overflow-hidden">
+    <section className="relative min-h-[85vh] bg-black flex flex-col items-center justify-center py-10 overflow-hidden">
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[60%] bg-yellow-500/5 blur-[120px] rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[50%] bg-yellow-500/5 blur-[120px] rounded-full" />
       </div>
 
       {/* Header */}
-      <div className="z-30 text-center mb-4 md:mb-8 px-4">
+      <div className="z-30 text-center mb-6 px-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/5 bg-zinc-900/50 text-yellow-400 font-mono text-[9px] tracking-widest uppercase mb-4">
           <ZapIcon /> Featured Work
         </div>
-        <h2 className="text-4xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] uppercase">
+        <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[0.85] uppercase">
           SHIPPED <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-yellow-600">EXPERIENCES.</span>
         </h2>
       </div>
 
-      {/* Carousel Container */}
-      <div className="w-full relative z-20 flex-1 flex flex-col justify-center">
+      {/* Carousel Container - Centered and High-Z */}
+      <div className="w-full relative z-40 flex flex-col justify-center items-center">
         <DesktopCarousel>{renderCards()}</DesktopCarousel>
         <MobileCarousel>{renderCards()}</MobileCarousel>
       </div>
       
-      {/* Footer Padding/Space */}
-      <div className="h-10 md:h-20 w-full" />
+      {/* Footer Padding */}
+      <div className="h-6 w-full" />
     </section>
   );
 }
