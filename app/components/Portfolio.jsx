@@ -9,83 +9,115 @@ const ExternalIcon = () => (
 );
 
 const projects = [
-  { id: "01", title: "Leather Craft", cat: "Core System", img: "/leather_craft_premium.png" },
-  { id: "02", title: "GLOW Luxury", cat: "Branding", img: "https://images.unsplash.com/photo-1631730486784-029750059e0a?q=80&w=800" },
-  { id: "03", title: "RIZQ Fintech", cat: "Digital Identity", img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=800" },
-  { id: "04", title: "AETHER AI", cat: "Visualization", img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800" },
+  { id: "01", title: "Leather Craft", client: "Luxury Est.", year: "2026", cat: "Core System", tags: ["Next.js", "GSAP"], img: "/leather_craft_premium.png" },
+  { id: "02", title: "GLOW Luxury", client: "SkinCare Co", year: "2025", cat: "Branding", tags: ["Shopify", "Tailwind"], img: "https://images.unsplash.com/photo-1631730486784-029750059e0a?q=80&w=800" },
+  { id: "03", title: "RIZQ Fintech", client: "Rizq Tech", year: "2026", cat: "Digital Identity", tags: ["Three.js", "Node"], img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=800" },
+  { id: "04", title: "AETHER AI", client: "Neural Labs", year: "2026", cat: "Visualization", tags: ["React", "Python"], img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800" },
 ];
 
-export default function SmoothSliderPortfolio() {
-  // We duplicate the array for a seamless loop effect
+export default function EliteSliderPortfolio() {
   const duplicatedProjects = [...projects, ...projects];
 
   return (
-    <section className="relative bg-[#050505] py-24 overflow-hidden min-h-screen flex flex-col justify-center">
+    <section className="relative bg-[#030303] py-24 overflow-hidden min-h-screen flex flex-col justify-center">
       
-      {/* ==================== CREATIVE BACKGROUND ==================== */}
+      {/* ==================== CREATIVE BACKGROUND (YELLOW NEON) ==================== */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-yellow-500/[0.03] blur-[150px] rounded-full" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-yellow-600/[0.02] blur-[120px] rounded-full" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+        
+        {/* Yellow Orbs */}
+        <div className="absolute top-[-10%] left-1/4 w-[600px] h-[600px] bg-yellow-500/[0.05] blur-[160px] rounded-full" />
+        <motion.div 
+            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-yellow-600/[0.04] blur-[120px] rounded-full" 
+        />
+        
+        {/* Grain Overlay */}
+        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
       </div>
 
       <div className="relative z-10">
         {/* ==================== HEADER ==================== */}
-        <div className="px-6 md:px-20 mb-16">
-          <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none">
-            Selected <br /> <span className="text-yellow-400">Creations.</span>
+        <div className="px-6 md:px-20 mb-20">
+          <motion.p 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-yellow-500 font-mono text-[10px] tracking-[5px] uppercase mb-4"
+          >
+            Curated Case Studies
+          </motion.p>
+          <h2 className="text-6xl md:text-9xl font-black text-white tracking-tighter uppercase leading-[0.85]">
+            DIGITAL <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600">EXPERIENCES.</span>
           </h2>
         </div>
 
-        {/* ==================== SLIDER WRAPPER ==================== */}
+        {/* ==================== SEAMLESS SLIDER ==================== */}
         <div className="flex overflow-hidden group">
           <motion.div 
-            className="flex gap-6 px-3"
+            className="flex gap-8 px-4"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              duration: 25,
+              duration: 30, // Much slower for professionalism
               ease: "linear",
               repeat: Infinity,
             }}
-            whileHover={{ transition: { duration: 60 } }} // Slows down on hover
+            whileHover={{ transition: { duration: 80 } }} 
           >
             {duplicatedProjects.map((project, index) => (
               <div 
                 key={index}
-                className="relative shrink-0 w-[85vw] md:w-[30vw] aspect-[4/5] md:aspect-[3/4] rounded-[40px] overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-xl group/card"
+                className="relative shrink-0 w-[88vw] md:w-[45vw] aspect-[16/10] rounded-[32px] md:rounded-[48px] overflow-hidden border border-white/10 bg-zinc-900/40 backdrop-blur-3xl group/card cursor-pointer"
               >
-                {/* Image */}
+                {/* Background Image */}
                 <Image 
                   src={project.img} 
                   alt={project.title}
                   fill
-                  className="object-cover opacity-50 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-700 saturate-50 group-hover/card:saturate-100"
+                  className="object-cover opacity-30 group-hover/card:opacity-60 group-hover/card:scale-105 transition-all duration-1000 saturate-[0.2] group-hover/card:saturate-100"
                 />
 
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-                {/* Content */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                {/* Card Content Overlay */}
+                <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between z-20">
+                  
+                  {/* Top: Metadata */}
                   <div className="flex justify-between items-start">
-                    <span className="font-mono text-yellow-400 text-xs tracking-widest">{project.id}</span>
-                    <div className="p-3 rounded-full bg-white/5 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover/card:opacity-100 transition-opacity">
+                    <div className="space-y-1">
+                        <p className="text-yellow-400 font-mono text-[9px] tracking-widest uppercase opacity-80">{project.client}</p>
+                        <p className="text-zinc-500 font-mono text-[9px] uppercase tracking-widest">EST. {project.year}</p>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-yellow-400 text-black flex items-center justify-center opacity-0 group-hover/card:opacity-100 group-hover/card:rotate-45 transition-all duration-500">
                       <ExternalIcon />
                     </div>
                   </div>
 
-                  <div>
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[3px] mb-2 block">
-                      {project.cat}
-                    </span>
-                    <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">
-                      {project.title}
-                    </h3>
+                  {/* Bottom: Info */}
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div className="max-w-xs">
+                        <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[3px] mb-3 block">
+                        {project.cat}
+                        </span>
+                        <h3 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-4">
+                        {project.title}
+                        </h3>
+                    </div>
+                    
+                    {/* Tags (Desktop only reveal) */}
+                    <div className="flex gap-2 flex-wrap md:opacity-0 group-hover/card:opacity-100 transition-opacity">
+                        {project.tags.map(tag => (
+                            <span key={tag} className="px-3 py-1 rounded-full border border-white/20 bg-black/40 text-[9px] text-white font-mono uppercase">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Yellow Glow Border on Hover */}
-                <div className="absolute inset-0 border-2 border-yellow-400/0 group-hover/card:border-yellow-400/40 rounded-[40px] transition-all duration-500 pointer-events-none" />
+                {/* Border creativity */}
+                <div className="absolute inset-0 border border-yellow-400/0 group-hover/card:border-yellow-500/30 rounded-[32px] md:rounded-[48px] transition-all duration-500 pointer-events-none" />
               </div>
             ))}
           </motion.div>
@@ -93,10 +125,15 @@ export default function SmoothSliderPortfolio() {
       </div>
 
       {/* Footer Branding */}
-      <div className="mt-20 px-6 md:px-20 flex justify-between items-center opacity-30">
-        <span className="text-[10px] font-mono text-white tracking-[10px] uppercase">Agency Standard</span>
-        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-transparent mx-10 hidden md:block" />
-        <span className="text-[10px] font-mono text-yellow-400 tracking-[5px] uppercase">Autoplay Active</span>
+      <div className="mt-20 px-6 md:px-20 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex items-center gap-4">
+            <div className="h-[1px] w-12 bg-yellow-500/50" />
+            <span className="text-[10px] font-mono text-zinc-600 tracking-[8px] uppercase">Kushwaha Edition</span>
+        </div>
+        <div className="flex gap-8">
+            <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Ready to Ship</span>
+            <div className="w-2 h-2 rounded-full bg-yellow-500 animate-ping" />
+        </div>
       </div>
     </section>
   );
