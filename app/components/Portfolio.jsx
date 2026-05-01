@@ -2,6 +2,7 @@
 
 import React, { Children, cloneElement, forwardRef, isValidElement, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -218,12 +219,12 @@ export default function PortfolioHero() {
             </div>
 
             <div className="flex gap-2 transition-all duration-500 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 mt-4">
-              <a href="#" aria-label={`View ${p.title} project`} className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[10px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
+              <Link href="/#contact" aria-label={`View ${p.title} project`} className="flex-1 flex items-center justify-center gap-2 py-3 bg-yellow-400 text-black text-[10px] font-black rounded-xl uppercase hover:bg-yellow-300 transition-colors">
                   <ExternalIcon /> View Project
-              </a>
-              <a href="#" aria-label={`View ${p.title} source on GitHub`} className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-xl text-white hover:bg-white/10 transition-colors bg-black/40 backdrop-blur-md">
+              </Link>
+              <Link href="/#contact" aria-label={`View ${p.title} source on GitHub`} className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-xl text-white hover:bg-white/10 transition-colors bg-black/40 backdrop-blur-md">
                 <GithubIcon />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

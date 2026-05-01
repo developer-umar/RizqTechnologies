@@ -32,7 +32,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Mastering Craft | High-Performance Digital Products",
     description: "Built for 2026. Rizq Technologies is the premier digital agency for elite brands.",
-    creator: "@rizqtech",
+    creator: "@RizqTechnologies",
     images: ["/og-image.png"],
   },
 

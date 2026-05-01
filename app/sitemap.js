@@ -2,7 +2,7 @@
 import { getAllBlogs } from "@/lib/blogData";
 
 export default function sitemap() {
-  const baseUrl = "https://rizqtechnologies.com";
+  const baseUrl = "https://rizq-technologies.vercel.app";
   const today = new Date().toISOString().split("T")[0];
 
   // ── Static Routes ─────────────────────────────────────────
