@@ -19,7 +19,7 @@ export default function EliteSliderPortfolio() {
   const duplicatedProjects = [...projects, ...projects];
 
   return (
-    <section className="relative bg-[#030303] py-24 overflow-hidden min-h-screen flex flex-col justify-center">
+    <section id="portfolio" className="relative bg-[#030303] py-24 overflow-hidden min-h-screen flex flex-col justify-center">
       
       {/* ==================== CREATIVE BACKGROUND (YELLOW NEON) ==================== */}
       <div className="absolute inset-0 pointer-events-none">

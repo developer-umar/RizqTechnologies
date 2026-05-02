@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import AboutUsFluid from "./components/AboutUse";
 import TechSection from "./components/Technologies";
 import ServicesBentoMagic from "./components/Services";
-
+import ScrollManager from "./components/ScrollManager";
 
 // import ClientCursor from "./components/cursor/clientCursor";
 
@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
       <div id="home">
-
+        <ScrollManager />
         {/* <ClientCursor /> */}
         <Navbar />
         <HeroSection />

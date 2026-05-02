@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 
@@ -10,6 +11,32 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const btnRef = useRef(null);
+    const pathname = usePathname();
+    const router = useRouter();
+
+    const handleLinkClick = (e, href, targetId) => {
+        if (!targetId) {
+            setIsOpen(false);
+            return;
+        }
+
+        e.preventDefault();
+        
+        const elem = document.getElementById(targetId);
+        if (elem && pathname === '/') {
+            const topPos = elem.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: topPos,
+                behavior: 'smooth'
+            });
+            // Update URL without hash
+            window.history.pushState(null, '', href);
+        } else {
+            // Navigate via Next.js router
+            router.push(href);
+        }
+        setIsOpen(false);
+    };
 
     // 1. Mouse Tracking for "Bento Magic Glow"
     const mouseX = useMotionValue(0);
@@ -33,11 +60,10 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { href: "/#home", label: "Home" },
-        { href: "/#services", label: "Services" },
-        { href: "/#portfolio", label: "Portfolio" },
-        // Changed from "#blog" (broken anchor) to "/blog" (real Next.js route)
-        { href: "/blog", label: "Blog" },
+        { href: "/", targetId: "home", label: "Home" },
+        { href: "/services", targetId: "services", label: "Services" },
+        { href: "/portfolio", targetId: "portfolio", label: "Portfolio" },
+        { href: "/blog", targetId: null, label: "Blog" },
     ];
 
     return (
@@ -47,20 +73,25 @@ const Navbar = () => {
             }`}>
 
                 {/* Logo */}
-                <Link href="#home" className="relative z-[110] flex items-center">
+                <Link href="/" onClick={(e) => handleLinkClick(e, '/', 'home')} className="relative z-[110] flex items-center">
                     <Image src="/rizq-logo.png" alt="Rizq Logo" width={250} height={150} className="object-contain w-[168px] md:w-[210px]" priority />
                 </Link>
 
                 {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-8 lg:gap-12">
                     {navLinks.map((link) => (
-                        <Link key={link.href} href={link.href} className="text-white/70 hover:text-yellow-400 text-sm font-bold tracking-widest uppercase transition-colors">
+                        <Link 
+                            key={link.href} 
+                            href={link.href} 
+                            onClick={(e) => handleLinkClick(e, link.href, link.targetId)}
+                            className="text-white/70 hover:text-yellow-400 text-sm font-bold tracking-widest uppercase transition-colors"
+                        >
                             {link.label}
                         </Link>
                     ))}
 
                     {/* 🔥 THE MAGIC BENTO FLUID BUTTON */}
-                    <Link href="#contact">
+                    <Link href="/contact" onClick={(e) => handleLinkClick(e, '/contact', 'contact')}>
                         <motion.button
                             ref={btnRef}
                             onMouseMove={handleMouseMove}
@@ -112,11 +143,16 @@ const Navbar = () => {
                     {isOpen && (
                         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="absolute top-0 left-0 w-full h-screen bg-black flex flex-col justify-center items-center gap-8 z-[105]">
                             {navLinks.map((link) => (
-                                <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className="text-white text-4xl font-bold uppercase tracking-tighter hover:text-yellow-400">
+                                <Link 
+                                    key={link.href} 
+                                    href={link.href} 
+                                    onClick={(e) => handleLinkClick(e, link.href, link.targetId)} 
+                                    className="text-white text-4xl font-bold uppercase tracking-tighter hover:text-yellow-400"
+                                >
                                     {link.label}
                                 </Link>
                             ))}
-                            <Link href="#contact" onClick={() => setIsOpen(false)}>
+                            <Link href="/contact" onClick={(e) => handleLinkClick(e, '/contact', 'contact')}>
                                 <button className="bg-yellow-400 text-black px-12 py-4 rounded-full font-black text-xl uppercase italic shadow-[0_0_30px_rgba(250,204,21,0.5)]">
                                     Get Started →
                                 </button>

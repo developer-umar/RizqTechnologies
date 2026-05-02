@@ -3,9 +3,31 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLinkClick = (e, href, targetId) => {
+    if (!targetId) return;
+    
+    e.preventDefault();
+    const elem = document.getElementById(targetId);
+    
+    if (elem && pathname === '/') {
+        const topPos = elem.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+            top: topPos,
+            behavior: 'smooth'
+        });
+        window.history.pushState(null, '', href);
+    } else {
+        router.push(href);
+    }
+  };
+
   const socialLinks = [
     {
       name: "Facebook",
@@ -94,7 +116,12 @@ const Footer = () => {
               {["Home", "About", "Services", "Portfolio", "Pricing", "Blog"].map((item) => (
                 <li key={item}>
                   <Link 
-                    href={item === "Blog" ? "/blog" : `/#${item.toLowerCase()}`} 
+                    href={item === "Blog" ? "/blog" : (item === "Home" ? "/" : `/${item.toLowerCase()}`)} 
+                    onClick={(e) => {
+                      if (item !== "Blog") {
+                        handleLinkClick(e, item === "Home" ? "/" : `/${item.toLowerCase()}`, item.toLowerCase());
+                      }
+                    }}
                     className="hover:text-yellow-400 transition-all hover:pl-1"
                   >
                     {item}
@@ -118,7 +145,11 @@ const Footer = () => {
                 "Digital Marketing"
               ].map((item) => (
                 <li key={item}>
-                  <Link href="/#services" className="hover:text-yellow-400 transition-all hover:pl-1">
+                  <Link 
+                    href={`/${item.split(' ')[0].toLowerCase()}`} 
+                    onClick={(e) => handleLinkClick(e, `/${item.split(' ')[0].toLowerCase()}`, item.split(' ')[0].toLowerCase())} 
+                    className="hover:text-yellow-400 transition-all hover:pl-1"
+                  >
                     {item}
                   </Link>
                 </li>
