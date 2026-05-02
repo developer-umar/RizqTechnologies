@@ -3,10 +3,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const HeroSection = () => {
   const [btnText, setBtnText] = useState("Connect With Us");
   const btnRef = useRef(null);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLinkClick = (e, href, targetId) => {
+    e.preventDefault();
+    const elem = document.getElementById(targetId);
+    if (elem && pathname === '/') {
+        const topPos = elem.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+            top: topPos,
+            behavior: 'smooth'
+        });
+        window.history.pushState(null, '', href);
+    } else {
+        router.push(href);
+    }
+  };
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -67,7 +85,7 @@ const HeroSection = () => {
           className="relative z-[60] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
         >
           {/* CONNECT BUTTON (Always Visible) */}
-          <Link href="#contact" className="relative z-[70] block group">
+          <Link href="/contact" onClick={(e) => handleLinkClick(e, "/contact", "contact")} className="relative z-[70] block group">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -111,7 +129,7 @@ const HeroSection = () => {
           </Link>
 
           {/* VIEW WORK (Desktop Only - Hidden on Mobile/Small Screens) */}
-          <Link href="#portfolio" className="relative z-[70] hidden md:flex items-center gap-4 group transition-all duration-300">
+          <Link href="/portfolio" onClick={(e) => handleLinkClick(e, "/portfolio", "portfolio")} className="relative z-[70] hidden md:flex items-center gap-4 group transition-all duration-300">
             <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/5 transition-all duration-500">
               <span className="text-white text-lg group-hover:text-amber-400 transition-all duration-300 transform group-hover:translate-x-1">→</span>
             </div>

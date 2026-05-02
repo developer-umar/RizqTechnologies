@@ -32,6 +32,14 @@ const nextConfig = {
     ];
   },
 
+  async rewrites() {
+    return [
+      { source: '/services', destination: '/' },
+      { source: '/portfolio', destination: '/' },
+      { source: '/contact', destination: '/' },
+    ];
+  },
+
   async headers() {
     return [
       {
