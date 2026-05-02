@@ -35,14 +35,14 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizqtechnologies.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizq-technologies.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Rizq Technologies | Premier Digital Agency",
     description: "Crafting elite digital experiences for modern brands.",
-    url: "https://rizqtechnologies.com",
+    url: "https://rizq-technologies.vercel.app",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",

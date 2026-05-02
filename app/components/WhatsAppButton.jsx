@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 export default function WhatsAppButton() {
-  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER; // The user's number with country code
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918576057583"; // The user's number with country code
   const message = encodeURIComponent("Hello! I want to know more about Rizq Technologies.");
 
   return (

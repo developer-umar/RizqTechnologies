@@ -25,7 +25,7 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setBtnText((prev) => 
-        prev === "Connect With Us" ? "+91 8127672157" : "Connect With Us"
+        prev === "Connect With Us" ? "+91 8576057583" : "Connect With Us"
       );
     }, 2800); 
     return () => clearInterval(interval);

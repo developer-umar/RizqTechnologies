@@ -219,8 +219,8 @@ const Contact = () => {
               {/* Massive Direct Contact Link */}
               <div>
                 <h4 className="text-zinc-500 font-mono text-xs tracking-[4px] uppercase mb-6">Direct Inquiries</h4>
-                <a href="mailto:hello@rizqstudio.com" className="group relative inline-block text-3xl md:text-4xl lg:text-5xl font-light text-white hover:text-yellow-400 transition-colors duration-500">
-                  hello@rizqstudio.com
+                <a href="mailto:contact.rizqtech@gmail.com" className="group relative inline-block text-3xl md:text-4xl lg:text-5xl font-light text-white hover:text-yellow-400 transition-colors duration-500">
+                  contact.rizqtech@gmail.com
                   {/* Animated underline */}
                   <div className="absolute -bottom-2 left-0 w-0 h-px bg-yellow-400 transition-all duration-500 ease-out group-hover:w-full" />
                 </a>
