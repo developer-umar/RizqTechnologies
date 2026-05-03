@@ -45,7 +45,7 @@ const organizationSchema = {
   // sameAs: links to authoritative profiles — critical for Knowledge Panel
   sameAs: [
     "https://x.com/rizq_tech",
-    "https://www.linkedin.com/in/rizqtechnologies",
+    "https://www.linkedin.com/company/rizqtechnologies/",
     "https://github.com/rizqtechnologies",
     "https://www.instagram.com/rizqtechnologies",
     "https://www.facebook.com/profile.php?id=61589274352434",

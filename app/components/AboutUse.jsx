@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // High-End Animation Variants
@@ -26,22 +25,6 @@ const staggerContainer = {
 };
 
 export default function AboutUsFluid() {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const handleLinkClick = (e, href, targetId) => {
-    e.preventDefault();
-    const elem = document.getElementById(targetId);
-    if (elem && pathname === '/') {
-        const topPos = elem.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({ top: topPos, behavior: 'smooth' });
-        window.history.pushState(null, '', href);
-    } else {
-        router.push(href);
-    }
-  };
-
-  // Parallax effect for the background watermark
   const { scrollYProgress } = useScroll();
   const yWatermark = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
@@ -98,7 +81,7 @@ export default function AboutUsFluid() {
               </motion.p>
               
               <motion.div variants={fadeUpVariants} className="pt-4 flex gap-4">
-                <Link href="/services" onClick={(e) => handleLinkClick(e, "/services", "services")} className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
+                <Link href="/services" className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
                   Explore Services
                 </Link>
                 <Link href="/blog" className="px-6 py-3 border border-zinc-300 hover:border-black text-black font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
