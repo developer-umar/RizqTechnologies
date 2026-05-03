@@ -45,7 +45,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative bg-black min-h-screen flex items-center justify-center overflow-hidden py-32" id="contact">
+    <section className="relative bg-black min-h-screen flex items-center justify-center overflow-hidden py-20 lg:py-32" id="contact">
       
       {/* ==================== GLOBAL BACKGROUND & IMAGE INTEGRATION ==================== */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -71,10 +71,10 @@ const Contact = () => {
       </div>
 
       {/* ==================== CONTENT CONTAINER ==================== */}
-      <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 relative z-10">
         
         {/* Added gap-24 for deep separation between left form and right typography */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-24 lg:gap-32">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
           
           {/* ==================== LEFT SIDE: COLOSSAL TYPOGRAPHY & FORM ==================== */}
           <div className="w-full lg:w-1/2 max-w-2xl relative">
@@ -85,21 +85,21 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="mb-16"
+              className="mb-10 lg:mb-16"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md text-yellow-400 font-mono text-[10px] md:text-xs tracking-[3px] uppercase shadow-[0_0_15px_rgba(250,204,21,0.05)]">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 lg:mb-8 rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-md text-yellow-400 font-mono text-[10px] md:text-xs tracking-[3px] uppercase shadow-[0_0_15px_rgba(250,204,21,0.05)]">
                 <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" /> Project Inquiry
               </div>
               
               {/* Colossal Header without any container */}
-              <h2 className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] text-white uppercase drop-shadow-2xl">
+              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter leading-[0.85] text-white uppercase drop-shadow-2xl">
                 Let's <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-600">
                   Build.
                 </span>
               </h2>
               
-              <p className="mt-8 text-lg md:text-xl text-zinc-400 font-medium leading-relaxed max-w-md">
+              <p className="mt-6 lg:mt-8 text-base md:text-lg lg:text-xl text-zinc-400 font-medium leading-relaxed max-w-md">
                 We partner with ambitious brands. Tell us about your vision, and we will engineer it into reality.
               </p>
             </motion.div>
@@ -111,7 +111,7 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <form onSubmit={handleSubmit} className="space-y-12">
+              <form onSubmit={handleSubmit} className="space-y-8 lg:space-y-12">
                 
                 {/* Immersive Input Groups */}
                 <div className="relative group">
@@ -123,11 +123,11 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-white/10 pb-4 text-2xl md:text-3xl font-light text-white placeholder-transparent focus:outline-none focus:border-yellow-400 transition-all duration-500 rounded-none"
+                    className="peer w-full bg-transparent border-b-2 border-white/10 pb-3 lg:pb-4 text-xl sm:text-2xl md:text-3xl font-light text-white placeholder-transparent focus:outline-none focus:border-yellow-400 transition-all duration-500 rounded-none"
                   />
                   <label 
                     htmlFor="name"
-                    className="absolute left-0 -top-6 text-yellow-400 text-sm uppercase tracking-[2px] font-bold peer-placeholder-shown:top-0 peer-placeholder-shown:text-2xl peer-placeholder-shown:md:text-3xl peer-placeholder-shown:text-zinc-600 peer-placeholder-shown:normal-case peer-placeholder-shown:font-light peer-focus:-top-6 peer-focus:text-sm peer-focus:text-yellow-400 peer-focus:uppercase peer-focus:tracking-[2px] peer-focus:font-bold transition-all duration-300 pointer-events-none"
+                    className="absolute left-0 -top-5 lg:-top-6 text-yellow-400 text-xs lg:text-sm uppercase tracking-[2px] font-bold peer-placeholder-shown:top-0 peer-placeholder-shown:text-xl peer-placeholder-shown:sm:text-2xl peer-placeholder-shown:md:text-3xl peer-placeholder-shown:text-zinc-600 peer-placeholder-shown:normal-case peer-placeholder-shown:font-light peer-focus:-top-5 lg:peer-focus:-top-6 peer-focus:text-xs lg:peer-focus:text-sm peer-focus:text-yellow-400 peer-focus:uppercase peer-focus:tracking-[2px] peer-focus:font-bold transition-all duration-300 pointer-events-none"
                   >
                     What is your name?
                   </label>
@@ -142,11 +142,11 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-white/10 pb-4 text-2xl md:text-3xl font-light text-white placeholder-transparent focus:outline-none focus:border-yellow-400 transition-all duration-500 rounded-none"
+                    className="peer w-full bg-transparent border-b-2 border-white/10 pb-3 lg:pb-4 text-xl sm:text-2xl md:text-3xl font-light text-white placeholder-transparent focus:outline-none focus:border-yellow-400 transition-all duration-500 rounded-none"
                   />
                   <label 
                     htmlFor="email"
-                    className="absolute left-0 -top-6 text-yellow-400 text-sm uppercase tracking-[2px] font-bold peer-placeholder-shown:top-0 peer-placeholder-shown:text-2xl peer-placeholder-shown:md:text-3xl peer-placeholder-shown:text-zinc-600 peer-placeholder-shown:normal-case peer-placeholder-shown:font-light peer-focus:-top-6 peer-focus:text-sm peer-focus:text-yellow-400 peer-focus:uppercase peer-focus:tracking-[2px] peer-focus:font-bold transition-all duration-300 pointer-events-none"
+                    className="absolute left-0 -top-5 lg:-top-6 text-yellow-400 text-xs lg:text-sm uppercase tracking-[2px] font-bold peer-placeholder-shown:top-0 peer-placeholder-shown:text-xl peer-placeholder-shown:sm:text-2xl peer-placeholder-shown:md:text-3xl peer-placeholder-shown:text-zinc-600 peer-placeholder-shown:normal-case peer-placeholder-shown:font-light peer-focus:-top-5 lg:peer-focus:-top-6 peer-focus:text-xs lg:peer-focus:text-sm peer-focus:text-yellow-400 peer-focus:uppercase peer-focus:tracking-[2px] peer-focus:font-bold transition-all duration-300 pointer-events-none"
                   >
                     Your business email
                   </label>
@@ -161,11 +161,11 @@ const Contact = () => {
                     onChange={handleChange}
                     rows="2"
                     placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-white/10 pb-4 text-2xl md:text-3xl font-light text-white placeholder-transparent focus:outline-none focus:border-yellow-400 resize-none transition-all duration-500 rounded-none"
+                    className="peer w-full bg-transparent border-b-2 border-white/10 pb-3 lg:pb-4 text-xl sm:text-2xl md:text-3xl font-light text-white placeholder-transparent focus:outline-none focus:border-yellow-400 resize-none transition-all duration-500 rounded-none"
                   />
                   <label 
                     htmlFor="message"
-                    className="absolute left-0 -top-6 text-yellow-400 text-sm uppercase tracking-[2px] font-bold peer-placeholder-shown:top-0 peer-placeholder-shown:text-2xl peer-placeholder-shown:md:text-3xl peer-placeholder-shown:text-zinc-600 peer-placeholder-shown:normal-case peer-placeholder-shown:font-light peer-focus:-top-6 peer-focus:text-sm peer-focus:text-yellow-400 peer-focus:uppercase peer-focus:tracking-[2px] peer-focus:font-bold transition-all duration-300 pointer-events-none"
+                    className="absolute left-0 -top-5 lg:-top-6 text-yellow-400 text-xs lg:text-sm uppercase tracking-[2px] font-bold peer-placeholder-shown:top-0 peer-placeholder-shown:text-xl peer-placeholder-shown:sm:text-2xl peer-placeholder-shown:md:text-3xl peer-placeholder-shown:text-zinc-600 peer-placeholder-shown:normal-case peer-placeholder-shown:font-light peer-focus:-top-5 lg:peer-focus:-top-6 peer-focus:text-xs lg:peer-focus:text-sm peer-focus:text-yellow-400 peer-focus:uppercase peer-focus:tracking-[2px] peer-focus:font-bold transition-all duration-300 pointer-events-none"
                   >
                     Tell us about the project
                   </label>
@@ -177,7 +177,7 @@ const Contact = () => {
                   whileTap={status === "idle" ? { scale: 0.98 } : {}}
                   type="submit"
                   disabled={status !== "idle"}
-                  className={`group relative inline-flex items-center gap-6 mt-8 py-5 px-10 bg-transparent border border-yellow-400 text-yellow-400 font-black text-xl md:text-2xl rounded-full overflow-hidden transition-all duration-500 uppercase tracking-widest ${
+                  className={`group relative inline-flex items-center gap-4 lg:gap-6 mt-4 lg:mt-8 py-3 lg:py-5 px-6 lg:px-10 bg-transparent border border-yellow-400 text-yellow-400 font-black text-base md:text-xl lg:text-2xl rounded-full overflow-hidden transition-all duration-500 uppercase tracking-widest ${
                     status === "success" ? "border-green-500 text-green-500" : ""
                   } ${status !== "idle" ? "cursor-default" : "hover:text-black"}`}
                 >
@@ -191,14 +191,14 @@ const Contact = () => {
                     
                     {status === "idle" && (
                       <motion.span
-                        className="text-3xl"
+                        className="text-2xl lg:text-3xl"
                         animate={{ x: [0, 6, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                       >
                         →
                       </motion.span>
                     )}
-                    {status === "success" && <span className="text-2xl">✓</span>}
+                    {status === "success" && <span className="text-xl lg:text-2xl">✓</span>}
                   </span>
                 </motion.button>
               </form>
@@ -207,19 +207,19 @@ const Contact = () => {
 
           {/* ==================== RIGHT SIDE: TYPOGRAPHY-FIRST CONTACT INFO ==================== */}
           {/* No boxes, no backgrounds. Just pure, clean text floating over the integrated image. */}
-          <div className="w-full lg:w-5/12 flex flex-col justify-center mt-12 lg:mt-0 pt-12 lg:pt-0 border-t lg:border-none border-white/10 lg:min-h-[700px]">
+          <div className="w-full lg:w-5/12 flex flex-col justify-center mt-8 lg:mt-0 pt-8 lg:pt-0 border-t lg:border-none border-white/10 lg:min-h-[700px]">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="space-y-20"
+              className="space-y-12 lg:space-y-20"
             >
               
               {/* Massive Direct Contact Link */}
               <div>
-                <h4 className="text-zinc-500 font-mono text-xs tracking-[4px] uppercase mb-6">Direct Inquiries</h4>
-                <a href="mailto:contact.rizqtech@gmail.com" className="group relative inline-block text-3xl md:text-4xl lg:text-5xl font-light text-white hover:text-yellow-400 transition-colors duration-500">
+                <h4 className="text-zinc-500 font-mono text-[10px] lg:text-xs tracking-[4px] uppercase mb-4 lg:mb-6">Direct Inquiries</h4>
+                <a href="mailto:contact.rizqtech@gmail.com" className="group relative inline-block text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light text-white hover:text-yellow-400 transition-colors duration-500 break-all">
                   contact.rizqtech@gmail.com
                   {/* Animated underline */}
                   <div className="absolute -bottom-2 left-0 w-0 h-px bg-yellow-400 transition-all duration-500 ease-out group-hover:w-full" />
@@ -228,30 +228,30 @@ const Contact = () => {
 
               {/* Agency Process - Typography based, no cards */}
               <div>
-                <h4 className="text-zinc-500 font-mono text-xs tracking-[4px] uppercase mb-10">How We Work</h4>
+                <h4 className="text-zinc-500 font-mono text-[10px] lg:text-xs tracking-[4px] uppercase mb-6 lg:mb-10">How We Work</h4>
                 
-                <div className="space-y-10">
-                  <div className="flex gap-6 items-start group">
-                    <span className="text-yellow-400/50 font-mono text-xl group-hover:text-yellow-400 transition-colors duration-300">01</span>
+                <div className="space-y-6 lg:space-y-10">
+                  <div className="flex gap-4 lg:gap-6 items-start group">
+                    <span className="text-yellow-400/50 font-mono text-base lg:text-xl group-hover:text-yellow-400 transition-colors duration-300">01</span>
                     <div>
-                      <h5 className="text-white text-xl md:text-2xl font-medium mb-3 tracking-wide group-hover:text-yellow-400 transition-colors duration-300">Discovery</h5>
-                      <p className="text-zinc-400 text-sm md:text-base leading-relaxed">We map out your vision, target audience, and engineering constraints.</p>
+                      <h5 className="text-white text-lg md:text-xl lg:text-2xl font-medium mb-2 lg:mb-3 tracking-wide group-hover:text-yellow-400 transition-colors duration-300">Discovery</h5>
+                      <p className="text-zinc-400 text-xs sm:text-sm md:text-base leading-relaxed">We map out your vision, target audience, and engineering constraints.</p>
                     </div>
                   </div>
                   
-                  <div className="flex gap-6 items-start group">
-                    <span className="text-yellow-400/50 font-mono text-xl group-hover:text-yellow-400 transition-colors duration-300">02</span>
+                  <div className="flex gap-4 lg:gap-6 items-start group">
+                    <span className="text-yellow-400/50 font-mono text-base lg:text-xl group-hover:text-yellow-400 transition-colors duration-300">02</span>
                     <div>
-                      <h5 className="text-white text-xl md:text-2xl font-medium mb-3 tracking-wide group-hover:text-yellow-400 transition-colors duration-300">Architecture</h5>
-                      <p className="text-zinc-400 text-sm md:text-base leading-relaxed">Designing the scalable tech foundation and premium visual language.</p>
+                      <h5 className="text-white text-lg md:text-xl lg:text-2xl font-medium mb-2 lg:mb-3 tracking-wide group-hover:text-yellow-400 transition-colors duration-300">Architecture</h5>
+                      <p className="text-zinc-400 text-xs sm:text-sm md:text-base leading-relaxed">Designing the scalable tech foundation and premium visual language.</p>
                     </div>
                   </div>
                   
-                  <div className="flex gap-6 items-start group">
-                    <span className="text-yellow-400/50 font-mono text-xl group-hover:text-yellow-400 transition-colors duration-300">03</span>
+                  <div className="flex gap-4 lg:gap-6 items-start group">
+                    <span className="text-yellow-400/50 font-mono text-base lg:text-xl group-hover:text-yellow-400 transition-colors duration-300">03</span>
                     <div>
-                      <h5 className="text-white text-xl md:text-2xl font-medium mb-3 tracking-wide group-hover:text-yellow-400 transition-colors duration-300">Execution</h5>
-                      <p className="text-zinc-400 text-sm md:text-base leading-relaxed">Pixel-perfect frontend development and high-performance deployment.</p>
+                      <h5 className="text-white text-lg md:text-xl lg:text-2xl font-medium mb-2 lg:mb-3 tracking-wide group-hover:text-yellow-400 transition-colors duration-300">Execution</h5>
+                      <p className="text-zinc-400 text-xs sm:text-sm md:text-base leading-relaxed">Pixel-perfect frontend development and high-performance deployment.</p>
                     </div>
                   </div>
                 </div>

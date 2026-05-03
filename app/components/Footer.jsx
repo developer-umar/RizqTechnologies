@@ -3,30 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 const Footer = () => {
-  const pathname = usePathname();
-  const router = useRouter();
 
-  const handleLinkClick = (e, href, targetId) => {
-    if (!targetId) return;
-    
-    e.preventDefault();
-    const elem = document.getElementById(targetId);
-    
-    if (elem && pathname === '/') {
-        const topPos = elem.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-            top: topPos,
-            behavior: 'smooth'
-        });
-        window.history.pushState(null, '', href);
-    } else {
-        router.push(href);
-    }
-  };
+  const handleLinkClick = () => {};
 
   const socialLinks = [
     {
@@ -80,51 +61,53 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#050505] pt-24 pb-10 px-6 relative overflow-hidden text-white">
+    <footer className="bg-[#050505] pt-16 lg:pt-24 pb-8 lg:pb-10 px-4 sm:px-6 relative overflow-hidden text-white">
       {/* Glow Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,215,0,0.05),transparent_50%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 md:gap-8">
           
           {/* Brand */}
-          <div className="md:col-span-4">
-            <div className="mb-8">
-              <Image src="/rizq-logo.png" alt="Logo" width={250} height={150} />
+          <div className="sm:col-span-2 md:col-span-4">
+            <div className="mb-6 lg:mb-8">
+              <Image src="/rizq-logo.png" alt="Logo" width={250} height={150} className="max-w-[200px] lg:max-w-[250px]" />
             </div>
-            <p className="text-gray-400 text-base leading-relaxed max-w-sm mb-8">
+            <p className="text-gray-400 text-sm lg:text-base leading-relaxed max-w-sm mb-6 lg:mb-8">
               We craft premium digital experiences that combine design, performance, and innovation to elevate your brand.
             </p>
-            <div className="space-y-4">
+            <div className="space-y-3 lg:space-y-4">
               <div className="flex items-center gap-3 text-gray-300 group cursor-pointer">
                 <div className="p-2 bg-white/5 rounded-lg group-hover:bg-yellow-400/10 transition-colors text-yellow-500">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </div>
-                <span className="text-sm">contact.rizqtech@gmail.com</span>
+                <span className="text-xs lg:text-sm break-all">contact.rizqtech@gmail.com</span>
               </div>
             </div>
           </div>
 
           {/* Links */}
-          <div className="md:col-span-2">
-            <h3 className="text-white font-semibold mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
+          <div className="sm:col-span-1 md:col-span-2">
+            <h3 className="text-white font-semibold mb-6 lg:mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
               <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full" />
               Company
             </h3>
-            <ul className="space-y-4 text-gray-400">
-              {["Home", "About", "Services", "Portfolio", "Pricing", "Blog"].map((item) => (
-                <li key={item}>
+            <ul className="space-y-3 lg:space-y-4 text-gray-400 text-sm">
+              {[
+                { label: "Home", href: "/" },
+                { label: "About", href: "/about" },
+                { label: "Services", href: "/services" },
+                { label: "Portfolio", href: "/portfolio" },
+                { label: "Blog", href: "/blog" },
+              ].map((item) => (
+                <li key={item.label}>
                   <Link 
-                    href={item === "Blog" ? "/blog" : (item === "Home" ? "/" : `/${item.toLowerCase()}`)} 
-                    onClick={(e) => {
-                      if (item !== "Blog") {
-                        handleLinkClick(e, item === "Home" ? "/" : `/${item.toLowerCase()}`, item.toLowerCase());
-                      }
-                    }}
+                    href={item.href} 
+                    onClick={handleLinkClick}
                     className="hover:text-yellow-400 transition-all hover:pl-1"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -132,12 +115,12 @@ const Footer = () => {
           </div>
 
           {/* Services Links */}
-          <div className="md:col-span-3">
-            <h3 className="text-white font-semibold mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
+          <div className="sm:col-span-1 md:col-span-3">
+            <h3 className="text-white font-semibold mb-6 lg:mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
               <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full" />
               Expertise
             </h3>
-            <ul className="space-y-4 text-gray-400">
+            <ul className="space-y-3 lg:space-y-4 text-gray-400 text-sm">
               {[
                 "Web Development", 
                 "Brand & UI Design", 
@@ -146,8 +129,8 @@ const Footer = () => {
               ].map((item) => (
                 <li key={item}>
                   <Link 
-                    href={`/${item.split(' ')[0].toLowerCase()}`} 
-                    onClick={(e) => handleLinkClick(e, `/${item.split(' ')[0].toLowerCase()}`, item.split(' ')[0].toLowerCase())} 
+                    href="/services" 
+                    onClick={handleLinkClick}
                     className="hover:text-yellow-400 transition-all hover:pl-1"
                   >
                     {item}
@@ -158,12 +141,12 @@ const Footer = () => {
           </div>
 
           {/* Social */}
-          <div className="md:col-span-3">
-            <h3 className="text-white font-semibold mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
+          <div className="sm:col-span-2 md:col-span-3">
+            <h3 className="text-white font-semibold mb-6 lg:mb-8 flex items-center gap-2 uppercase tracking-tighter text-sm">
               <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full" />
               Socials
             </h3>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 lg:gap-3">
               {socialLinks.map((social, i) => (
                 <motion.a
                   key={i}
@@ -171,14 +154,14 @@ const Footer = () => {
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   whileHover={{ y: -3, backgroundColor: "rgba(255,255,255,0.05)" }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-yellow-500/30 transition-all group"
+                  className="flex items-center gap-2 lg:gap-3 p-2 lg:p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-yellow-500/30 transition-all group"
                 >
-                  <div className="text-gray-400 group-hover:text-yellow-500">
+                  <div className="text-gray-400 group-hover:text-yellow-500 flex-shrink-0">
                     {social.icon}
                   </div>
-                  <div>
-                    <p className="text-xs font-bold text-white leading-none mb-1">{social.name}</p>
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest">{social.label}</p>
+                  <div className="min-w-0">
+                    <p className="text-[10px] lg:text-xs font-bold text-white leading-none mb-0.5 lg:mb-1 truncate">{social.name}</p>
+                    <p className="text-[8px] lg:text-[10px] text-gray-500 uppercase tracking-widest truncate">{social.label}</p>
                   </div>
                 </motion.a>
               ))}
@@ -187,9 +170,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[12px] text-gray-500">
+        <div className="mt-12 lg:mt-20 pt-6 lg:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-6 text-[11px] lg:text-[12px] text-gray-500">
           <p>© {new Date().getFullYear()} Rizq Technologies</p>
-          <div className="flex gap-6">
+          <div className="flex gap-4 lg:gap-6">
             <Link href="#" className="hover:text-white transition-colors uppercase tracking-widest">Privacy</Link>
             <Link href="#" className="hover:text-white transition-colors uppercase tracking-widest">Terms</Link>
           </div>
