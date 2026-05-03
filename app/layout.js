@@ -48,13 +48,13 @@ export const metadata = {
     type: "website",
     modifiedTime: new Date().toISOString(),
     images: [
-    {
-      url: "https://rizq-technologies.vercel.app/og-image.png",
-      width: 1200,
-      height: 630,
-      alt: "Rizq Technologies | Premier Digital Agency",
-    },
-  ],
+      {
+        url: "https://rizq-technologies.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Rizq Technologies | Premier Digital Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -77,7 +77,7 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/l9_new.png",
+    apple: "/favicon.ico",
   },
   manifest: "/manifest.json",
   verification: {
