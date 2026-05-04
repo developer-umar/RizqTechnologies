@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const ExternalIcon = () => (
@@ -9,13 +10,13 @@ const ExternalIcon = () => (
 );
 
 const projects = [
-  { id: "01", title: "E-commerce", client: "Leather Hub.", year: "2026", cat: "Leather Goods", tags: ["Next.js", "GSAP"], img: "/portfolio/Leather_hub.png" },
-  { id: "02", title: "WEB ", client: "Saba export", year: "2025", cat: "Branding", tags: ["HTML", "CSS"], img: "/portfolio/saba_exports.png" },
-  { id: "03", title: "Web ", client: "Ace Exports", year: "2026", cat: "Digital Identity", tags: ["Three.js", "Node"], img: "/portfolio/ace_exports.png" },
-  { id: "04", title: "UI UX ", client: "Habib Fashion", year: "2024", cat: "Visualization", tags: ["React", "Python"], img: "/portfolio/Habib_Fashion.png" },
-  { id: "05", title: "Branding ", client: "Zain International", year: "2024", cat: "Product display", tags: ["Next.js", "node.js"], img: "/portfolio/Zain_international.png" },
-  { id: "06", title: "WEB ", client: "9K Nanotech", year: "2024", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/9k.png" },
-  { id: "07", title: "WEB ", client: "Calico Industries", year: "2023", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/calico_industries.png" },
+  { id: "01", title: "E-commerce", client: "Leather Hub.", year: "2026", cat: "Leather Goods", tags: ["Next.js", "GSAP"], img: "/portfolio/Leather_hub.png", link: "https://leather-hub.netlify.app/" },
+  { id: "02", title: "WEB ", client: "Saba export", year: "2025", cat: "Branding", tags: ["HTML", "CSS"], img: "/portfolio/saba_exports.png", link: "https://www.groupsaba.com/index.html" },
+  { id: "03", title: "Web ", client: "Ace Exports", year: "2026", cat: "Digital Identity", tags: ["Three.js", "Node"], img: "/portfolio/ace_exports.png", link: "https://www.ace-shoes.com/#" },
+  { id: "04", title: "UI UX ", client: "Habib Fashion", year: "2024", cat: "Visualization", tags: ["React", "Python"], img: "/portfolio/Habib_Fashion.png", link: "https://habibgroup.co.in/" },
+  { id: "05", title: "Branding ", client: "Zain International", year: "2024", cat: "Product display", tags: ["Next.js", "node.js"], img: "/portfolio/Zain_international.png", link: "https://zainintl.com/" },
+  { id: "06", title: "WEB ", client: "9K Nanotech", year: "2024", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/9k.png", link: "https://9knanotech.com/" },
+  { id: "07", title: "WEB ", client: "Calico Industries", year: "2023", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/calico_industries.png", link: "https://calicoindia.com/" },
 ];
 
 export default function EliteSliderPortfolio() {
@@ -39,10 +40,10 @@ export default function EliteSliderPortfolio() {
             viewport={{ once: true }}
             className="flex flex-col gap-2"
           >
-            <span className="text-yellow-500 font-mono text-xs tracking-[0.3em] uppercase">Featured Work</span>
+            <span className="text-yellow-500 font-mono text-xs tracking-[0.3em] uppercase">Selected Portfolio</span>
             <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
-              CRAFTING <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-600">BRANDS.</span>
+              DIGITAL <br /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-600">PRODUCTION.</span>
             </h2>
           </motion.div>
         </div>
@@ -53,46 +54,49 @@ export default function EliteSliderPortfolio() {
             className="flex gap-6 md:gap-10 px-5 will-change-transform"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              duration: 25,
+              duration: 30, // Optimized speed for readability
               ease: "linear",
               repeat: Infinity,
             }}
-            whileHover={{ transition: { duration: 60 } }} 
+            whileHover={{ transition: { duration: 80 } }} 
           >
             {duplicatedProjects.map((project, index) => (
-              <div 
-                key={index}
-                className="group relative shrink-0 w-[85vw] md:w-[40vw] aspect-[16/11] rounded-[24px] md:rounded-[40px] overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl cursor-pointer"
+              <Link 
+                key={index} 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative shrink-0 w-[85vw] md:w-[42vw] aspect-[16/11] rounded-[24px] md:rounded-[40px] overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl transition-all duration-500 hover:border-yellow-500/30"
               >
                 {/* PROJECT IMAGE - High contrast & Pop */}
                 <Image 
                   src={project.img} 
                   alt={project.title}
                   fill
-                  className="object-cover opacity-70 scale-105 group-hover:scale-100 group-hover:opacity-100 group-hover:saturate-125 transition-all duration-700 ease-out"
+                  className="object-cover opacity-60 scale-105 group-hover:scale-100 group-hover:opacity-100 group-hover:saturate-125 transition-all duration-1000 ease-out"
                 />
 
                 {/* DYNAMIC SHINE OVERLAY */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-white via-transparent to-transparent transition-opacity duration-500" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-tr from-white via-transparent to-transparent transition-opacity duration-700" />
                 
-                {/* BOTTOM GRADIENT - Lighter than before */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                {/* BOTTOM GRADIENT */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
                 {/* CONTENT */}
                 <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-20">
                   <div className="flex justify-between items-start">
-                    <div className="bg-black/40 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full">
-                      <p className="text-yellow-400 font-bold text-xs tracking-wider uppercase">
+                    <div className="bg-black/60 backdrop-blur-xl border border-white/10 px-5 py-2 rounded-full transform -translate-x-2 group-hover:translate-x-0 transition-transform duration-500">
+                      <p className="text-yellow-400 font-bold text-[10px] md:text-xs tracking-widest uppercase">
                          {project.client}
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-xl">
+                    <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                       <ExternalIcon />
                     </div>
                   </div>
 
-                  <div>
-                    <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-2 group-hover:text-yellow-400 transition-colors">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tighter mb-2 group-hover:text-yellow-400 transition-colors duration-300">
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-3">
@@ -102,7 +106,7 @@ export default function EliteSliderPortfolio() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </motion.div>
         </div>
@@ -115,8 +119,8 @@ export default function EliteSliderPortfolio() {
             <div className="h-px w-20 bg-gradient-to-r from-yellow-500/50 to-transparent" />
         </div>
         <div className="hidden md:flex gap-4">
-           {['Optimized', 'Responsive', 'High-Perf'].map(tag => (
-             <span key={tag} className="text-[9px] border border-white/10 px-3 py-1 rounded-full text-zinc-400 uppercase font-mono">{tag}</span>
+           {['Ultra-Low Weight', 'SEO Optimized', '60FPS Motion'].map(tag => (
+             <span key={tag} className="text-[9px] border border-white/5 px-3 py-1 rounded-full text-zinc-500 uppercase font-mono tracking-tighter">{tag}</span>
            ))}
         </div>
       </div>
