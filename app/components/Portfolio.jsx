@@ -9,10 +9,13 @@ const ExternalIcon = () => (
 );
 
 const projects = [
-  { id: "01", title: "Leather Craft", client: "Luxury Est.", year: "2026", cat: "Core System", tags: ["Next.js", "GSAP"], img: "/leather_craft_premium.png" },
-  { id: "02", title: "GLOW Luxury", client: "SkinCare Co", year: "2025", cat: "Branding", tags: ["Shopify", "Tailwind"], img: "https://images.unsplash.com/photo-1631730486784-029750059e0a?q=80&w=800" },
-  { id: "03", title: "RIZQ Fintech", client: "Rizq Tech", year: "2026", cat: "Digital Identity", tags: ["Three.js", "Node"], img: "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=800" },
-  { id: "04", title: "AETHER AI", client: "Neural Labs", year: "2026", cat: "Visualization", tags: ["React", "Python"], img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800" },
+  { id: "01", title: "E-commerce", client: "Leather Hub.", year: "2026", cat: "Leather Goods", tags: ["Next.js", "GSAP"], img: "/portfolio/leather_hub.png" },
+  { id: "02", title: "WEB ", client: "Saba export", year: "2025", cat: "Branding", tags: ["HTML", "CSS"], img: "/portfolio/saba_exports.png" },
+  { id: "03", title: "Web ", client: "ace_exports.png", year: "2026", cat: "Digital Identity", tags: ["Three.js", "Node"], img: "/portfolio/ace_exports.png" },
+  { id: "04", title: "UI UX ", client: "Habib_Fashion", year: "2024", cat: "Visualization", tags: ["React", "Python"], img: "/portfolio/Habib_Fashion.png" },
+  { id: "05", title: "UI UX ", client: "Zain International", year: "2024", cat: "Product display", tags: ["Next.js", "node.js"], img: "/portfolio/Zain_international.png" },
+  { id: "06", title: "WEB ", client: "9K nanotech", year: "2024", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/9k.png" },
+  { id: "07", title: "WEB ", client: "calico_industries.png", year: "2023", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/calico_industries.png" },
 ];
 
 export default function EliteSliderPortfolio() {
