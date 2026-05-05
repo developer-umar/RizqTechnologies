@@ -22,8 +22,8 @@ const syne = Syne({
 
 export const metadata = {
   title: {
-    default: "Rizq Technologies | Premier Digital Agency 2026",
-    template: "%s | Rizq Technologies",
+    default: "Rizq Technologies — Premier Digital Agency for Elite Brands",
+    template: "%s — Rizq Technologies",
   },
   description: "Rizq Technologies builds high-performance digital products, branding, and elite web solutions for forward-thinking brands.",
   keywords: ["Digital Agency", "Web Development", "2026 tech trends", "Branding", "Rizq Technologies"],

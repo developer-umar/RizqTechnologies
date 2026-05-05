@@ -13,8 +13,9 @@ export default function sitemap() {
     { url: `${baseUrl}/services`, lastModified: new Date(today).toISOString(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/portfolio`, lastModified: new Date(today).toISOString(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/contact`, lastModified: new Date(today).toISOString(), changeFrequency: "monthly", priority: 0.8 },
-    // Blog listing page — updated more frequently as new posts are added
     { url: `${baseUrl}/blog`, lastModified: new Date(today).toISOString(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/privacy`, lastModified: new Date(today).toISOString(), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/terms`, lastModified: new Date(today).toISOString(), changeFrequency: "yearly", priority: 0.3 },
   ];
 
   // ── Dynamic Blog Routes ───────────────────────────────────

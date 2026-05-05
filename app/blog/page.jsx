@@ -13,7 +13,7 @@ import { getAllBlogs } from "@/lib/blogData";
 // Next.js reads this export and injects it into <head>
 // The `template` from layout.js appends "| Rizq Technologies"
 export const metadata = {
-  title: "Blog | Insights on Web, AI & Digital Growth",
+  title: "Blog — Web, AI & Digital Insights | Rizq",
   description:
     "Expert insights on web development, SEO, AEO, branding, AI tools, and digital growth strategies from the Rizq Technologies team.",
   keywords: [
@@ -26,13 +26,32 @@ export const metadata = {
   ],
   // OpenGraph — controls how the link looks when shared on WhatsApp, LinkedIn etc.
   openGraph: {
-    title: "Rizq Technologies Blog | Web, AI & Digital Growth",
+    title: "Rizq Technologies Blog — Web, AI & Digital Growth",
     description:
       "Expert insights on web development, SEO, branding, and AI tools for modern businesses.",
-    url: "https://rizqtechnologies.com/blog",
+    url: "https://rizq-technologies.vercel.app/blog",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://rizq-technologies.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Rizq Technologies Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rizq Technologies Blog — Web, AI & Digital Growth",
+    description:
+      "Expert insights on web development, SEO, branding, and AI tools.",
+    creator: "@rizqtech",
+    images: ["https://rizq-technologies.vercel.app/og-image.png"],
+  },
+  alternates: {
+    canonical: "https://rizq-technologies.vercel.app/blog",
   },
   // Twitter Card
   twitter: {
@@ -79,22 +98,20 @@ export default function BlogListingPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      // ItemList: Lists all blog articles for Google Discover & rich results
       {
         "@type": "ItemList",
         name: "Rizq Technologies Blog",
         description:
           "Expert insights on web development, SEO, AEO, branding, AI, and digital growth.",
-        url: "https://rizqtechnologies.com/blog",
+        url: "https://rizq-technologies.vercel.app/blog",
         numberOfItems: blogs.length,
         itemListElement: blogs.map((blog, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: blog.title,
-          url: `https://rizqtechnologies.com/blog/${blog.slug}`,
+          url: `https://rizq-technologies.vercel.app/blog/${blog.slug}`,
         })),
       },
-      // BreadcrumbList: Displays "Home > Blog" in Google search snippets
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -102,13 +119,13 @@ export default function BlogListingPage() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://rizqtechnologies.com",
+            item: "https://rizq-technologies.vercel.app",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Blog",
-            item: "https://rizqtechnologies.com/blog",
+            item: "https://rizq-technologies.vercel.app/blog",
           },
         ],
       },
