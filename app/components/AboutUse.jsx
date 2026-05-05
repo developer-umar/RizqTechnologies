@@ -95,9 +95,7 @@ export default function AboutUsFluid() {
                 At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a group of innovative professionals dedicated to your success. We do not just build websites — we deliver complete digital ecosystems. From high-performance platforms to smart automation, our focus is simple: <span className="text-zinc-800 italic">drive real growth, not just an online presence.</span>
               </motion.p>
 
-              <motion.p variants={fadeUpVariants} className="text-base md:text-lg text-zinc-500 leading-relaxed">
-                Founded in 2023, Rizq Technologies has rapidly grown into a trusted partner for businesses across India and beyond. Our team specializes in Next.js development, AI integration, brand identity design, and custom software engineering. We combine technical expertise with strategic thinking to deliver solutions that not only look exceptional but perform exceptionally — driving measurable results for every client we work with.
-              </motion.p>
+            
               
               <motion.div variants={fadeUpVariants} className="pt-4 flex gap-4">
                 <Link href="/services" className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
