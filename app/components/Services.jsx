@@ -49,31 +49,6 @@ export default function ServicesBentoMagic() {
           ))}
         </div>
 
-        {/* ==================== DETAILED SERVICES ==================== */}
-        <div className="mt-32 lg:mt-48">
-          <div className="text-center mb-16">
-            <span className="text-yellow-500 font-mono text-[11px] font-bold tracking-[0.6em] uppercase">What We Deliver</span>
-            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase mt-4">
-              Comprehensive <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-100">Solutions</span>
-            </h2>
-            <p className="text-zinc-400 text-base md:text-lg max-w-2xl mx-auto mt-5 leading-relaxed">
-              Every service at Rizq Technologies works independently or as part of a complete digital transformation. Here is what you get.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-yellow-500/20 transition-all duration-500">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-xl bg-yellow-500/10 text-yellow-400">{service.icon}</div>
-                  <span className="text-yellow-500 font-mono text-[10px] font-black tracking-[0.3em]">{service.num}</span>
-                </div>
-                <h3 className="text-lg font-black text-white tracking-tight mb-2">{service.name}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">{service.details}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* ==================== WHY RIZQ ==================== */}
         <div className="mt-32 lg:mt-48 py-16 px-10 rounded-2xl bg-gradient-to-br from-yellow-500/5 to-transparent border border-yellow-500/10">
