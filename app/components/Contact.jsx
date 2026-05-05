@@ -263,46 +263,7 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* ==================== FAQ SECTION ==================== */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 mt-32 lg:mt-48 mb-20">
-        <div className="text-center mb-16">
-          <span className="text-yellow-500 font-mono text-[10px] tracking-[5px] uppercase">Common Questions</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mt-4">
-            Frequently <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600">Asked</span>
-          </h2>
-        </div>
-
-        <div className="space-y-4">
-          {[
-            { q: "What is the typical timeline for a project?", a: "Most projects take 4-12 weeks depending on scope. A simple landing page can be delivered in 1-2 weeks, while a full web application with custom features typically takes 8-12 weeks. We provide detailed timelines during the discovery phase." },
-            { q: "How much does a project cost?", a: "Project costs vary based on complexity and requirements. We offer transparent pricing with no hidden fees. Contact us with your project details and we will provide a detailed proposal within 24 hours." },
-            { q: "Do you provide ongoing support after launch?", a: "Yes. Every project includes a 30-day post-launch support period. We also offer monthly maintenance plans that include performance monitoring, security updates, content updates, and priority support." },
-            { q: "Can you work with existing websites?", a: "Absolutely. We can redesign, optimize, or add features to your existing website. Whether it is improving performance, updating the design, or integrating new functionality — we work with any technology stack." },
-            { q: "What information should I include in my project inquiry?", a: "Tell us about your business, project goals, target audience, timeline expectations, and budget range. The more context you provide, the more accurate our proposal will be. Even a brief description is a great starting point." },
-          ].map((faq, i) => (
-            <details key={i} className="group border border-white/8 rounded-xl bg-white/[0.02] hover:border-white/15 transition-colors">
-              <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer list-none select-none">
-                <span className="text-white text-sm font-semibold leading-snug flex-1">{faq.q}</span>
-                <span className="text-yellow-400 text-xl flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
-              </summary>
-              <p className="px-5 pb-5 text-zinc-400 text-sm leading-relaxed border-t border-white/8 pt-4">{faq.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-
-      {/* ==================== RESPONSE TIME SECTION ==================== */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 mb-20">
-        <div className="rounded-2xl border border-yellow-400/20 bg-yellow-400/5 p-8 md:p-12 text-center">
-          <p className="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-4">Response Time</p>
-          <h3 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">
-            We respond within <span className="text-yellow-400">24 hours</span>
-          </h3>
-          <p className="text-zinc-400 text-base max-w-xl mx-auto leading-relaxed">
-            Every inquiry receives a thoughtful response from our team. Whether you need a quick quote or want to discuss a complex project — we are here to help you take the next step.
-          </p>
-        </div>
-      </div>
+     
     </section>
   );
 };
