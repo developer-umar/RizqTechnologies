@@ -7,9 +7,10 @@
  *
  * Schemas included:
  *  1. Organization  — company identity, contact, social profiles
- *  2. WebSite       — site name + URL (enables Sitelinks Searchbox eligibility)
- *  3. WebPage       — describes the homepage
- *  4. ItemList      — all 7 services as a structured list (Service schema per item)
+ *  2. ProfessionalService — business type for rich results
+ *  3. WebSite       — site name + URL (enables Sitelinks Searchbox eligibility)
+ *  4. WebPage       — describes the homepage
+ *  5. ItemList      — all 7 services as a structured list (Service schema per item)
  */
 
 import Script from "next/script";
@@ -27,7 +28,7 @@ const organizationSchema = {
   url: BASE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${BASE_URL}/l9_new.png`,
+    url: `${BASE_URL}/rizq-logo.png`,
     width: 512,
     height: 512,
   },
@@ -50,6 +51,46 @@ const organizationSchema = {
     "https://www.instagram.com/rizqtechnologies",
     "https://www.facebook.com/profile.php?id=61589274352434",
     "https://www.youtube.com/@rizqtechnologies"
+  ],
+};
+
+const professionalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${BASE_URL}/#professionalservice`,
+  name: "Rizq Technologies",
+  description:
+    "Rizq Technologies is a premier digital agency building high-performance web products, AI solutions, branding, and custom software for elite brands worldwide.",
+  url: BASE_URL,
+  logo: {
+    "@type": "ImageObject",
+    url: `${BASE_URL}/rizq-logo.png`,
+  },
+  areaServed: "Worldwide",
+  priceRange: "$$",
+  serviceType: [
+    "Web Development",
+    "Brand & UI Design",
+    "AI Solutions",
+    "Graphic Designing",
+    "Digital Marketing",
+    "App Development",
+    "Custom Software",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    email: "contact.rizqtech@gmail.com",
+    availableLanguage: ["English", "Urdu", "Hindi"],
+    url: `${BASE_URL}/contact`,
+  },
+  sameAs: [
+    "https://x.com/rizq_tech",
+    "https://www.linkedin.com/company/rizqtechnologies/",
+    "https://github.com/rizqtechnologies",
+    "https://www.instagram.com/rizqtechnologies",
+    "https://www.facebook.com/profile.php?id=61589274352434",
+    "https://www.youtube.com/@rizqtechnologies",
   ],
 };
 
@@ -238,6 +279,14 @@ export default function SEOExtras() {
         type="application/ld+json"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
+      {/* ProfessionalService — business type for rich results */}
+      <Script
+        id="schema-professionalservice"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
       />
 
       {/* WebSite — canonical site identity */}

@@ -41,10 +41,13 @@ export default function EliteSliderPortfolio() {
             className="flex flex-col gap-2"
           >
             <span className="text-yellow-500 font-mono text-xs tracking-[0.3em] uppercase">Selected Portfolio</span>
-            <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
+            <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
               DIGITAL <br /> 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-600">PRODUCTION.</span>
-            </h2>
+            </h1>
+            <p className="text-zinc-400 text-base md:text-lg max-w-xl mt-4 leading-relaxed">
+              Real projects for real businesses. Each case study demonstrates our commitment to performance, premium design, and measurable results that drive growth.
+            </p>
           </motion.div>
         </div>
 
@@ -65,7 +68,7 @@ export default function EliteSliderPortfolio() {
                 key={index} 
                 href={project.link} 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="group relative shrink-0 w-[85vw] md:w-[42vw] aspect-[16/11] rounded-[24px] md:rounded-[40px] overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl transition-all duration-500 hover:border-yellow-500/30"
               >
                 {/* PROJECT IMAGE - High contrast & Pop */}
@@ -115,13 +118,55 @@ export default function EliteSliderPortfolio() {
       {/* FOOTER */}
       <div className="mt-12 px-6 md:px-20 flex justify-between items-center">
         <div className="flex items-center gap-4">
-            <span className="text-[10px] font-mono text-zinc-500 tracking-[0.5em] uppercase">Elite Dev Archive</span>
+            <span className="text-[10px] font-mono text-zinc-500 tracking-[0.5em] uppercase">Rizq Technologies</span>
             <div className="h-px w-20 bg-gradient-to-r from-yellow-500/50 to-transparent" />
         </div>
         <div className="hidden md:flex gap-4">
            {['Ultra-Low Weight', 'SEO Optimized', '60FPS Motion'].map(tag => (
              <span key={tag} className="text-[9px] border border-white/5 px-3 py-1 rounded-full text-zinc-500 uppercase font-mono tracking-tighter">{tag}</span>
            ))}
+        </div>
+      </div>
+
+      {/* ==================== PORTFOLIO STATS ==================== */}
+      <div className="max-w-7xl mx-auto px-6 md:px-20 mt-32 lg:mt-48">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+          {[
+            { metric: "95+", label: "Lighthouse Score", desc: "Average performance across all projects" },
+            { metric: "7+", label: "Live Projects", desc: "Delivered for clients across industries" },
+            { metric: "40%", label: "Avg. Conversion Lift", desc: "After redesign and optimization" },
+            { metric: "<2s", label: "Load Time", desc: "Average page load across portfolio" },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="text-center p-6 rounded-2xl bg-white/[0.02] border border-white/5"
+            >
+              <p className="text-4xl md:text-5xl font-black text-yellow-400 tracking-tighter mb-1">{item.metric}</p>
+              <p className="text-white font-bold text-xs uppercase tracking-widest mb-1">{item.label}</p>
+              <p className="text-zinc-500 text-xs leading-relaxed">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* TECH STACK */}
+        <div className="py-12 px-8 rounded-2xl bg-white/[0.01] border border-white/5">
+          <div className="text-center mb-8">
+            <span className="text-yellow-500 font-mono text-[10px] tracking-[4px] uppercase">Technology Stack</span>
+            <h3 className="text-2xl md:text-3xl font-black text-white tracking-tighter uppercase mt-3">
+              Tools We <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-600">Use</span>
+            </h3>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {["Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS", "GSAP", "Figma", "Three.js", "PostgreSQL", "MongoDB", "Vercel", "AWS"].map((tech, i) => (
+              <span key={i} className="px-4 py-2 rounded-full border border-white/10 bg-white/[0.02] text-zinc-300 text-xs font-medium hover:border-yellow-500/30 hover:text-yellow-400 transition-all cursor-default">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

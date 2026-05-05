@@ -5,13 +5,13 @@ import { Zap, BrainCircuit, Monitor, Smartphone, PenTool, Sparkles, Code2, Arrow
 import Link from "next/link";
 
 const SERVICES = [
-  { num: "01", name: "Brand & UI Design", desc: "Bold identities & stunning interfaces that make your brand unforgettable.", features: ["Visual Strategy", "Logo Systems", "UX Research", "Design Systems"], img: "/services/insta.jfif", span: "md:col-span-4", icon: <Sparkles size={22} /> },
-  { num: "02", name: "Web Development", desc: "High-performance websites built for speed, scale & conversions.", features: ["Next.js/React", "Custom API", "Performance SEO", "Cloud Scale"], img: "/services/web.avif", span: "md:col-span-8", icon: <Code2 size={22} /> },
-  { num: "03", name: "AI Solutions", desc: "Integrating neural networks and predictive models into modern workflows.", features: ["LLM Integration", "Auto-Workflows", "Data Analysis", "Custom Bots"], img: "/services/AI.webp", span: "md:col-span-7", icon: <BrainCircuit size={22} /> },
-  { num: "04", name: "Graphic Designing", desc: "High-end visual storytelling through digital art and typography.", features: ["3D Assets", "Print Media", "Motion Graphics", "Art Direction"], img: "/services/graphic.webp", span: "md:col-span-5", icon: <PenTool size={22} /> },
-  { num: "05", name: "Digital Marketing", desc: "Performance-driven marketing that turns traffic into revenue.", features: ["Ad Management", "Growth Hacking", "Market Research", "Funnel Ops"], img: "/services/digital.png", span: "md:col-span-6", icon: <Zap size={22} /> },
-  { num: "06", name: "App Development", desc: "Seamless mobile apps designed for engagement & performance.", features: ["iOS/Android", "React Native", "Smooth UX", "Store Ready"], img: "/services/mobile.png", span: "md:col-span-6", icon: <Smartphone size={22} /> },
-  { num: "07", name: "Custom Software", desc: "Tailored software built exactly for your business unique architectural problems.", features: ["ERP Systems", "Legacy Migrations", "Security Audits", "Database Design"], img: "/services/software.png", span: "md:col-span-12", icon: <Monitor size={22} /> },
+  { num: "01", name: "Brand & UI Design", desc: "Bold identities & stunning interfaces that make your brand unforgettable.", features: ["Visual Strategy", "Logo Systems", "UX Research", "Design Systems"], img: "/services/insta.jfif", span: "md:col-span-4", icon: <Sparkles size={22} />, details: "We develop comprehensive brand identities including logo design, color systems, typography, and brand guidelines. Our UI design creates interfaces optimized for user engagement and conversion." },
+  { num: "02", name: "Web Development", desc: "High-performance websites built for speed, scale & conversions.", features: ["Next.js/React", "Custom API", "Performance SEO", "Cloud Scale"], img: "/services/web.avif", span: "md:col-span-8", icon: <Code2 size={22} />, details: "We build websites that load in under 2 seconds and score 95+ on Lighthouse. Using Next.js and edge computing, we deliver fast web applications that rank well on Google and convert visitors." },
+  { num: "03", name: "AI Solutions", desc: "Integrating neural networks and predictive models into modern workflows.", features: ["LLM Integration", "Auto-Workflows", "Data Analysis", "Custom Bots"], img: "/services/AI.webp", span: "md:col-span-7", icon: <BrainCircuit size={22} />, details: "We integrate large language models, automated workflows, and intelligent chatbots into your systems. Custom AI solutions that deliver measurable efficiency gains for your business." },
+  { num: "04", name: "Graphic Designing", desc: "High-end visual storytelling through digital art and typography.", features: ["3D Assets", "Print Media", "Motion Graphics", "Art Direction"], img: "/services/graphic.webp", span: "md:col-span-5", icon: <PenTool size={22} />, details: "From social media assets to 3D product renders and motion graphics — every piece aligns with your brand identity and communicates your message with clarity and impact." },
+  { num: "05", name: "Digital Marketing", desc: "Performance-driven marketing that turns traffic into revenue.", features: ["Ad Management", "Growth Hacking", "Market Research", "Funnel Ops"], img: "/services/digital.png", span: "md:col-span-6", icon: <Zap size={22} />, details: "SEO, paid advertising, social media management, and conversion rate optimization. Every campaign backed by data analysis and A/B testing to maximize your return on investment." },
+  { num: "06", name: "App Development", desc: "Seamless mobile apps designed for engagement & performance.", features: ["iOS/Android", "React Native", "Smooth UX", "Store Ready"], img: "/services/mobile.png", span: "md:col-span-6", icon: <Smartphone size={22} />, details: "Cross-platform mobile apps using React Native delivering native-quality performance on iOS and Android. From concept to App Store submission, we handle the entire lifecycle." },
+  { num: "07", name: "Custom Software", desc: "Tailored software built exactly for your business unique architectural problems.", features: ["ERP Systems", "Legacy Migrations", "Security Audits", "Database Design"], img: "/services/software.png", span: "md:col-span-12", icon: <Monitor size={22} />, details: "Custom software from ERP systems to API integrations. Designed for scalability, security, and long-term maintainability — built to your exact business requirements." },
 ];
 
 export default function ServicesBentoMagic() {
@@ -36,10 +36,10 @@ export default function ServicesBentoMagic() {
             <span className="text-yellow-500 font-mono text-[11px] font-bold tracking-[0.6em] uppercase">Core Expertise</span>
           </div>
           
-          <h2 className="text-5xl md:text-[9rem] font-black text-white leading-[0.8] tracking-tighter uppercase">
+          <h1 className="text-5xl md:text-[9rem] font-black text-white leading-[0.8] tracking-tighter uppercase">
             ELEVATING <br /> 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-100">BRANDS.</span>
-          </h2>
+          </h1>
         </header>
 
         {/* Bento Grid */}
@@ -47,6 +47,56 @@ export default function ServicesBentoMagic() {
           {SERVICES.map((service, i) => (
             <ServiceCard key={i} service={service} />
           ))}
+        </div>
+
+        {/* ==================== DETAILED SERVICES ==================== */}
+        <div className="mt-32 lg:mt-48">
+          <div className="text-center mb-16">
+            <span className="text-yellow-500 font-mono text-[11px] font-bold tracking-[0.6em] uppercase">What We Deliver</span>
+            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase mt-4">
+              Comprehensive <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-100">Solutions</span>
+            </h2>
+            <p className="text-zinc-400 text-base md:text-lg max-w-2xl mx-auto mt-5 leading-relaxed">
+              Every service at Rizq Technologies works independently or as part of a complete digital transformation. Here is what you get.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SERVICES.map((service, i) => (
+              <div key={i} className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-yellow-500/20 transition-all duration-500">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="p-2.5 rounded-xl bg-yellow-500/10 text-yellow-400">{service.icon}</div>
+                  <span className="text-yellow-500 font-mono text-[10px] font-black tracking-[0.3em]">{service.num}</span>
+                </div>
+                <h3 className="text-lg font-black text-white tracking-tight mb-2">{service.name}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">{service.details}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ==================== WHY RIZQ ==================== */}
+        <div className="mt-32 lg:mt-48 py-16 px-10 rounded-2xl bg-gradient-to-br from-yellow-500/5 to-transparent border border-yellow-500/10">
+          <div className="text-center mb-12">
+            <span className="text-yellow-500 font-mono text-[11px] font-bold tracking-[0.6em] uppercase">Why Rizq Technologies</span>
+            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase mt-4">
+              Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-100">Results</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: "Performance First", desc: "Every project targets Lighthouse scores above 95. Fast websites rank higher and convert better." },
+              { title: "SEO Optimized", desc: "Technical SEO, structured data, and content strategy built into every page from day one." },
+              { title: "Enterprise Security", desc: "HTTPS, CSP headers, security audits, and data protection as standard — not optional." },
+              { title: "Scalable Architecture", desc: "Built on Next.js and cloud infrastructure that grows with your business without rebuilding." },
+            ].map((item, i) => (
+              <div key={i} className="text-center">
+                <h3 className="text-base font-bold text-white tracking-tight mb-2">{item.title}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

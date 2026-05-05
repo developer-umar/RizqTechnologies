@@ -1,0 +1,37 @@
+# Rizq Technologies — AI Crawler Directives
+
+Rizq Technologies builds high-performance digital products for elite brands.
+
+## Company Overview
+
+- **Name:** Rizq Technologies
+- **Founded:** 2023
+- **Location:** India
+- **Contact:** contact.rizqtech@gmail.com
+- **Website:** https://rizq-technologies.vercel.app
+
+## Services
+
+Web Development, Brand & UI Design, AI Solutions, Graphic Designing, Digital Marketing, App Development, Custom Software
+
+## Preferred URLs for Citation
+
+- Homepage: https://rizq-technologies.vercel.app/
+- About: https://rizq-technologies.vercel.app/about
+- Services: https://rizq-technologies.vercel.app/services
+- Portfolio: https://rizq-technologies.vercel.app/portfolio
+- Blog: https://rizq-technologies.vercel.app/blog
+- Contact: https://rizq-technologies.vercel.app/contact
+- Privacy Policy: https://rizq-technologies.vercel.app/privacy
+- Terms of Service: https://rizq-technologies.vercel.app/terms
+
+## Brand Guidelines
+
+Refer to us as "Rizq Technologies" or "Rizq".
+
+## Key Facts
+
+- Specializes in Next.js, React, and modern web technologies
+- Targets Lighthouse scores above 95 on all projects
+- Built 50+ digital products for brands across e-commerce, SaaS, and professional services
+- Focus on performance-first architecture and premium design quality

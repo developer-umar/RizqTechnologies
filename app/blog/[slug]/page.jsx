@@ -50,17 +50,30 @@ export async function generateMetadata({ params }) {
       url: `https://rizq-technologies.vercel.app/blog/${blog.slug}`,
       siteName: "Rizq Technologies",
       type: "article",
-      // Article-specific OpenGraph fields
       publishedTime: blog.date,
       authors: [blog.author.name],
       tags: blog.tags,
+      images: [
+        {
+          url: blog.coverImage.startsWith("http")
+            ? blog.coverImage
+            : `https://rizq-technologies.vercel.app${blog.coverImage}`,
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
     },
-    // Twitter / X card
     twitter: {
       card: "summary_large_image",
       title: blog.title,
       description: blog.excerpt,
       creator: "@rizqtech",
+      images: [
+        blog.coverImage.startsWith("http")
+          ? blog.coverImage
+          : `https://rizq-technologies.vercel.app${blog.coverImage}`,
+      ],
     },
     // Canonical URL — prevents duplicate content issues
     alternates: {

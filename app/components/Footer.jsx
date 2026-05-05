@@ -173,8 +173,8 @@ const Footer = () => {
         <div className="mt-12 lg:mt-20 pt-6 lg:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-6 text-[11px] lg:text-[12px] text-gray-500">
           <p>© {new Date().getFullYear()} Rizq Technologies</p>
           <div className="flex gap-4 lg:gap-6">
-            <Link href="#" className="hover:text-white transition-colors uppercase tracking-widest">Privacy</Link>
-            <Link href="#" className="hover:text-white transition-colors uppercase tracking-widest">Terms</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors uppercase tracking-widest">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors uppercase tracking-widest">Terms</Link>
           </div>
           <div className="flex items-center gap-2 opacity-80 bg-white/5 px-3 py-1 rounded-full">
             <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
