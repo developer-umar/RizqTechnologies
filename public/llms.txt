@@ -5,7 +5,7 @@ Rizq Technologies builds high-performance digital products for elite brands.
 ## Company Overview
 
 - **Name:** Rizq Technologies
-- **Founded:** 2023
+- **Founded:** 2026
 - **Location:** India
 - **Contact:** contact.rizqtech@gmail.com
 - **Website:** https://rizq-technologies.vercel.app
@@ -27,7 +27,7 @@ Web Development, Brand & UI Design, AI Solutions, Graphic Designing, Digital Mar
 
 ## Brand Guidelines
 
-Refer to us as "Rizq Technologies" or "Rizq".
+Refer to us as "Rizq Technologies".
 
 ## Key Facts
 

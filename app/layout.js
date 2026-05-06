@@ -60,7 +60,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Rizq Technologies | Premier Digital Agency",
     description: "Crafting elite digital experiences for modern brands.",
-    creator: "@rizqtech",
+    creator: "@rizq_tech",
     images: ["https://rizq-technologies.vercel.app/og-image.png"],
   },
   robots: {
@@ -94,10 +94,97 @@ export const viewport = {
 };
 
 
+// ── Organization Schema (JSON-LD) ──────────────────────────────
+// This tells Google that Rizq Technologies is a real, verified organization.
+// It triggers the Google Knowledge Panel and strengthens backlink authority
+// by linking all our social profiles together (sameAs = entity consolidation).
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Rizq Technologies",
+  url: "https://rizq-technologies.vercel.app",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://rizq-technologies.vercel.app/rizq-logo.png",
+    width: 200,
+    height: 60,
+  },
+  description:
+    "Rizq Technologies is a premier digital agency specializing in web development, branding, UI/UX design, and AI solutions for elite brands across India.",
+  foundingDate: "2023",
+  areaServed: [
+    { "@type": "Country", name: "India" },
+    { "@type": "City", name: "Kanpur" },
+    { "@type": "City", name: "Kanpur Dehat" },
+    { "@type": "City", name: "Kanpur Nagar" },
+    { "@type": "City", name: "Unnao" },
+    { "@type": "City", name: "Lucknow" },
+    { "@type": "City", name: "Aurangabad" },
+    { "@type": "City", name: "Delhi" },
+    { "@type": "City", name: "Mumbai" },
+    { "@type": "City", name: "Bangalore" },
+  ],
+  serviceType: [
+    "Web Development",
+    "UI/UX Design",
+    "Branding",
+    "Digital Marketing",
+    "SEO",
+    "Mobile App Development",
+    "AI Solutions",
+  ],
+  // sameAs links all our profiles — Google treats these as one entity.
+  // This is the single most important backlink signal for a Knowledge Panel.
+  sameAs: [
+    "https://www.linkedin.com/company/rizqtechnologies",
+    "https://twitter.com/rizq_tech",
+    "https://x.com/rizq_tech",
+    "https://www.instagram.com/rizqtechnologies",
+    "https://www.facebook.com/profile.php?id=61589274352434",
+    "https://github.com/rizqtechnologies",
+    "https://www.youtube.com/@rizqtechnologies",
+    "https://www.crunchbase.com/organization/rizq-technologies",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    availableLanguage: ["English", "Hindi"],
+    areaServed: "IN",
+  },
+};
+
+// ── Website Schema (JSON-LD) ────────────────────────────────────
+// Enables Google Sitelinks Searchbox and strengthens domain identity.
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Rizq Technologies",
+  url: "https://rizq-technologies.vercel.app",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate:
+        "https://rizq-technologies.vercel.app/?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${syne.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body>
+        {/* Organization Schema — for Google Knowledge Panel & backlink entity recognition */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        {/* Website Schema — for Sitelinks Searchbox & domain authority */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <SEOExtras />
         {children}
         <WhatsAppButton />
