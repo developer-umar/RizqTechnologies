@@ -26,7 +26,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Contact Us — Rizq Technologies",
     description: "Ready to build? Reach out to Rizq Technologies.",
-    creator: "@rizqtech",
+    creator: "@rizq_tech",
     images: ["https://rizq-technologies.vercel.app/og-image.png"],
   },
   alternates: {

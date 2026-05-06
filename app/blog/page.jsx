@@ -47,23 +47,11 @@ export const metadata = {
     title: "Rizq Technologies Blog — Web, AI & Digital Growth",
     description:
       "Expert insights on web development, SEO, branding, and AI tools.",
-    creator: "@rizqtech",
+    creator: "@rizq_tech",
     images: ["https://rizq-technologies.vercel.app/og-image.png"],
   },
   alternates: {
     canonical: "https://rizq-technologies.vercel.app/blog",
-  },
-  // Twitter Card
-  twitter: {
-    card: "summary_large_image",
-    title: "Rizq Technologies Blog | Web, AI & Digital Growth",
-    description:
-      "Expert insights on web development, SEO, branding, and AI tools.",
-    creator: "@rizqtech",
-  },
-  // Canonical URL — prevents duplicate content issues
-  alternates: {
-    canonical: "https://rizqtechnologies.com/blog",
   },
 };
 
