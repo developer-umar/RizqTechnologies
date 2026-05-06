@@ -8,41 +8,46 @@ import Footer from "./components/Footer";
 import AboutUsFluid from "./components/AboutUse";
 import TechSection from "./components/Technologies";
 import ServicesBentoMagic from "./components/Services";
-
+import ScrollManager from "./components/ScrollManager";
 
 // import ClientCursor from "./components/cursor/clientCursor";
 
 
 
 export const metadata = {
-  title: "Mastering Craft | High-Performance Digital Products 2026",
+  title: "Rizq Technologies — Premier Digital Agency for Elite Brands",
   description: "Rizq Technologies builds high-performance digital products for elite brands. Specializing in Web Development, Branding, and AI Solutions.",
+  keywords: ["Rizq Technologies", "Digital Agency", "Web Development", "AI Solutions", "Branding", "Custom Software", "App Development"],
   openGraph: {
-    title: "Mastering Craft | High-Performance Digital Products",
-    description: "Built for 2026. Rizq Technologies is the premier digital agency for elite brands.",
+    title: "Rizq Technologies — Premier Digital Agency for Elite Brands",
+    description: "Rizq Technologies builds high-performance digital products, branding, and elite web solutions for forward-thinking brands.",
+    url: "https://rizq-technologies.vercel.app",
+    siteName: "Rizq Technologies",
+    locale: "en_US",
+    type: "website",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
+        alt: "Rizq Technologies — Premier Digital Agency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mastering Craft | High-Performance Digital Products",
-    description: "Built for 2026. Rizq Technologies is the premier digital agency for elite brands.",
-    creator: "@RizqTechnologies",
+    title: "Rizq Technologies — Premier Digital Agency",
+    description: "Rizq Technologies builds high-performance digital products for elite brands.",
+    creator: "@rizqtech",
     images: ["/og-image.png"],
   },
-
 };
 
 export default function Home() {
   return (
     <>
       <div id="home">
-
+        <ScrollManager />
         {/* <ClientCursor /> */}
         <Navbar />
         <HeroSection />

@@ -25,12 +25,25 @@ const staggerContainer = {
 };
 
 export default function AboutUsFluid() {
-  // Parallax effect for the background watermark
   const { scrollYProgress } = useScroll();
   const yWatermark = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
+  const pillars = [
+    { number: "50+", label: "Projects Delivered", desc: "Across e-commerce, SaaS, and enterprise sectors" },
+    { number: "7+", label: "Core Services", desc: "From web development to AI-powered solutions" },
+    { number: "100%", label: "Client Satisfaction", desc: "Measured by retention and referral rates" },
+    { number: "24/7", label: "Support Available", desc: "Dedicated team for every project lifecycle" },
+  ];
+
+  const values = [
+    { title: "Performance First", desc: "Every website we build targets Lighthouse scores above 95. Speed is not an afterthought — it is our foundation." },
+    { title: "Design Excellence", desc: "We believe premium design is a business advantage. Every pixel, every interaction is crafted to convert visitors into customers." },
+    { title: "Scalable Architecture", desc: "We build for tomorrow, not just today. Our solutions grow with your business, handling traffic spikes and feature expansion seamlessly." },
+    { title: "Transparent Process", desc: "No hidden costs, no surprise delays. You get regular updates, clear timelines, and full visibility into every phase of development." },
+  ];
+
   return (
-    <section className="relative w-full bg-[#fcfcfc] text-zinc-950 overflow-hidden py-24 md:py-32 lg:py-48" id="about">
+    <section className="relative w-full bg-[#fcfcfc] text-zinc-950 overflow-hidden" id="about">
       
       {/* 1. THE WATERMARK: Premium Parallax Branding */}
       <motion.div 
@@ -42,7 +55,8 @@ export default function AboutUsFluid() {
         </h2>
       </motion.div>
 
-      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24">
+      {/* ==================== HERO SECTION ==================== */}
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 py-24 md:py-32 lg:py-48">
         
         <motion.div 
           variants={staggerContainer}
@@ -62,7 +76,7 @@ export default function AboutUsFluid() {
               </span>
             </motion.div>
 
-            <motion.h3 
+            <motion.h1 
               variants={fadeUpVariants} 
               className="text-6xl md:text-8xl lg:text-[8.5rem] font-black tracking-tighter leading-[0.8] uppercase mb-10"
             >
@@ -70,7 +84,7 @@ export default function AboutUsFluid() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-600">
                 Global.
               </span>
-            </motion.h3>
+            </motion.h1>
 
             <div className="max-w-2xl space-y-8">
               <motion.p variants={fadeUpVariants} className="text-2xl md:text-3xl text-zinc-800 font-semibold leading-tight">
@@ -78,34 +92,20 @@ export default function AboutUsFluid() {
               </motion.p>
               
               <motion.p variants={fadeUpVariants} className="text-lg md:text-xl text-zinc-500 leading-relaxed font-medium">
-                At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a group of innovative professionals dedicated to your success. We don’t just build websites — we deliver complete digital ecosystems. From high-performance platforms to smart automation, our focus is simple: <span className="text-zinc-800 italic">drive real growth, not just an online presence.</span>
+                At <strong className="text-black font-bold">Rizq Technologies</strong>, we are a group of innovative professionals dedicated to your success. We do not just build websites — we deliver complete digital ecosystems. From high-performance platforms to smart automation, our focus is simple: <span className="text-zinc-800 italic">drive real growth, not just an online presence.</span>
               </motion.p>
+
+            
               
               <motion.div variants={fadeUpVariants} className="pt-4 flex gap-4">
-                <Link href="#services" className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
+                <Link href="/services" className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
                   Explore Services
                 </Link>
-                <Link href="/blog" className="px-6 py-3 border border-zinc-300 hover:border-black text-black font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
-                  Read Insights
+                <Link href="/contact" className="px-6 py-3 border border-zinc-300 hover:border-black text-black font-bold tracking-wide uppercase rounded-full text-sm transition-colors">
+                  Start a Project
                 </Link>
               </motion.div>
             </div>
-
-            {/* Performance Stats / Pillars */}
-            <motion.div variants={fadeUpVariants} className="grid grid-cols-2 gap-8 mt-16 pt-12 border-t border-zinc-200">
-              <div>
-                <p className="text-4xl md:text-5xl font-black text-black tracking-tighter">
-                  Scale<span className="text-amber-500">.</span>
-                </p>
-                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mt-2 font-mono">Digital Brands</p>
-              </div>
-              <div>
-                <p className="text-4xl md:text-5xl font-black text-black tracking-tighter">
-                  Grow<span className="text-amber-500">+</span>
-                </p>
-                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mt-2 font-mono">Global Impact</p>
-              </div>
-            </motion.div>
           </div>
 
           {/* ==================== RIGHT SIDE: THE VISUAL ==================== */}
@@ -118,16 +118,14 @@ export default function AboutUsFluid() {
                 src="/about.jpg" 
                 alt="Rizq Technologies - Scalable Solutions" 
                 fill
-                quality={100} 
+                quality={80} 
                 priority
                 className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
 
-              {/* Animated Growth Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
               
-              {/* Floating Brand Badge */}
               <motion.div 
                 initial={{ x: 20, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
@@ -144,12 +142,12 @@ export default function AboutUsFluid() {
               </div>
             </motion.div>
 
-            {/* Decorative Geometric Element */}
             <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl" />
           </div>
 
         </motion.div>
       </div>
+
     </section>
   );
 }
