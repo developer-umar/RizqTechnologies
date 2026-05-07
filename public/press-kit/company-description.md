@@ -45,7 +45,22 @@ Website: https://rizq-technologies.vercel.app
 - Instagram: https://www.instagram.com/rizqtechnologies
 - Facebook: https://www.facebook.com/profile.php?id=61589274352434
 - GitHub: https://github.com/rizqtechnologies
-- Youtube: https://www.youtube.com/@rizqtechnologies
+- YouTube: https://www.youtube.com/@rizqtechnologies
+
+## Directory Listings & Reviews
+- Google Business Profile: https://share.google/bu1wcUJbZsnMLuop2 ✅
+- Justdial: https://jsdl.in/DT-99GUPD5JEWG ✅
+- IndiaMart: https://buyer.indiamart.com/?tabname=profile ✅
+- Clutch.co: https://clutch.co/profile/rizq-technologies ✅
+- Upwork: https://www.upwork.com/freelancers/~012fc931bb5fcd9b1f ✅
+- Sulekha: ⏳ Pending
+- TradeIndia: ⏳ Pending
+- GoodFirms: ⏳ Pending
+- DesignRush: ⏳ Pending
+- Crunchbase: ⏳ Pending
+- LinkedIn Company Page: ⏳ Pending
+- AngelList/Wellfound: ⏳ Pending
+- Product Hunt: ⏳ Pending
 
 ## Brand Assets
 - Logo (PNG): https://rizq-technologies.vercel.app/rizq-logo.png
