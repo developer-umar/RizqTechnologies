@@ -28,7 +28,7 @@ Our core services include:
 At Rizq Technologies, we believe that exceptional digital presence is the foundation of modern business success. Every project we undertake is approached with meticulous attention to detail, creative innovation, and a relentless focus on measurable results.
 
 ## Founded
-2023
+2026
 
 ## Location
 India (serving clients nationally and internationally)
