@@ -34,7 +34,7 @@ const organizationSchema = {
   },
   description:
     "Rizq Technologies is a premier digital agency building high-performance web products, AI solutions, branding, and custom software for elite brands worldwide.",
-  foundingDate: "2023",
+  foundingDate: "2026",
   areaServed: "Worldwide",
   // contactPoint: how Google surfaces your contact info in search results
   contactPoint: {

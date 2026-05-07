@@ -11,12 +11,12 @@ const ExternalIcon = () => (
 
 const projects = [
   { id: "01", title: "E-commerce", client: "Leather Hub.", year: "2026", cat: "Leather Goods", tags: ["Next.js", "GSAP"], img: "/portfolio/Leather_hub.png", link: "https://leather-hub.netlify.app/" },
-  { id: "02", title: "WEB ", client: "Saba export", year: "2025", cat: "Branding", tags: ["HTML", "CSS"], img: "/portfolio/saba_exports.png", link: "https://www.groupsaba.com/index.html" },
+  { id: "02", title: "WEB ", client: "Saba export", year: "2026", cat: "Branding", tags: ["HTML", "CSS"], img: "/portfolio/saba_exports.png", link: "https://www.groupsaba.com/index.html" },
   { id: "03", title: "Web ", client: "Ace Exports", year: "2026", cat: "Digital Identity", tags: ["Three.js", "Node"], img: "/portfolio/ace_exports.png", link: "https://www.ace-shoes.com/#" },
-  { id: "04", title: "UI UX ", client: "Habib Fashion", year: "2024", cat: "Visualization", tags: ["React", "Python"], img: "/portfolio/Habib_Fashion.png", link: "https://habibgroup.co.in/" },
-  { id: "05", title: "Branding ", client: "Zain International", year: "2024", cat: "Product display", tags: ["Next.js", "node.js"], img: "/portfolio/Zain_international.png", link: "https://zainintl.com/" },
-  { id: "06", title: "WEB ", client: "9K Nanotech", year: "2024", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/9k.png", link: "https://9knanotech.com/" },
-  { id: "07", title: "WEB ", client: "Calico Industries", year: "2023", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/calico_industries.png", link: "https://calicoindia.com/" },
+  { id: "04", title: "UI UX ", client: "Habib Fashion", year: "2026", cat: "Visualization", tags: ["React", "Python"], img: "/portfolio/Habib_Fashion.png", link: "https://habibgroup.co.in/" },
+  { id: "05", title: "Branding ", client: "Zain International", year: "2026", cat: "Product display", tags: ["Next.js", "node.js"], img: "/portfolio/Zain_international.png", link: "https://zainintl.com/" },
+  { id: "06", title: "WEB ", client: "9K Nanotech", year: "2026", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/9k.png", link: "https://9knanotech.com/" },
+  { id: "07", title: "WEB ", client: "Calico Industries", year: "2026", cat: "Brand", tags: ["React", "nodejs"], img: "/portfolio/calico_industries.png", link: "https://calicoindia.com/" },
 ];
 
 export default function EliteSliderPortfolio() {

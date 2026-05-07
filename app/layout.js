@@ -111,7 +111,7 @@ const organizationSchema = {
   },
   description:
     "Rizq Technologies is a premier digital agency specializing in web development, branding, UI/UX design, and AI solutions for elite brands across India.",
-  foundingDate: "2023",
+  foundingDate: "2026",
   areaServed: [
     { "@type": "Country", name: "India" },
     { "@type": "City", name: "Kanpur" },
