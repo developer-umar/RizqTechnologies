@@ -111,7 +111,7 @@ const organizationSchema = {
   },
   description:
     "Rizq Technologies is a premier digital agency specializing in web development, branding, UI/UX design, and AI solutions for elite brands across India.",
-  foundingDate: "2023",
+  foundingDate: "2026",
   areaServed: [
     { "@type": "Country", name: "India" },
     { "@type": "City", name: "Kanpur" },
@@ -135,15 +135,35 @@ const organizationSchema = {
   ],
   // sameAs links all our profiles — Google treats these as one entity.
   // This is the single most important backlink signal for a Knowledge Panel.
+  // ✅ = Confirmed live | ⏳ TODO = Add URL when account is created
   sameAs: [
-    "https://www.linkedin.com/company/rizqtechnologies",
-    "https://twitter.com/rizq_tech",
-    "https://x.com/rizq_tech",
-    "https://www.instagram.com/rizqtechnologies",
-    "https://www.facebook.com/profile.php?id=61589274352434",
-    "https://github.com/rizqtechnologies",
-    "https://www.youtube.com/@rizqtechnologies",
-    "https://www.crunchbase.com/organization/rizq-technologies",
+    // ── Social / Professional (already live) ─────────────────────
+    "https://www.linkedin.com/company/rizqtechnologies",   // ✅ LinkedIn
+    "https://twitter.com/rizq_tech",                       // ✅ Twitter/X
+    "https://x.com/rizq_tech",                             // ✅ X (mirror)
+    "https://www.instagram.com/rizqtechnologies",          // ✅ Instagram
+    "https://www.facebook.com/profile.php?id=61589274352434", // ✅ Facebook
+    "https://github.com/rizqtechnologies",                 // ✅ GitHub
+    "https://www.youtube.com/@rizqtechnologies",           // ✅ YouTube
+
+    // ── Indian Business Directories ───────────────────────────────
+    "https://share.google/bu1wcUJbZsnMLuop2",              // ✅ Google Business Profile
+    "https://jsdl.in/DT-99GUPD5JEWG",                     // ✅ Justdial
+    "https://buyer.indiamart.com/?tabname=profile",        // ✅ IndiaMart
+    // ⏳ TODO: Add Sulekha URL when account is created
+    // ⏳ TODO: Add TradeIndia URL when account is created
+
+    // ── International Tech Directories ───────────────────────────
+    "https://clutch.co/profile/rizq-technologies",         // ✅ Clutch.co
+    "https://www.upwork.com/freelancers/~012fc931bb5fcd9b1f", // ✅ Upwork
+    // ⏳ TODO: Add GoodFirms URL when account is created
+    // ⏳ TODO: Add DesignRush URL when account is created
+    // ⏳ TODO: Add Agency Spotter URL when account is created
+
+    // ── Other Platforms ───────────────────────────────────────────
+    // ⏳ TODO: Add Crunchbase URL when account is created (https://www.crunchbase.com/organization/rizq-technologies)
+    // ⏳ TODO: Add Wellfound/AngelList URL when account is created
+    // ⏳ TODO: Add Product Hunt URL when account is created
   ],
   contactPoint: {
     "@type": "ContactPoint",
