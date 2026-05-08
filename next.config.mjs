@@ -18,19 +18,19 @@ const nextConfig = {
 
     ],
   },
-  async redirects() {
-    return [
-      // ── WWW Canonicalization ─────────────────────────────────────────────
-      // Permanently redirect www → non-www so Google sees only one canonical URL.
-      // 308 = permanent redirect that preserves the HTTP method (better than 301).
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.rizqtechnologies.online" }],
-        destination: "https://rizqtechnologies.online/:path*",
-        permanent: true, // Issues HTTP 308
-      },
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     // ── WWW Canonicalization ─────────────────────────────────────────────
+  //     // Permanently redirect www → non-www so Google sees only one canonical URL.
+  //     // 308 = permanent redirect that preserves the HTTP method (better than 301).
+  //     {
+  //       source: "/:path*",
+  //       has: [{ type: "host", value: "www.rizqtechnologies.online" }],
+  //       destination: "https://rizqtechnologies.online/:path*",
+  //       permanent: true, // Issues HTTP 308
+  //     },
+  //   ];
+  // },
 
 
   async headers() {
