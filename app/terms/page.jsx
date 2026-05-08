@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+﻿import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 
@@ -6,7 +6,7 @@ export const metadata = {
   title: "Terms of Service",
   description: "Terms of Service for Rizq Technologies — governing your use of our website and services.",
   alternates: {
-    canonical: "https://rizq-technologies.vercel.app/terms",
+    canonical: "https://rizqtechnologies.online/terms",
   },
   robots: {
     index: true,
@@ -34,7 +34,7 @@ export default function TermsPage() {
             <div className="space-y-10 text-white/70 leading-relaxed">
               <section>
                 <h2 className="text-xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
-                <p>By accessing and using the Rizq Technologies website (https://rizq-technologies.vercel.app), you accept and agree to be bound by these Terms of Service. If you do not agree, please do not use our website.</p>
+                <p>By accessing and using the Rizq Technologies website (https://rizqtechnologies.online), you accept and agree to be bound by these Terms of Service. If you do not agree, please do not use our website.</p>
               </section>
 
               <section>

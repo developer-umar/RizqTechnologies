@@ -1,8 +1,8 @@
-// Import blog data so we can generate sitemap entries for all blog posts
+﻿// Import blog data so we can generate sitemap entries for all blog posts
 import { getAllBlogs } from "@/lib/blogData";
 
 export default function sitemap() {
-  const baseUrl = "https://rizq-technologies.vercel.app";
+  const baseUrl = "https://rizqtechnologies.online";
   const today = new Date().toISOString().split("T")[0];
 
   // ── Static Routes ─────────────────────────────────────────

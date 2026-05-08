@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SEOExtras.jsx
  *
  * Injects Schema.org JSON-LD structured data into every page via the root layout.
@@ -15,7 +15,7 @@
 
 import Script from "next/script";
 
-const BASE_URL = "https://rizq-technologies.vercel.app";
+const BASE_URL = "https://rizqtechnologies.online";
 
 // ── 1. Organization ──────────────────────────────────────────────────────────
 // Tells Google: who is this company, how to contact them, and where they exist

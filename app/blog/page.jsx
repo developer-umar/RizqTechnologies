@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // app/blog/page.jsx
 // Blog Listing Page — /blog
 // Server Component (no "use client" needed — no interactivity here)
@@ -29,13 +29,13 @@ export const metadata = {
     title: "Rizq Technologies Blog — Web, AI & Digital Growth",
     description:
       "Expert insights on web development, SEO, branding, and AI tools for modern businesses.",
-    url: "https://rizq-technologies.vercel.app/blog",
+    url: "https://rizqtechnologies.online/blog",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://rizq-technologies.vercel.app/og-image.png",
+        url: "https://rizqtechnologies.online/og-image.png",
         width: 1200,
         height: 630,
         alt: "Rizq Technologies Blog",
@@ -48,10 +48,10 @@ export const metadata = {
     description:
       "Expert insights on web development, SEO, branding, and AI tools.",
     creator: "@rizq_tech",
-    images: ["https://rizq-technologies.vercel.app/og-image.png"],
+    images: ["https://rizqtechnologies.online/og-image.png"],
   },
   alternates: {
-    canonical: "https://rizq-technologies.vercel.app/blog",
+    canonical: "https://rizqtechnologies.online/blog",
   },
 };
 
@@ -91,13 +91,13 @@ export default function BlogListingPage() {
         name: "Rizq Technologies Blog",
         description:
           "Expert insights on web development, SEO, AEO, branding, AI, and digital growth.",
-        url: "https://rizq-technologies.vercel.app/blog",
+        url: "https://rizqtechnologies.online/blog",
         numberOfItems: blogs.length,
         itemListElement: blogs.map((blog, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: blog.title,
-          url: `https://rizq-technologies.vercel.app/blog/${blog.slug}`,
+          url: `https://rizqtechnologies.online/blog/${blog.slug}`,
         })),
       },
       {
@@ -107,13 +107,13 @@ export default function BlogListingPage() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://rizq-technologies.vercel.app",
+            item: "https://rizqtechnologies.online",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Blog",
-            item: "https://rizq-technologies.vercel.app/blog",
+            item: "https://rizqtechnologies.online/blog",
           },
         ],
       },

@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+﻿import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Contact from "../components/Contact";
 
@@ -9,13 +9,13 @@ export const metadata = {
   openGraph: {
     title: "Contact Us — Rizq Technologies",
     description: "Ready to build? Reach out to Rizq Technologies for premium digital solutions.",
-    url: "https://rizq-technologies.vercel.app/contact",
+    url: "https://rizqtechnologies.online/contact",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://rizq-technologies.vercel.app/og-image.png",
+        url: "https://rizqtechnologies.online/og-image.png",
         width: 1200,
         height: 630,
         alt: "Contact Rizq Technologies",
@@ -27,10 +27,10 @@ export const metadata = {
     title: "Contact Us — Rizq Technologies",
     description: "Ready to build? Reach out to Rizq Technologies.",
     creator: "@rizq_tech",
-    images: ["https://rizq-technologies.vercel.app/og-image.png"],
+    images: ["https://rizqtechnologies.online/og-image.png"],
   },
   alternates: {
-    canonical: "https://rizq-technologies.vercel.app/contact",
+    canonical: "https://rizqtechnologies.online/contact",
   },
 };
 
@@ -41,16 +41,16 @@ export default function ContactPage() {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://rizq-technologies.vercel.app" },
-          { "@type": "ListItem", position: 2, name: "Contact", item: "https://rizq-technologies.vercel.app/contact" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://rizqtechnologies.online" },
+          { "@type": "ListItem", position: 2, name: "Contact", item: "https://rizqtechnologies.online/contact" },
         ],
       },
       {
         "@type": "ContactPage",
         name: "Contact Rizq Technologies",
         description: "Get in touch with Rizq Technologies for web development, branding, AI solutions, and digital strategy.",
-        url: "https://rizq-technologies.vercel.app/contact",
-        isPartOf: { "@type": "WebSite", name: "Rizq Technologies", url: "https://rizq-technologies.vercel.app" },
+        url: "https://rizqtechnologies.online/contact",
+        isPartOf: { "@type": "WebSite", name: "Rizq Technologies", url: "https://rizqtechnologies.online" },
       },
     ],
   };

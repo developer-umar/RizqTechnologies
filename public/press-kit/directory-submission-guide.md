@@ -1,4 +1,4 @@
-# 📋 Directory Submission Guide — Rizq Technologies
+﻿# 📋 Directory Submission Guide — Rizq Technologies
 > Ye file har pending platform ke liye exact content provide karti hai. Bas copy-paste karo.
 
 ---
@@ -20,13 +20,13 @@
 
 ```
 Company Name:    Rizq Technologies
-Website:         https://rizq-technologies.vercel.app
+Website:         https://rizqtechnologies.online
 Tagline:         Premier Digital Agency for Elite Brands
 Founded:         2026
 Location:        India
 Email:           [apna email daalo]
 Phone:           [apna phone daalo]
-Logo:            https://rizq-technologies.vercel.app/rizq-logo.png
+Logo:            https://rizqtechnologies.online/rizq-logo.png
 ```
 
 ---
@@ -156,7 +156,7 @@ deliver digital products that don't just look great — they perform.
 
 Serving startups, SMEs, and enterprises across India and beyond.
 
-🌐 Website: https://rizq-technologies.vercel.app
+🌐 Website: https://rizqtechnologies.online
 ```
 
 **Specialties:** Web Development, Branding, UI/UX Design, SEO, Mobile Apps, Digital Marketing, AI Solutions
@@ -168,7 +168,7 @@ Serving startups, SMEs, and enterprises across India and beyond.
 **Organization Name:** `rizqtechnologies`
 **Display Name:** Rizq Technologies
 **Bio:** `Premier Digital Agency — Web Development, Branding, UI/UX & AI Solutions`
-**Website:** `https://rizq-technologies.vercel.app`
+**Website:** `https://rizqtechnologies.online`
 **Location:** India
 
 ---
@@ -187,7 +187,7 @@ web development, branding, UI/UX design, and AI solutions for ambitious
 businesses across India.
 ```
 
-**Website:** `https://rizq-technologies.vercel.app`
+**Website:** `https://rizqtechnologies.online`
 
 ---
 
@@ -202,7 +202,7 @@ Premier digital agency delivering web development, branding, UI/UX design, and A
 **Founded:** 2026
 **HQ Location:** India
 **Industries:** Information Technology, Web Development, Digital Marketing, Design
-**Website:** `https://rizq-technologies.vercel.app`
+**Website:** `https://rizqtechnologies.online`
 
 ---
 
@@ -210,7 +210,7 @@ Premier digital agency delivering web development, branding, UI/UX design, and A
 
 **Maker Name:** Rizq Technologies
 **Tagline:** `Premier Digital Agency for Elite Brands`
-**Website:** `https://rizq-technologies.vercel.app`
+**Website:** `https://rizqtechnologies.online`
 
 ---
 

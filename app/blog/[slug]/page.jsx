@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: blog.title,
       description: blog.excerpt,
-      url: `https://rizq-technologies.vercel.app/blog/${blog.slug}`,
+      url: `https://rizqtechnologies.online/blog/${blog.slug}`,
       siteName: "Rizq Technologies",
       type: "article",
       publishedTime: blog.date,
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }) {
         {
           url: blog.coverImage.startsWith("http")
             ? blog.coverImage
-            : `https://rizq-technologies.vercel.app${blog.coverImage}`,
+            : `https://rizqtechnologies.online${blog.coverImage}`,
           width: 1200,
           height: 630,
           alt: blog.title,
@@ -72,12 +72,12 @@ export async function generateMetadata({ params }) {
       images: [
         blog.coverImage.startsWith("http")
           ? blog.coverImage
-          : `https://rizq-technologies.vercel.app${blog.coverImage}`,
+          : `https://rizqtechnologies.online${blog.coverImage}`,
       ],
     },
     // Canonical URL — prevents duplicate content issues
     alternates: {
-      canonical: `https://rizq-technologies.vercel.app/blog/${blog.slug}`,
+      canonical: `https://rizqtechnologies.online/blog/${blog.slug}`,
     },
   };
 }
@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }) {
   // 1. Article schema — tells Google this is an article (for rich results)
   // 2. FAQPage schema — feeds People Also Ask / AI answer engines (AEO)
   // 3. BreadcrumbList — shows "Home > Blog > Post Title" in search
-  const BASE_URL = "https://rizq-technologies.vercel.app";
+  const BASE_URL = "https://rizqtechnologies.online";
 
   const jsonLd = {
     "@context": "https://schema.org",

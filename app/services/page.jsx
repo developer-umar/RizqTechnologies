@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+﻿import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServicesBentoMagic from "../components/Services";
 
@@ -9,13 +9,13 @@ export const metadata = {
   openGraph: {
     title: "Our Services — Rizq Technologies",
     description: "Premium digital services from Rizq Technologies — Web Development, AI Solutions, Branding, Marketing, and Custom Software for elite brands.",
-    url: "https://rizq-technologies.vercel.app/services",
+    url: "https://rizqtechnologies.online/services",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://rizq-technologies.vercel.app/og-image.png",
+        url: "https://rizqtechnologies.online/og-image.png",
         width: 1200,
         height: 630,
         alt: "Rizq Technologies Services",
@@ -27,10 +27,10 @@ export const metadata = {
     title: "Our Services — Rizq Technologies",
     description: "Premium digital services from Rizq Technologies.",
     creator: "@rizq_tech",
-    images: ["https://rizq-technologies.vercel.app/og-image.png"],
+    images: ["https://rizqtechnologies.online/og-image.png"],
   },
   alternates: {
-    canonical: "https://rizq-technologies.vercel.app/services",
+    canonical: "https://rizqtechnologies.online/services",
   },
 };
 
@@ -41,33 +41,33 @@ export default function ServicesPage() {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://rizq-technologies.vercel.app" },
-          { "@type": "ListItem", position: 2, name: "Services", item: "https://rizq-technologies.vercel.app/services" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://rizqtechnologies.online" },
+          { "@type": "ListItem", position: 2, name: "Services", item: "https://rizqtechnologies.online/services" },
         ],
       },
       {
         "@type": "Service",
         name: "Web Development",
-        provider: { "@type": "Organization", name: "Rizq Technologies", url: "https://rizq-technologies.vercel.app" },
+        provider: { "@type": "Organization", name: "Rizq Technologies", url: "https://rizqtechnologies.online" },
         serviceType: "Web Development",
         areaServed: "Worldwide",
-        url: "https://rizq-technologies.vercel.app/services",
+        url: "https://rizqtechnologies.online/services",
       },
       {
         "@type": "Service",
         name: "Brand & UI Design",
-        provider: { "@type": "Organization", name: "Rizq Technologies", url: "https://rizq-technologies.vercel.app" },
+        provider: { "@type": "Organization", name: "Rizq Technologies", url: "https://rizqtechnologies.online" },
         serviceType: "Brand & UI Design",
         areaServed: "Worldwide",
-        url: "https://rizq-technologies.vercel.app/services",
+        url: "https://rizqtechnologies.online/services",
       },
       {
         "@type": "Service",
         name: "AI Solutions",
-        provider: { "@type": "Organization", name: "Rizq Technologies", url: "https://rizq-technologies.vercel.app" },
+        provider: { "@type": "Organization", name: "Rizq Technologies", url: "https://rizqtechnologies.online" },
         serviceType: "AI Solutions",
         areaServed: "Worldwide",
-        url: "https://rizq-technologies.vercel.app/services",
+        url: "https://rizqtechnologies.online/services",
       },
     ],
   };

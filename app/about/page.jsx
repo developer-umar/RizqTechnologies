@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+﻿import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AboutUsFluid from "../components/AboutUse";
 
@@ -9,13 +9,13 @@ export const metadata = {
   openGraph: {
     title: "About Us — Rizq Technologies",
     description: "We build scalable digital solutions that turn growing businesses into global brands.",
-    url: "https://rizq-technologies.vercel.app/about",
+    url: "https://rizqtechnologies.online/about",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://rizq-technologies.vercel.app/og-image.png",
+        url: "https://rizqtechnologies.online/og-image.png",
         width: 1200,
         height: 630,
         alt: "About Rizq Technologies",
@@ -27,10 +27,10 @@ export const metadata = {
     title: "About Us — Rizq Technologies",
     description: "Learn about the team behind Rizq Technologies.",
     creator: "@rizq_tech",
-    images: ["https://rizq-technologies.vercel.app/og-image.png"],
+    images: ["https://rizqtechnologies.online/og-image.png"],
   },
   alternates: {
-    canonical: "https://rizq-technologies.vercel.app/about",
+    canonical: "https://rizqtechnologies.online/about",
   },
 };
 
@@ -41,16 +41,16 @@ export default function AboutPage() {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://rizq-technologies.vercel.app" },
-          { "@type": "ListItem", position: 2, name: "About", item: "https://rizq-technologies.vercel.app/about" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://rizqtechnologies.online" },
+          { "@type": "ListItem", position: 2, name: "About", item: "https://rizqtechnologies.online/about" },
         ],
       },
       {
         "@type": "AboutPage",
         name: "About Rizq Technologies",
         description: "A team of innovative professionals building scalable digital solutions that turn growing businesses into global brands.",
-        url: "https://rizq-technologies.vercel.app/about",
-        isPartOf: { "@type": "WebSite", name: "Rizq Technologies", url: "https://rizq-technologies.vercel.app" },
+        url: "https://rizqtechnologies.online/about",
+        isPartOf: { "@type": "WebSite", name: "Rizq Technologies", url: "https://rizqtechnologies.online" },
       },
     ],
   };

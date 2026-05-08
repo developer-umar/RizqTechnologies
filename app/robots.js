@@ -1,4 +1,4 @@
-export default function robots() {
+﻿export default function robots() {
   return {
     rules: [
       {
@@ -7,6 +7,6 @@ export default function robots() {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://rizq-technologies.vercel.app/sitemap.xml",
+    sitemap: "https://rizqtechnologies.online/sitemap.xml",
   };
 }

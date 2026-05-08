@@ -1,4 +1,4 @@
-# 🔗 Backlink Building Plan — Rizq Technologies
+﻿# 🔗 Backlink Building Plan — Rizq Technologies
 
 ## Goal
 Rizq Technologies ka **Domain Authority (DA)** badhana aur Google pe **top rankings** hasil karna — specifically "digital agency India", "web design agency", aur city-specific keywords ke liye.
@@ -35,8 +35,8 @@ Ye changes backend mein karne hain jisse websites automatically reference karein
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Rizq Technologies",
-  "url": "https://rizq-technologies.vercel.app",
-  "logo": "https://rizq-technologies.vercel.app/rizq-logo.png",
+  "url": "https://rizqtechnologies.online",
+  "logo": "https://rizqtechnologies.online/rizq-logo.png",
   "sameAs": [
     "https://www.linkedin.com/company/rizq-technologies",
     "https://twitter.com/rizqtech",

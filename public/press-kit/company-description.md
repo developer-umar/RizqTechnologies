@@ -1,10 +1,10 @@
-# Rizq Technologies — Press Kit
+﻿# Rizq Technologies — Press Kit
 
 ## Company Name
 Rizq Technologies
 
 ## Website
-https://rizq-technologies.vercel.app
+https://rizqtechnologies.online
 
 ## Tagline
 Premier Digital Agency for Elite Brands
@@ -37,7 +37,7 @@ India (serving clients nationally and internationally)
 Web Development | Branding | UI/UX Design | SEO | Mobile Apps | AI Solutions
 
 ## Contact
-Website: https://rizq-technologies.vercel.app
+Website: https://rizqtechnologies.online
 
 ## Social Media
 - LinkedIn: https://www.linkedin.com/company/rizqtechnologies
@@ -63,8 +63,8 @@ Website: https://rizq-technologies.vercel.app
 - Product Hunt: ⏳ Pending
 
 ## Brand Assets
-- Logo (PNG): https://rizq-technologies.vercel.app/rizq-logo.png
-- OG Image (1200x630): https://rizq-technologies.vercel.app/og-image.png
+- Logo (PNG): https://rizqtechnologies.online/rizq-logo.png
+- OG Image (1200x630): https://rizqtechnologies.online/og-image.png
 
 ---
 *For media inquiries, partnership opportunities, or backlink requests, please visit our website.*

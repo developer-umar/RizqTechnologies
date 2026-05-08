@@ -1,4 +1,4 @@
-# Rizq Technologies — AI Crawler Directives
+﻿# Rizq Technologies — AI Crawler Directives
 
 Rizq Technologies builds high-performance digital products for elite brands.
 
@@ -8,7 +8,7 @@ Rizq Technologies builds high-performance digital products for elite brands.
 - **Founded:** 2026
 - **Location:** India
 - **Contact:** contact.rizqtech@gmail.com
-- **Website:** https://rizq-technologies.vercel.app
+- **Website:** https://rizqtechnologies.online
 
 ## Services
 
@@ -16,14 +16,14 @@ Web Development, Brand & UI Design, AI Solutions, Graphic Designing, Digital Mar
 
 ## Preferred URLs for Citation
 
-- Homepage: https://rizq-technologies.vercel.app/
-- About: https://rizq-technologies.vercel.app/about
-- Services: https://rizq-technologies.vercel.app/services
-- Portfolio: https://rizq-technologies.vercel.app/portfolio
-- Blog: https://rizq-technologies.vercel.app/blog
-- Contact: https://rizq-technologies.vercel.app/contact
-- Privacy Policy: https://rizq-technologies.vercel.app/privacy
-- Terms of Service: https://rizq-technologies.vercel.app/terms
+- Homepage: https://rizqtechnologies.online/
+- About: https://rizqtechnologies.online/about
+- Services: https://rizqtechnologies.online/services
+- Portfolio: https://rizqtechnologies.online/portfolio
+- Blog: https://rizqtechnologies.online/blog
+- Contact: https://rizqtechnologies.online/contact
+- Privacy Policy: https://rizqtechnologies.online/privacy
+- Terms of Service: https://rizqtechnologies.online/terms
 
 ## Brand Guidelines
 

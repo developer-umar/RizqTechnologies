@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+﻿import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 
@@ -6,7 +6,7 @@ export const metadata = {
   title: "Privacy Policy",
   description: "Privacy Policy for Rizq Technologies — how we collect, use, and protect your personal information.",
   alternates: {
-    canonical: "https://rizq-technologies.vercel.app/privacy",
+    canonical: "https://rizqtechnologies.online/privacy",
   },
   robots: {
     index: true,

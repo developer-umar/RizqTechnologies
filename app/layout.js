@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+﻿import { Geist, Geist_Mono } from "next/font/google";
 import { Syne } from "next/font/google";
 import "./globals.css";
 import SEOExtras from "./components/SEOExtras";
@@ -35,21 +35,21 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizq-technologies.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizqtechnologies.online"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Rizq Technologies | Premier Digital Agency",
     description: "Crafting elite digital experiences for modern brands.",
-    url: "https://rizq-technologies.vercel.app",
+    url: "https://rizqtechnologies.online",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
     modifiedTime: new Date().toISOString(),
     images: [
       {
-        url: "https://rizq-technologies.vercel.app/og-image.png",
+        url: "https://rizqtechnologies.online/og-image.png",
         width: 1200,
         height: 630,
         alt: "Rizq Technologies | Premier Digital Agency",
@@ -61,7 +61,7 @@ export const metadata = {
     title: "Rizq Technologies | Premier Digital Agency",
     description: "Crafting elite digital experiences for modern brands.",
     creator: "@rizq_tech",
-    images: ["https://rizq-technologies.vercel.app/og-image.png"],
+    images: ["https://rizqtechnologies.online/og-image.png"],
   },
   robots: {
     index: true,
@@ -102,10 +102,10 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Rizq Technologies",
-  url: "https://rizq-technologies.vercel.app",
+  url: "https://rizqtechnologies.online",
   logo: {
     "@type": "ImageObject",
-    url: "https://rizq-technologies.vercel.app/rizq-logo.png",
+    url: "https://rizqtechnologies.online/rizq-logo.png",
     width: 200,
     height: 60,
   },
@@ -179,13 +179,13 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Rizq Technologies",
-  url: "https://rizq-technologies.vercel.app",
+  url: "https://rizqtechnologies.online",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
       urlTemplate:
-        "https://rizq-technologies.vercel.app/?q={search_term_string}",
+        "https://rizqtechnologies.online/?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },

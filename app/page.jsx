@@ -1,4 +1,4 @@
-import CTA from "./components/CTA";
+﻿import CTA from "./components/CTA";
 import HeroSection from "./components/HeroSection";
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
@@ -21,7 +21,7 @@ export const metadata = {
   openGraph: {
     title: "Rizq Technologies — Premier Digital Agency for Elite Brands",
     description: "Rizq Technologies builds high-performance digital products, branding, and elite web solutions for forward-thinking brands.",
-    url: "https://rizq-technologies.vercel.app",
+    url: "https://rizqtechnologies.online",
     siteName: "Rizq Technologies",
     locale: "en_US",
     type: "website",
