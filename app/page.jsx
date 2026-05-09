@@ -17,6 +17,7 @@ import ScrollManager from "./components/ScrollManager";
 export const metadata = {
   title: "Rizq Technologies — Premier Digital Agency for Elite Brands",
   description: "Rizq Technologies builds high-performance digital products for elite brands. Specializing in Web Development, Branding, and AI Solutions.",
+  applicationName: "Rizq Technologies",
   keywords: ["Rizq Technologies", "Digital Agency", "Web Development", "AI Solutions", "Branding", "Custom Software", "App Development"],
   openGraph: {
     title: "Rizq Technologies — Premier Digital Agency for Elite Brands",

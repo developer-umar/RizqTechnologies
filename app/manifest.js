@@ -1,7 +1,9 @@
 export default function manifest() {
   return {
     name: 'Rizq Technologies',
-    short_name: 'Rizq',
+    short_name: 'Rizq Technologies',
+    applicationName: "Rizq Technologies",
+
     description: 'Rizq Technologies - Elite SEO And Performance Optimization',
     start_url: '/',
     display: 'standalone',
