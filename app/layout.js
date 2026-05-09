@@ -61,7 +61,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Rizq Technologies | Premier Digital Agency",
     description: "Crafting elite digital experiences for modern brands.",
-    creator: "@rizq_tech",
+    creator: "@RizqTechnologies",
     images: ["https://rizqtechnologies.online/og-image.png"],
   },
   robots: {
@@ -115,15 +115,10 @@ const organizationSchema = {
   foundingDate: "2026",
   areaServed: [
     { "@type": "Country", name: "India" },
+    { "@type": "City", name: "Jajmau" },
     { "@type": "City", name: "Kanpur" },
     { "@type": "City", name: "Kanpur Dehat" },
     { "@type": "City", name: "Kanpur Nagar" },
-    { "@type": "City", name: "Unnao" },
-    { "@type": "City", name: "Lucknow" },
-    { "@type": "City", name: "Aurangabad" },
-    { "@type": "City", name: "Delhi" },
-    { "@type": "City", name: "Mumbai" },
-    { "@type": "City", name: "Bangalore" },
   ],
   serviceType: [
     "Web Development",
@@ -140,7 +135,6 @@ const organizationSchema = {
   sameAs: [
     // ── Social / Professional (already live) ─────────────────────
     "https://www.linkedin.com/company/rizqtechnologies",   // ✅ LinkedIn
-    "https://twitter.com/rizq_tech",                       // ✅ Twitter/X
     "https://x.com/rizq_tech",                             // ✅ X (mirror)
     "https://www.instagram.com/rizqtechnologies",          // ✅ Instagram
     "https://www.facebook.com/profile.php?id=61589274352434", // ✅ Facebook

@@ -31,7 +31,7 @@ At Rizq Technologies, we believe that exceptional digital presence is the founda
 2026
 
 ## Location
-India (serving clients nationally and internationally)
+Jajmau, Kanpur, Uttar Pradesh, India (serving clients nationally and internationally)
 
 ## Key Services
 Web Development | Branding | UI/UX Design | SEO | Mobile Apps | AI Solutions
