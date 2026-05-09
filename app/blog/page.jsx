@@ -47,7 +47,7 @@ export const metadata = {
     title: "Rizq Technologies Blog — Web, AI & Digital Growth",
     description:
       "Expert insights on web development, SEO, branding, and AI tools.",
-    creator: "@rizq_tech",
+    creator: "@RizqTechnologies",
     images: ["https://rizqtechnologies.online/og-image.png"],
   },
   alternates: {

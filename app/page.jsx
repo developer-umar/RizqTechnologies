@@ -39,7 +39,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Rizq Technologies — Premier Digital Agency",
     description: "Rizq Technologies builds high-performance digital products for elite brands.",
-    creator: "@rizq_tech",
+    creator: "@RizqTechnologies",
     images: ["/og-image.png"],
   },
 };

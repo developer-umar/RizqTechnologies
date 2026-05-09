@@ -26,7 +26,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "About Us — Rizq Technologies",
     description: "Learn about the team behind Rizq Technologies.",
-    creator: "@rizq_tech",
+    creator: "@RizqTechnologies",
     images: ["https://rizqtechnologies.online/og-image.png"],
   },
   alternates: {

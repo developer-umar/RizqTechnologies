@@ -26,7 +26,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Our Portfolio — Rizq Technologies",
     description: "Curated case studies of premium digital experiences.",
-    creator: "@rizq_tech",
+    creator: "@RizqTechnologies",
     images: ["https://rizqtechnologies.online/og-image.png"],
   },
   alternates: {

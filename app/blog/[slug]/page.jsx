@@ -68,7 +68,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: blog.title,
       description: blog.excerpt,
-      creator: "@rizq_tech",
+      creator: "@RizqTechnologies",
       images: [
         blog.coverImage.startsWith("http")
           ? blog.coverImage
