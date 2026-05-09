@@ -4,7 +4,7 @@
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: ["/api/"],
       },
     ],
     sitemap: "https://rizqtechnologies.online/sitemap.xml",

@@ -37,7 +37,7 @@ export const metadata = {
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizqtechnologies.online"),
   alternates: {
-    canonical: "/",
+    canonical: "https://rizqtechnologies.online",
   },
   openGraph: {
     title: "Rizq Technologies | Premier Digital Agency",
