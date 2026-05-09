@@ -1,9 +1,10 @@
-﻿import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Syne } from "next/font/google";
 import "./globals.css";
 import SEOExtras from "./components/SEOExtras";
 import WhatsAppButton from "./components/WhatsAppButton";
-
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -208,6 +209,8 @@ export default function RootLayout({ children }) {
         <SEOExtras />
         {children}
         <WhatsAppButton />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
