@@ -15,7 +15,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://rizqtechnologies.online/og-image.png",
+        url: "https://rizqtechnologies.online/services/services-og.png",
         width: 1200,
         height: 630,
         alt: "Rizq Technologies Services",
@@ -27,7 +27,7 @@ export const metadata = {
     title: "Our Services — Rizq Technologies",
     description: "Premium digital services from Rizq Technologies.",
     creator: "@RizqTechnologies",
-    images: ["https://rizqtechnologies.online/og-image.png"],
+    images: ["https://rizqtechnologies.online/services/services-og.png"],
   },
   alternates: {
     canonical: "https://rizqtechnologies.online/services",
