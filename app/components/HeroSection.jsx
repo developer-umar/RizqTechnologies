@@ -77,71 +77,93 @@ const HeroSection = () => {
           </motion.h1>
         </div>
 
-        {/* Action Hub */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="relative z-[60] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
-        >
-          {/* CONNECT BUTTON (Professional Yellow Theme) */}
-          <Link href="/contact" onClick={(e) => handleLinkClick(e, "/contact", "contact")} className="relative z-[70] block group">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-[1.5px] rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,transparent_270deg,#fbbf24_360deg)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[0.5px]"
-            />
+     {/* Action Hub */}
+<motion.div 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.6, duration: 1 }}
+  className="relative z-[60] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
+>
+  {/* CONNECT BUTTON (Professional Yellow Theme) */}
+  <Link 
+    href="/contact" 
+    onClick={(e) => handleLinkClick(e, "/contact", "contact")} 
+    className="relative z-[70] block group"
+  >
+    {/* Outer Glow Ring - Constant breathing effect */}
+    <motion.div
+      animate={{ 
+        scale: [1, 1.05, 1],
+        opacity: [0.3, 0.6, 0.3] 
+      }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute -inset-1 rounded-full bg-amber-400/30 blur-md group-hover:bg-amber-400/50 transition-all duration-500"
+    />
 
-            <motion.button
-              ref={btnRef}
-              onMouseMove={handleMouseMove}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative w-[240px] sm:w-[270px] h-[64px] rounded-full overflow-hidden border border-amber-400/20 bg-amber-400 transition-all duration-500 group-hover:border-white/20 shadow-[0_0_30px_rgba(251,191,36,0.2)]"
-            >
-              {/* Spotlight Effect */}
-              <motion.div
-                className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
-                style={{
-                  background: useTransform(
-                    [dx, dy],
-                    ([x, y]) => `radial-gradient(100px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.3), transparent 80%)`
-                  ),
-                }}
-              />
+    <motion.button
+      ref={btnRef}
+      onMouseMove={handleMouseMove}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="relative w-[260px] sm:w-[280px] h-[66px] rounded-full overflow-hidden border-2 border-amber-400 bg-amber-400 shadow-[0_20px_50px_-10px_rgba(251,191,36,0.4)] transition-all duration-500"
+    >
+      {/* 1. CREATIVE SHIMMER: A light streak that passes through on hover */}
+      <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent z-10" />
 
-              {/* Fluid Fill - Inverse Black Effect */}
-              <div className="absolute inset-0 bg-zinc-950 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-600 ease-[cubic-bezier(0.19,1,0.22,1)] z-0" />
+      {/* 2. SPOTLIGHT: Follows the mouse cursor */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
+        style={{
+          background: useTransform(
+            [dx, dy],
+            ([x, y]) => `radial-gradient(120px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.5), transparent 80%)`
+          ),
+        }}
+      />
 
-              <div className="relative z-20 flex items-center justify-center h-full text-black group-hover:text-amber-400 transition-colors duration-500">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={btnText}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.35 }}
-                    className="font-black uppercase tracking-[0.3em] text-[10px] sm:text-[12px]"
-                  >
-                    {btnText}
-                  </motion.span>
-                </AnimatePresence>
-              </div>
-            </motion.button>
-          </Link>
-
-          {/* VIEW WORK */}
-          <Link href="/portfolio" onClick={(e) => handleLinkClick(e, "/portfolio", "portfolio")} className="relative z-[70] hidden md:flex items-center gap-4 group transition-all duration-300">
-            <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:border-amber-400 group-hover:bg-amber-400/5 transition-all duration-500 shadow-xl">
-              <span className="text-white text-xl group-hover:text-amber-400 transition-all duration-300 transform group-hover:translate-x-1">→</span>
-            </div>
-            <span className="text-zinc-500 group-hover:text-white font-black uppercase tracking-[0.25em] text-[10px] transition-colors">
-              See the work
-            </span>
-          </Link>
-        </motion.div>
+      {/* 3. TEXT LAYER: High contrast for professionalism */}
+      <div className="relative z-20 flex items-center justify-center h-full">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={btnText}
+            initial={{ opacity: 0, letterSpacing: "0.1em" }}
+            animate={{ opacity: 1, letterSpacing: "0.3em" }}
+            exit={{ opacity: 0, letterSpacing: "0.1em" }}
+            transition={{ duration: 0.4 }}
+            className="text-black font-black uppercase text-[11px] sm:text-[13px] pointer-events-none"
+          >
+            {btnText}
+          </motion.span>
+        </AnimatePresence>
       </div>
 
+      {/* Subtle Inner Shadow for Depth */}
+      <div className="absolute inset-0 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)] pointer-events-none" />
+    </motion.button>
+  </Link>
+
+  {/* VIEW WORK - Matching professional style */}
+  <Link 
+    href="/portfolio" 
+    onClick={(e) => handleLinkClick(e, "/portfolio", "portfolio")} 
+    className="relative z-[70] hidden md:flex items-center gap-5 group transition-all duration-300"
+  >
+    <div className="relative w-14 h-14 rounded-full border border-zinc-800 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:border-amber-400 group-hover:shadow-[0_0_20px_rgba(251,191,36,0.2)]">
+      <motion.div 
+        className="absolute inset-0 bg-amber-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500" 
+      />
+      <span className="relative z-10 text-white text-xl group-hover:text-black transition-colors duration-300 transform group-hover:translate-x-1">
+        →
+      </span>
+    </div>
+    <div className="flex flex-col">
+      <span className="text-zinc-500 group-hover:text-white font-bold uppercase tracking-[0.2em] text-[10px] transition-colors">
+        See the work
+      </span>
+      <div className="h-[1px] w-0 group-hover:w-full bg-amber-400 transition-all duration-500" />
+    </div>
+  </Link>
+</motion.div>
       {/* SCROLL INDICATOR */}
       <motion.div 
         initial={{ opacity: 0 }}
