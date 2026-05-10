@@ -42,7 +42,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Rizq Technologies | Crafting technology for business Growth",
-    description: "Helping Local businesses to go global ",
+    description: "Helping Local Businesses Gain Visibility in International Markets",
     url: "https://rizqtechnologies.online",
     siteName: "Rizq Technologies",
     locale: "en_US",
@@ -111,7 +111,7 @@ const organizationSchema = {
     height: 60,
   },
   description:
-    "Rizq Technologies is a leading digital agency in Kanpur specializing in website development, branding, UI/UX design, AI solutions, and corporate digital services for businesses, leather industries, startups, and growing brands across India.",
+    "Rizq Technologies is a leading software development  agency in Kanpur specializing in website development, branding, UI/UX design, AI solutions, and corporate digital services for businesses, leather industries, startups, and growing brands across India.",
   foundingDate: "2026",
   areaServed: [
     { "@type": "Country", name: "India" },
