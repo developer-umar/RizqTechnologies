@@ -9,6 +9,7 @@ import AboutUsFluid from "./components/AboutUse";
 import TechSection from "./components/Technologies";
 import ServicesBentoMagic from "./components/Services";
 import ScrollManager from "./components/ScrollManager";
+import CreativeTestimonials from "./components/Testimonials";
 
 // import ClientCursor from "./components/cursor/clientCursor";
 
@@ -58,6 +59,7 @@ export default function Home() {
 
         <Portfolio />
         {/* <Pricing /> */}
+        <CreativeTestimonials/>
         <CTA />
         <Contact />
         <Footer />
