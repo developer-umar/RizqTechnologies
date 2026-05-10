@@ -1,146 +1,171 @@
-'use client';
+"use client";
 
 import React from "react";
-import { Zap, BrainCircuit, Monitor, Smartphone, PenTool, Sparkles, Code2, ArrowUpRight } from "lucide-react";
+import { Zap, BrainCircuit, Monitor, Smartphone, PenTool, Sparkles, Code2, ArrowUpRight, ShieldCheck, Rocket, Search, Cpu } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const SERVICES = [
-  { num: "01", name: "Brand & UI Design", desc: "Bold identities & stunning interfaces that make your brand unforgettable.", features: ["Visual Strategy", "Logo Systems", "UX Research", "Design Systems"], img: "/services/insta.jfif", span: "md:col-span-4", icon: <Sparkles size={22} />, details: "We develop comprehensive brand identities including logo design, color systems, typography, and brand guidelines. Our UI design creates interfaces optimized for user engagement and conversion." },
-  { num: "02", name: "Web Development", desc: "High-performance websites built for speed, scale & conversions.", features: ["Next.js/React", "Custom API", "Performance SEO", "Cloud Scale"], img: "/services/web.avif", span: "md:col-span-8", icon: <Code2 size={22} />, details: "We build websites that load in under 2 seconds and score 95+ on Lighthouse. Using Next.js and edge computing, we deliver fast web applications that rank well on Google and convert visitors." },
-  { num: "03", name: "AI Solutions", desc: "Integrating neural networks and predictive models into modern workflows.", features: ["LLM Integration", "Auto-Workflows", "Data Analysis", "Custom Bots"], img: "/services/AI.webp", span: "md:col-span-7", icon: <BrainCircuit size={22} />, details: "We integrate large language models, automated workflows, and intelligent chatbots into your systems. Custom AI solutions that deliver measurable efficiency gains for your business." },
-  { num: "04", name: "Graphic Designing", desc: "High-end visual storytelling through digital art and typography.", features: ["3D Assets", "Print Media", "Motion Graphics", "Art Direction"], img: "/services/graphic.webp", span: "md:col-span-5", icon: <PenTool size={22} />, details: "From social media assets to 3D product renders and motion graphics — every piece aligns with your brand identity and communicates your message with clarity and impact." },
-  { num: "05", name: "Digital Marketing", desc: "Performance-driven marketing that turns traffic into revenue.", features: ["Ad Management", "Growth Hacking", "Market Research", "Funnel Ops"], img: "/services/digital.avif", span: "md:col-span-6", icon: <Zap size={22} />, details: "SEO, paid advertising, social media management, and conversion rate optimization. Every campaign backed by data analysis and A/B testing to maximize your return on investment." },
-  { num: "06", name: "App Development", desc: "Seamless mobile apps designed for engagement & performance.", features: ["iOS/Android", "React Native", "Smooth UX", "Store Ready"], img: "/services/app.jpg", span: "md:col-span-6", icon: <Smartphone size={18} />, details: "Cross-platform mobile apps using React Native delivering native-quality performance on iOS and Android. From concept to App Store submission, we handle the entire lifecycle." },
-  { num: "07", name: "Custom Software", desc: "Tailored software built exactly for your business unique architectural problems.", features: ["ERP Systems", "Legacy Migrations", "Security Audits", "Database Design"], img: "/services/software.avif", span: "md:col-span-12", icon: <Monitor size={18} />, details: "Custom software from ERP systems to API integrations. Designed for scalability, security, and long-term maintainability — built to your exact business requirements." },
+  { num: "01", name: "Brand & UI Design", desc: "Bold identities & stunning interfaces that make your brand unforgettable.", features: ["Visual Strategy", "Logo Systems", "UX Research", "Design Systems"], img: "/services/insta.jfif", span: "md:col-span-4", icon: <Sparkles size={22} /> },
+  { num: "02", name: "Web Development", desc: "High-performance websites built for speed, scale & conversions.", features: ["Next.js/React", "Custom API", "Performance SEO", "Cloud Scale"], img: "/services/web.avif", span: "md:col-span-8", icon: <Code2 size={22} /> },
+  { num: "03", name: "AI Solutions", desc: "Integrating neural networks and predictive models into modern workflows.", features: ["LLM Integration", "Auto-Workflows", "Data Analysis", "Custom Bots"], img: "/services/AI.webp", span: "md:col-span-7", icon: <BrainCircuit size={22} /> },
+  { num: "04", name: "Graphic Designing", desc: "High-end visual storytelling through digital art and typography.", features: ["3D Assets", "Print Media", "Motion Graphics", "Art Direction"], img: "/services/graphic.webp", span: "md:col-span-5", icon: <PenTool size={22} /> },
+  { num: "05", name: "Digital Marketing", desc: "Performance-driven marketing that turns traffic into revenue.", features: ["Ad Management", "Growth Hacking", "Market Research", "Funnel Ops"], img: "/services/digital.avif", span: "md:col-span-6", icon: <Zap size={22} /> },
+  { num: "06", name: "App Development", desc: "Seamless mobile apps designed for engagement & performance.", features: ["iOS/Android", "React Native", "Smooth UX", "Store Ready"], img: "/services/app.jpg", span: "md:col-span-6", icon: <Smartphone size={18} /> },
+  { num: "07", name: "Custom Software", desc: "Tailored software built exactly for your business unique architectural problems.", features: ["ERP Systems", "Legacy Migrations", "Security Audits", "Database Design"], img: "/services/software.avif", span: "md:col-span-12", icon: <Monitor size={18} /> },
+];
+
+const WHY_US = [
+  { title: "Performance First", desc: "Every project targets Lighthouse scores above 95. Fast websites rank higher and convert better.", icon: <Rocket className="text-yellow-500" size={24} /> },
+  { title: "SEO Optimized", desc: "Technical SEO, structured data, and content strategy built into every page from day one.", icon: <Search className="text-yellow-500" size={24} /> },
+  { title: "Enterprise Security", desc: "HTTPS, CSP headers, security audits, and data protection as standard — not optional.", icon: <ShieldCheck className="text-yellow-500" size={24} /> },
+  { title: "Scalable Architecture", desc: "Built on Next.js and cloud infrastructure that grows with your business seamlessly.", icon: <Cpu className="text-yellow-500" size={24} /> },
 ];
 
 export default function ServicesBentoMagic() {
   return (
     <section className="relative min-h-screen bg-[#020202] py-24 px-4 md:px-10 overflow-hidden" id="services">
       
-      {/* CREATIVE BACKGROUND - Moving Mesh & Orbs */}
+      {/* BACKGROUND ELEMENTS */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(circle_at_50%_50%,#facc1510_0%,transparent_50%)]" />
-        <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-yellow-500/[0.03] blur-[140px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-yellow-600/[0.02] blur-[160px] rounded-full animate-pulse" />
-        
-        {/* Modern Dot Mesh */}
-        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <header className="mb-20">
-          <div className="flex items-center gap-3 mb-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-3 mb-6"
+          >
             <div className="w-2 h-2 rounded-full bg-yellow-500 shadow-[0_0_10px_#facc15]" />
             <span className="text-yellow-500 font-mono text-[11px] font-bold tracking-[0.6em] uppercase">Core Expertise</span>
-          </div>
+          </motion.div>
           
-          <h1 className="text-5xl md:text-[9rem] font-black text-white leading-[0.8] tracking-tighter uppercase">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-[8rem] lg:text-[10rem] font-black text-white leading-[0.8] tracking-tighter uppercase"
+          >
             ELEVATING <br /> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-100">BRANDS.</span>
-          </h1>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-100 italic">BRANDS.</span>
+          </motion.h1>
         </header>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           {SERVICES.map((service, i) => (
-            <ServiceCard key={i} service={service} />
+            <ServiceCard key={i} service={service} index={i} />
           ))}
         </div>
 
-
-        {/* ==================== WHY RIZQ ==================== */}
-        <div className="mt-32 lg:mt-48 py-16 px-10 rounded-2xl bg-gradient-to-br from-yellow-500/5 to-transparent border border-yellow-500/10">
-          <div className="text-center mb-12">
-            <span className="text-yellow-500 font-mono text-[11px] font-bold tracking-[0.6em] uppercase">Why Rizq Technologies</span>
-            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase mt-4">
-              Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-100">Results</span>
+        {/* ==================== WHY RIZQ: THE CREATIVE UPGRADE ==================== */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-32 lg:mt-48 relative"
+        >
+          <div className="text-left mb-16 max-w-2xl">
+            <span className="text-yellow-500 font-mono text-[11px] font-bold tracking-[0.6em] uppercase">Why Choose Us</span>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mt-4 leading-none">
+              Engineered for <br/> <span className="text-zinc-600">Peak Performance.</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: "Performance First", desc: "Every project targets Lighthouse scores above 95. Fast websites rank higher and convert better." },
-              { title: "SEO Optimized", desc: "Technical SEO, structured data, and content strategy built into every page from day one." },
-              { title: "Enterprise Security", desc: "HTTPS, CSP headers, security audits, and data protection as standard — not optional." },
-              { title: "Scalable Architecture", desc: "Built on Next.js and cloud infrastructure that grows with your business without rebuilding." },
-            ].map((item, i) => (
-              <div key={i} className="text-center">
-                <h3 className="text-base font-bold text-white tracking-tight mb-2">{item.title}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {WHY_US.map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-yellow-500/30 transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center mb-6 group-hover:bg-yellow-500 transition-colors duration-500">
+                  <div className="group-hover:text-black transition-colors">
+                    {item.icon}
+                  </div>
+                </div>
+                <h3 className="text-xl font-black text-white tracking-tight mb-3 uppercase italic">{item.title}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed font-medium group-hover:text-zinc-300 transition-colors">
+                  {item.desc}
+                </p>
+              </motion.div>
             ))}
           </div>
-        </div>
+          
+          {/* Subtle accent for the section */}
+          <div className="absolute -top-10 -right-10 w-64 h-64 bg-yellow-500/5 blur-[100px] pointer-events-none" />
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function ServiceCard({ service }) {
+function ServiceCard({ service, index }) {
   return (
-    <div
-      className={`${service.span} group relative rounded-[3rem] overflow-hidden border border-white/10 bg-zinc-950 min-h-[460px] flex flex-col z-10 
-      transition-all duration-500 hover:border-yellow-500/50 hover:shadow-[0_30px_60px_-15px_rgba(250,204,21,0.15)]
-      will-change-transform`}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      viewport={{ once: true }}
+      className={`${service.span} group relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-zinc-950 min-h-[420px] flex flex-col z-10 
+      transition-all duration-500 hover:border-yellow-500/40 hover:shadow-[0_40px_80px_-15px_rgba(250,204,21,0.2)]`}
     >
-      {/* Background Image - Colorful & Sharp */}
       <div className="absolute inset-0 z-0">
         <img
           src={service.img}
           alt={service.name}
           loading="lazy"
-          className="w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-1000 ease-in-out"
+          className="w-full h-full object-cover opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-1000"
         />
-        {/* Stronger bottom fade for text readability without darkening the whole image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
       </div>
 
-      {/* Content Overlay */}
-      <div className="relative z-20 p-8 md:p-12 flex flex-col h-full justify-between flex-grow">
+      <div className="relative z-20 p-8 md:p-10 flex flex-col h-full justify-between flex-grow">
         <div className="space-y-6">
           <div className="flex justify-between items-start">
-            <div className="w-14 h-14 rounded-3xl bg-black/40 backdrop-blur-2xl border border-white/20 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-500 group-hover:text-black transition-all duration-500">
+            <div className="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-500 group-hover:text-black transition-all duration-500">
               {service.icon}
             </div>
-            <span className="text-white/20 font-black text-5xl tracking-tighter group-hover:text-yellow-500 transition-colors duration-500">
+            <span className="text-white/10 font-black text-6xl tracking-tighter group-hover:text-yellow-500/20 transition-all">
               {service.num}
             </span>
           </div>
 
           <div>
-            <h3 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter group-hover:text-yellow-400 transition-colors drop-shadow-lg">
+            <h3 className="text-4xl font-black text-white mb-3 tracking-tighter group-hover:text-yellow-400 transition-colors uppercase italic leading-none">
               {service.name}
             </h3>
-            <p className="text-zinc-200 text-sm md:text-lg font-bold leading-relaxed max-w-[300px] drop-shadow-md">
+            <p className="text-zinc-400 text-sm font-medium leading-relaxed max-w-[280px]">
               {service.desc}
             </p>
           </div>
         </div>
 
-        {/* Features Section */}
         <div className="mt-8">
-           <div className="flex flex-wrap gap-2 mb-10">
-              {service.features.map((feat, idx) => (
-                <span 
-                  key={idx}
-                  className="px-4 py-1.5 rounded-2xl bg-black/60 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest backdrop-blur-xl group-hover:border-yellow-500/30 transition-all shadow-lg"
-                >
-                  {feat}
-                </span>
-              ))}
+           <div className="flex flex-wrap gap-2 mb-8">
+             {service.features.map((feat, idx) => (
+               <span 
+                 key={idx}
+                 className="px-3 py-1 rounded-full bg-white/5 border border-white/5 text-white/70 text-[9px] font-bold uppercase tracking-widest backdrop-blur-md group-hover:border-yellow-500/20 transition-all"
+               >
+                 {feat}
+               </span>
+             ))}
            </div>
            
-           <div className="flex items-center justify-between pt-6 border-t border-white/20">
-              <Link href="#contact" className="group/link flex items-center gap-3 text-xs font-black uppercase tracking-[0.3em] text-yellow-500 hover:text-white transition-all">
-                 Inquire Now
-                 <ArrowUpRight size={18} className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+           <div className="flex items-center justify-between pt-5 border-t border-white/10">
+              <Link href="#contact" className="group/link flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-yellow-500">
+                 Request Quote
+                 <ArrowUpRight size={16} className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
               </Link>
-              <div className="h-2 w-2 rounded-full bg-yellow-500 animate-pulse shadow-[0_0_8px_#facc15]" />
            </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
