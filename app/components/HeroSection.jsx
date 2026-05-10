@@ -77,7 +77,8 @@ const HeroSection = () => {
           </motion.h1>
         </div>
 
-     {/* Action Hub */}
+       
+{/* Action Hub */}
 <motion.div 
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
@@ -164,6 +165,9 @@ const HeroSection = () => {
     </div>
   </Link>
 </motion.div>
+
+      </div>
+
       {/* SCROLL INDICATOR */}
       <motion.div 
         initial={{ opacity: 0 }}
