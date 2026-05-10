@@ -82,7 +82,7 @@ export default function PrivacyPage() {
               <section>
                 <h2 className="text-xl font-bold text-white mb-4">7. Contact Us</h2>
                 <p>For any privacy-related questions or requests, contact us at:</p>
-                <p className="mt-2 text-yellow-400">contact.rizqtech@gmail.com</p>
+                <p className="mt-2 text-yellow-400">info@rizqtechnologies.online</p>
               </section>
             </div>
           </div>

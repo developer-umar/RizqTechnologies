@@ -81,7 +81,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-xl font-bold text-white mb-4">9. Contact</h2>
                 <p>For questions about these terms, contact us at:</p>
-                <p className="mt-2 text-yellow-400">contact.rizqtech@gmail.com</p>
+                <p className="mt-2 text-yellow-400">info@rizqtechnologies.online</p>
               </section>
             </div>
           </div>

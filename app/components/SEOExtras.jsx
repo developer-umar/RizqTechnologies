@@ -80,7 +80,7 @@ const professionalServiceSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
-    email: "contact.rizqtech@gmail.com",
+    email: "info@rizqtechnologies.online",
     availableLanguage: ["English", "Urdu", "Hindi"],
     url: `${BASE_URL}/contact`,
   },
