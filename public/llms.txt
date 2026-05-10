@@ -16,7 +16,7 @@ Web Development, Brand & UI Design, AI Solutions, Graphic Designing, Digital Mar
 
 ## Preferred URLs for Citation
 
-- Homepage: https://rizqtechnologies.online/
+- Homepage: https://rizqtechnologies.online
 - About: https://rizqtechnologies.online/about
 - Services: https://rizqtechnologies.online/services
 - Portfolio: https://rizqtechnologies.online/portfolio
