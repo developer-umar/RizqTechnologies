@@ -23,7 +23,7 @@ const syne = Syne({
 
 export const metadata = {
   title: {
-    default: "Rizq Technologies — Premier Digital Agency for Elite Brands",
+    default: "Rizq Technologies — Crafting technology  for Business Growth",
     template: "%s — Rizq Technologies",
   },
   description: "Rizq Technologies builds high-performance digital products, branding, and elite web solutions for forward-thinking brands.",
@@ -41,8 +41,8 @@ export const metadata = {
     canonical: "https://rizqtechnologies.online",
   },
   openGraph: {
-    title: "Rizq Technologies | Premier Digital Agency",
-    description: "Crafting elite digital experiences for modern brands.",
+    title: "Rizq Technologies | Crafting technology for business Growth",
+    description: "Helping Local businesses to go global ",
     url: "https://rizqtechnologies.online",
     siteName: "Rizq Technologies",
     locale: "en_US",
@@ -111,7 +111,7 @@ const organizationSchema = {
     height: 60,
   },
   description:
-    "Rizq Technologies is a premier digital agency specializing in web development, branding, UI/UX design, and AI solutions for elite brands across India.",
+    "Rizq Technologies is a leading digital agency in Kanpur specializing in website development, branding, UI/UX design, AI solutions, and corporate digital services for businesses, leather industries, startups, and growing brands across India.",
   foundingDate: "2026",
   areaServed: [
     { "@type": "Country", name: "India" },

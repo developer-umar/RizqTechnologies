@@ -5,7 +5,7 @@ import AboutUsFluid from "../components/AboutUse";
 export const metadata = {
   title: "About Us — Rizq Technologies",
   description: "Learn about Rizq Technologies — a team of innovative professionals building scalable digital solutions that turn growing businesses into global brands.",
-  keywords: ["About Rizq Technologies", "Digital Agency About", "Web Development Company", "Rizq Team"],
+  keywords: ["About Rizq Technologies","Rizq Technologies Kanpur", "Digital Agency About", "Web Development Company", "Rizq Team"],
   openGraph: {
     title: "About Us — Rizq Technologies",
     description: "We build scalable digital solutions that turn growing businesses into global brands.",
