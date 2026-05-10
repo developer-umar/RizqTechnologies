@@ -27,7 +27,7 @@ export const metadata = {
     template: "%s — Rizq Technologies",
   },
   description: "Rizq Technologies builds high-performance digital products, branding, and elite web solutions for forward-thinking brands.",
-  keywords: ["Digital Agency", "Web Development", "2026 tech trends", "Branding", "Rizq Technologies"],
+  keywords: ["Digital Agency","Best web desighner in kanpur", "Web Development", "2026 tech trends", "Branding", "Rizq Technologies"],
   authors: [{ name: "Rizq Technologies" }],
   creator: "Rizq Technologies",
   publisher: "Rizq Technologies",
