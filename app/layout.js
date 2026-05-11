@@ -37,9 +37,6 @@ export const metadata = {
     telephone: false,
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizqtechnologies.online"),
-  alternates: {
-    canonical: "https://rizqtechnologies.online",
-  },
   openGraph: {
     title: "Rizq Technologies | Crafting technology for business Growth",
     description: "Helping Local Businesses Gain Visibility in International Markets",
@@ -59,7 +56,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rizq Technologies | Premier Digital Agency",
+    title: "Rizq Technologies | Crafting technology for Business Growth",
     description: "Crafting elite digital experiences for modern brands.",
     creator: "@RizqTechnologies",
     images: ["https://rizqtechnologies.online/og-image.png"],
