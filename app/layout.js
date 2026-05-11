@@ -56,7 +56,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rizq Technologies | Premier Digital Agency",
+    title: "Rizq Technologies | Crafting technology  for Business Growth",
     description: "Crafting elite digital experiences for modern brands.",
     creator: "@RizqTechnologies",
     images: ["https://rizqtechnologies.online/og-image.png"],
