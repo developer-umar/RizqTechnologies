@@ -43,6 +43,9 @@ export const metadata = {
     creator: "@RizqTechnologies",
     images: ["/og-image.png"],
   },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function Home() {

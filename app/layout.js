@@ -37,9 +37,6 @@ export const metadata = {
     telephone: false,
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://rizqtechnologies.online"),
-  alternates: {
-    canonical: "https://rizqtechnologies.online",
-  },
   openGraph: {
     title: "Rizq Technologies | Crafting technology for business Growth",
     description: "Helping Local Businesses Gain Visibility in International Markets",
