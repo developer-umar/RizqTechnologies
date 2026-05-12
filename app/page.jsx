@@ -10,6 +10,7 @@ import TechSection from "./components/Technologies";
 import ServicesBentoMagic from "./components/Services";
 import ScrollManager from "./components/ScrollManager";
 import CreativeTestimonials from "./components/Testimonials";
+import WhyChooseUs from "./components/WhyChooseUs";
 
 // import ClientCursor from "./components/cursor/clientCursor";
 
@@ -61,8 +62,9 @@ export default function Home() {
         <TechSection />
 
         <Portfolio />
-        {/* <Pricing /> */}
+        
         <CreativeTestimonials/>
+        <WhyChooseUs/>
         <CTA />
         <Contact />
         <Footer />
