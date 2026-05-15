@@ -7,10 +7,11 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AboutUsFluid from "./components/AboutUse";
 import TechSection from "./components/Technologies";
-import ServicesBentoMagic from "./components/Services";
+
 import ScrollManager from "./components/ScrollManager";
 import CreativeTestimonials from "./components/Testimonials";
 import WhyChooseUs from "./components/WhyChooseUs";
+import OurServices from "./components/Services";
 
 // import ClientCursor from "./components/cursor/clientCursor";
 
@@ -58,7 +59,7 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <AboutUsFluid />
-        <ServicesBentoMagic />
+        <OurServices/>
         <TechSection />
 
         <Portfolio />
