@@ -12,8 +12,6 @@ import ScrollManager from "./components/ScrollManager";
 import CreativeTestimonials from "./components/Testimonials";
 import WhyChooseUs from "./components/WhyChooseUs";
 import OurServices from "./components/Services";
-import ClientCursor from "./components/cursor/clientCursor";
-
 // import ClientCursor from "./components/cursor/clientCursor";
 
 
@@ -56,7 +54,7 @@ export default function Home() {
     <>
       <div id="home">
         <ScrollManager />
-        <ClientCursor/>
+        // <ClientCursor/>
         <Navbar />
         <HeroSection />
         <AboutUsFluid />
