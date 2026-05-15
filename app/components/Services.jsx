@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React from "react";
@@ -15,26 +13,27 @@ const SERVICES = [
   { num: "05", name: "Digital Marketing", desc: "Performance-driven marketing that turns traffic into revenue.", features: ["Ad Management", "Growth Hacking", "Market Research"], img: "/services/digital.webp", span: "md:col-span-6", icon: <Zap size={20} /> },
   { num: "06", name: "App Development", desc: "Seamless mobile apps designed for engagement & performance.", features: ["iOS/Android", "React Native", "Smooth UX"], img: "/services/app.jpg", span: "md:col-span-6", icon: <Smartphone size={18} /> },
   { num: "07", name: "Custom Software", desc: "Tailored software built exactly for your business unique architectural problems.", features: ["ERP Systems", "Legacy Migrations", "Security Audits"], img: "/services/software.avif", span: "md:col-span-12", icon: <Monitor size={18} /> },
-];;
+];
 
 export default function OurServices() {
   return (
-    <section className="relative bg-[#020202] py-24 px-4 md:px-10 overflow-hidden" id="services">
-      {/* Subtle Yellow Ambient Light */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/5 blur-[120px] rounded-full pointer-events-none" />
+    <section className="relative bg-[#020202] py-20 md:py-28 px-4 sm:px-6 md:px-10 overflow-hidden" id="services">
+      {/* Premium Ambient Core Lights */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-yellow-500/5 blur-[140px] rounded-full pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <header className="mb-16">
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
+        <header className="mb-14 md:mb-20">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse" />
             <span className="text-yellow-500 font-mono text-[10px] font-bold tracking-[0.4em] uppercase">What We Build</span>
           </div>
-          <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
-            OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500 italic">SERVICES.</span>
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
+            OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-yellow-200 to-yellow-500 italic">SERVICES.</span>
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        {/* RESPONSIVE GRID BOX ARTIFACT */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 w-full">
           {SERVICES.map((service, i) => (
             <ServiceCard key={i} service={service} index={i} />
           ))}
@@ -50,53 +49,77 @@ function ServiceCard({ service, index }) {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className={`${service.span} group relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-zinc-950 min-h-[420px] flex flex-col z-10 transition-all duration-700 hover:border-yellow-500/30`}
+      transition={{ delay: index * 0.05, duration: 0.5 }}
+      className={`${service.span} group relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 bg-zinc-950 min-h-[460px] sm:min-h-[440px] md:min-h-[450px] flex flex-col z-10 transition-all duration-500 hover:border-yellow-500/40`}
     >
-      <div className="absolute inset-0 z-0">
+      {/* 100% COLORFUL BACKGROUND GRAPHICS ENGINE */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img 
           src={service.img} 
           alt={service.name} 
-          className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-[1.5s] group-hover:scale-105 saturate-[0.8] group-hover:saturate-100" 
+          className="w-full h-full object-cover opacity-100 scale-100 group-hover:scale-105 group-hover:saturate-110 transition-all duration-[1.2s] ease-out" 
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/20 to-transparent z-10" />
+        {/* Balanced Mask Gradient for Crisp Contrast only */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
         
-        {/* Professional Scan Effect */}
+        {/* Dynamic Light Scan Wave Interaction */}
         <motion.div 
-          animate={{ y: ["0%", "250%"] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-100%] left-0 w-full h-[40%] bg-gradient-to-b from-transparent via-yellow-500/10 to-transparent z-20 pointer-events-none"
+          animate={{ y: ["0%", "300%"] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-100%] left-0 w-full h-[30%] bg-gradient-to-b from-transparent via-yellow-500/10 to-transparent z-10 pointer-events-none"
         />
       </div>
 
-      <div className="relative z-30 p-10 flex flex-col h-full justify-between">
-        <div>
-          <div className="flex justify-between items-start mb-10">
-            <div className="w-14 h-14 rounded-2xl bg-black/60 backdrop-blur-2xl border border-white/10 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-500 group-hover:text-black transition-all duration-500">
+      {/* CORE LAYER CARD LAYOUT CONTENT */}
+      <div className="relative z-20 p-6 sm:p-8 md:p-10 flex flex-col h-full justify-between flex-1">
+        
+        {/* CARD TOP TEXT SPACE */}
+        <div className="w-full">
+          <div className="flex justify-between items-start mb-8 md:mb-12">
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-yellow-500 group-hover:bg-white group-hover:text-black transition-all duration-500 shadow-xl">
               {service.icon}
             </div>
-            <span className="text-white/5 font-black text-6xl tracking-tighter italic leading-none group-hover:text-yellow-500/10 transition-colors">0{index + 1}</span>
+            <span className="text-white/10 font-mono text-3xl md:text-5xl font-black tracking-tighter">
+              0{index + 1}
+            </span>
           </div>
-          <h3 className="text-4xl font-black text-white mb-3 tracking-tighter uppercase group-hover:text-yellow-400 transition-colors">
+
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-3 tracking-tighter uppercase group-hover:text-yellow-400 transition-colors duration-300">
             {service.name}
           </h3>
-          <p className="text-zinc-200 text-sm font-semibold leading-relaxed max-w-[280px]">
+          <p className="text-zinc-200 text-xs sm:text-sm font-medium leading-relaxed max-w-sm">
             {service.desc}
           </p>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex items-center justify-between">
-            <div className="flex gap-4">
-                {service.features.map((feat, idx) => (
-                    <span key={idx} className="text-[9px] font-black uppercase tracking-[0.25em] text-zinc-500 group-hover:text-yellow-500 transition-colors">
-                      {feat}
-                    </span>
-                ))}
+        {/* CARD BOTTOM INTERACTIVE ARCHITECTURE */}
+        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
+          
+          {/* TOKENS GRID ENGINE - SCALES NATIVELY ON MOBILE BLOCKS */}
+          <div className="flex flex-wrap items-center gap-1.5 opacity-90 max-w-xs sm:max-w-none">
+            {service.features.map((feat, idx) => (
+              <span 
+                key={idx} 
+                className="bg-black/60 backdrop-blur-sm border border-white/5 text-zinc-300 font-mono text-[8px] md:text-[9px] px-2.5 py-1 rounded uppercase tracking-wider group-hover:border-yellow-500/20 group-hover:text-white transition-colors"
+              >
+                {feat}
+              </span>
+            ))}
+          </div>
+          
+          {/* SAFELY PACKAGED RESPONSIBLE BUTTON ANCHOR */}
+          <Link 
+            href="#contact" 
+            className="group/link flex items-center justify-center sm:justify-start gap-2 bg-white/5 sm:bg-transparent border border-white/10 sm:border-none rounded-xl py-2 px-4 sm:p-0 pointer-events-auto transition-colors duration-300 hover:bg-yellow-500/10 sm:hover:bg-transparent"
+          >
+            <span className="text-[10px] font-mono font-bold text-zinc-300 tracking-wider uppercase group-hover/link:text-yellow-400 transition-colors">
+              Talk with us
+            </span>
+            <div className="w-6 h-6 rounded-full bg-yellow-500 text-black flex items-center justify-center transform group-hover/link:rotate-45 transition-transform duration-300 shadow-[0_0_15px_rgba(234,179,8,0.3)]">
+              <ArrowUpRight size={12} strokeWidth={3} />
             </div>
-            <Link href="#contact" className="flex items-center gap-2 group/link">
-              <span className="text-[10px] font-bold text-white/40 uppercase group-hover/link:text-yellow-500 transition-colors">Talk with us</span>
-              <ArrowUpRight size={20} className="text-yellow-500 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </Link>
+          </Link>
+
         </div>
       </div>
     </motion.div>
