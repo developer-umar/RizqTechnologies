@@ -6,7 +6,9 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const ExternalIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 17l10-10M7 7h10v10"/>
+  </svg>
 );
 
 const projects = [
@@ -23,7 +25,7 @@ export default function EliteSliderPortfolio() {
   const duplicatedProjects = [...projects, ...projects];
 
   return (
-    <section id="portfolio" className="relative bg-[#050505] py-20 overflow-hidden min-h-screen flex flex-col justify-center">
+    <section id="portfolio" className="relative bg-[#050505] py-16 md:py-20 overflow-hidden min-h-screen flex flex-col justify-center select-none">
       
       {/* BACKGROUND ELEMENTS */}
       <div className="absolute inset-0 pointer-events-none">
@@ -31,9 +33,9 @@ export default function EliteSliderPortfolio() {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-yellow-500/5 via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-10 w-full">
         {/* HEADER */}
-        <div className="px-6 md:px-20 mb-16">
+        <div className="px-6 md:px-20 mb-12 md:mb-16">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -41,27 +43,27 @@ export default function EliteSliderPortfolio() {
             className="flex flex-col gap-2"
           >
             <span className="text-yellow-500 font-mono text-xs tracking-[0.3em] uppercase">Selected Portfolio</span>
-            <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
+            <h1 className="text-4xl sm:text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.9]">
               DIGITAL <br /> 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-600">PRODUCTION.</span>
             </h1>
-            <p className="text-zinc-400 text-base md:text-lg max-w-xl mt-4 leading-relaxed">
+            <p className="text-zinc-400 text-sm md:text-lg max-w-xl mt-4 leading-relaxed">
               Real projects for real businesses. Each case study demonstrates our commitment to performance, premium design, and measurable results that drive growth.
             </p>
           </motion.div>
         </div>
 
-        {/* INFINITE SLIDER */}
-        <div className="flex overflow-hidden py-10">
+        {/* INFINITE SLIDER CONTAINER */}
+        <div className="flex overflow-hidden py-4 md:py-10 w-full unique-slider-boundary">
           <motion.div 
-            className="flex gap-6 md:gap-10 px-5 will-change-transform"
+            className="flex gap-4 md:gap-10 px-4 will-change-transform"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              duration: 30, // Optimized speed for readability
+              duration: 35, 
               ease: "linear",
               repeat: Infinity,
             }}
-            whileHover={{ transition: { duration: 80 } }} 
+            whileHover={{ transition: { duration: 90 } }} 
           >
             {duplicatedProjects.map((project, index) => (
               <Link 
@@ -69,45 +71,53 @@ export default function EliteSliderPortfolio() {
                 href={project.link} 
                 target="_blank" 
                 rel="noopener noreferrer nofollow"
-                className="group relative shrink-0 w-[85vw] md:w-[42vw] aspect-[16/11] rounded-[24px] md:rounded-[40px] overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl transition-all duration-500 hover:border-yellow-500/30"
+                className="group relative shrink-0 w-[80vw] sm:w-[60vw] md:w-[42vw] aspect-[16/11] rounded-[20px] md:rounded-[40px] overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl transition-all duration-500 hover:border-yellow-500/30"
               >
-                {/* PROJECT IMAGE - High contrast & Pop */}
+                {/* PROJECT IMAGE - 100% Colorful & High Contrast */}
                 <Image 
                   src={project.img} 
                   alt={project.title}
                   fill
-                  className="object-cover opacity-60 scale-105 group-hover:scale-100 group-hover:opacity-100 group-hover:saturate-125 transition-all duration-1000 ease-out"
+                  sizes="(max-width: 768px) 80vw, 42vw"
+                  className="object-cover opacity-100 scale-100 group-hover:scale-105 group-hover:saturate-110 transition-all duration-1000 ease-out"
+                  priority={index < 4}
                 />
 
-                {/* DYNAMIC SHINE OVERLAY */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-tr from-white via-transparent to-transparent transition-opacity duration-700" />
+                {/* LIGHT DYNAMIC SHINE OVERLAY (No dark filters) */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-white/10 via-transparent to-transparent transition-opacity duration-700 pointer-events-none" />
                 
-                {/* BOTTOM GRADIENT */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                {/* AMBIENT GRADIENT SHADOW FOR TEXT LEGIBILITY ONLY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
-                {/* CONTENT */}
-                <div className="absolute inset-0 p-6 md:p-10 flex flex-col justify-between z-20">
-                  <div className="flex justify-between items-start">
-                    <div className="bg-black/60 backdrop-blur-xl border border-white/10 px-5 py-2 rounded-full transform -translate-x-2 group-hover:translate-x-0 transition-transform duration-500">
-                      <p className="text-yellow-400 font-bold text-[10px] md:text-xs tracking-widest uppercase">
+                {/* CARD INTERFACE CONTENT LAYER */}
+                <div className="absolute inset-0 p-5 md:p-10 flex flex-col justify-between z-20 pointer-events-none">
+                  
+                  {/* TOP ROW */}
+                  <div className="flex justify-between items-center w-full">
+                    <div className="bg-black/70 backdrop-blur-xl border border-white/10 px-4 py-1.5 rounded-full transform transition-transform duration-500 group-hover:translate-x-1">
+                      <p className="text-yellow-400 font-bold text-[9px] md:text-xs tracking-widest uppercase">
                          {project.client}
                       </p>
                     </div>
-                    <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    
+                    {/* SAFELY BOUNDED BUTTON CONTAINER */}
+                    <div className="w-9 h-9 md:w-12 md:h-12 rounded-full bg-white text-black flex items-center justify-center transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.3)] transform opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                       <ExternalIcon />
                     </div>
                   </div>
 
-                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tighter mb-2 group-hover:text-yellow-400 transition-colors duration-300">
+                  {/* BOTTOM ROW */}
+                  <div className="transform transition-transform duration-500 md:group-hover:translate-y-0">
+                    <h3 className="text-2xl sm:text-3xl md:text-6xl font-black text-white uppercase tracking-tighter mb-1 md:mb-2 group-hover:text-yellow-400 transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <div className="flex items-center gap-3">
-                       <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest">{project.cat}</span>
-                       <div className="h-px w-8 bg-yellow-500/50" />
-                       <span className="text-[10px] font-mono text-zinc-500 uppercase">{project.year}</span>
+                    <div className="flex items-center gap-2 md:gap-3">
+                       <span className="text-[9px] md:text-[10px] font-mono text-zinc-200 uppercase tracking-widest">{project.cat}</span>
+                       <div className="h-px w-6 md:w-8 bg-yellow-500/50" />
+                       <span className="text-[9px] md:text-[10px] font-mono text-zinc-400 uppercase">{project.year}</span>
                     </div>
                   </div>
+
                 </div>
               </Link>
             ))}
@@ -116,19 +126,17 @@ export default function EliteSliderPortfolio() {
       </div>
 
       {/* FOOTER */}
-      <div className="mt-12 px-6 md:px-20 flex justify-between items-center">
+      <div className="mt-8 md:mt-12 px-6 md:px-20 flex justify-between items-center w-full">
         <div className="flex items-center gap-4">
-            <span className="text-[10px] font-mono text-zinc-500 tracking-[0.5em] uppercase">Rizq Technologies</span>
-            <div className="h-px w-20 bg-gradient-to-r from-yellow-500/50 to-transparent" />
+            <span className="text-[9px] md:text-[10px] font-mono text-zinc-500 tracking-[0.5em] uppercase">Rizq Technologies</span>
+            <div className="h-px w-12 md:w-20 bg-gradient-to-r from-yellow-500/50 to-transparent" />
         </div>
-        <div className="hidden md:flex gap-4">
+        <div className="hidden sm:flex gap-3">
            {['Ultra-Low Weight', 'SEO Optimized', '60FPS Motion'].map(tag => (
              <span key={tag} className="text-[9px] border border-white/5 px-3 py-1 rounded-full text-zinc-500 uppercase font-mono tracking-tighter">{tag}</span>
            ))}
         </div>
       </div>
-
-    
     </section>
   );
 }
