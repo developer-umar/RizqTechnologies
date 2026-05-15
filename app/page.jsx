@@ -59,12 +59,13 @@ export default function Home() {
         <HeroSection />
         <AboutUsFluid />
         <OurServices/>
+        <WhyChooseUs/>
         <TechSection />
 
         <Portfolio />
         
         <CreativeTestimonials/>
-        <WhyChooseUs/>
+        
         <CTA />
         <Contact />
         <Footer />
