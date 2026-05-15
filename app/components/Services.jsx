@@ -3,6 +3,7 @@
 import React from "react";
 import { Sparkles, Code2, BrainCircuit, PenTool, Zap, Smartphone, Monitor, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const SERVICES = [
@@ -19,25 +20,27 @@ export default function OurServices() {
   return (
     <section className="relative bg-[#020202] py-20 md:py-28 px-4 sm:px-6 md:px-10 overflow-hidden" id="services">
       
-      {/* ULTRA-LIGHTWEIGHT HIGH-END CREATIVE BACKGROUND */}
+      {/* HIGH-PERFORMANCE CREATIVE BACKGROUND MATRIX */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
         
-        {/* Core Dot Structural Grid Matrix */}
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
+        {/* Structural Dot Matrix System */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
 
-        {/* Multi-Layered Asymmetric Yellow Neon Flares (Hardware Accelerated) */}
-        <div className="absolute top-[-5%] left-[-10%] w-[50vw] h-[50vw] min-w-[380px] bg-yellow-500/[0.04] rounded-full blur-[130px] transform-gpu" />
-        <div className="absolute top-[40%] right-[-10%] w-[45vw] h-[45vw] min-w-[350px] bg-gradient-to-br from-amber-500/[0.03] to-yellow-600/[0.02] rounded-full blur-[150px] transform-gpu" />
-        <div className="absolute bottom-[-10%] left-[15%] w-[60vw] h-[35vw] bg-yellow-500/[0.02] rounded-full blur-[120px] transform-gpu" />
+        {/* Dynamic Static Geometric Node Triggers (Replaces Heavy Blur Objects) */}
+        <div className="absolute top-[15%] left-[10%] w-[35vw] h-[35vw] bg-yellow-500/[0.03] rounded-full blur-[100px] transform-gpu" />
+        <div className="absolute bottom-[10%] right-[5%] w-[40vw] h-[40vw] bg-gradient-to-tr from-amber-500/[0.02] to-yellow-600/[0.01] rounded-full blur-[120px] transform-gpu" />
 
-        {/* Premium Tech Grid Construction Lines */}
-        <div className="absolute inset-y-0 left-1/4 w-px bg-gradient-to-b from-transparent via-white/[0.02] to-transparent" />
-        <div className="absolute inset-y-0 right-1/4 w-px bg-gradient-to-b from-transparent via-yellow-500/[0.03] to-transparent" />
-        <div className="absolute h-px top-1/3 left-0 w-full bg-gradient-to-r from-transparent via-white/[0.02] to-transparent" />
-        
-        {/* Minimalist Grid Intersection Marks (+) */}
-        <span className="absolute text-white/[0.06] font-mono font-light text-xs top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">+</span>
-        <span className="absolute text-yellow-500/[0.12] font-mono font-light text-xs top-1/3 right-1/4 transform -translate-x-1/2 -translate-y-1/2">+</span>
+        {/* Structural Industry Grid Alignment Overlay */}
+        <div className="absolute inset-y-0 left-1/12 w-px bg-white/[0.01]" />
+        <div className="absolute inset-y-0 right-1/12 w-px bg-yellow-500/[0.02]" />
+        <div className="absolute h-px top-1/4 left-0 w-full bg-gradient-to-r from-transparent via-white/[0.02] to-transparent" />
+        <div className="absolute h-px bottom-1/4 left-0 w-full bg-gradient-to-r from-transparent via-yellow-500/[0.02] to-transparent" />
+
+        {/* Creative Core Corner Accents (Billion-Dollar Aesthetic Tokens) */}
+        <div className="absolute top-12 left-12 w-2 h-2 border-t border-l border-yellow-500/20" />
+        <div className="absolute top-12 right-12 w-2 h-2 border-t border-r border-yellow-500/20" />
+        <div className="absolute bottom-12 left-12 w-2 h-2 border-b border-l border-yellow-500/20" />
+        <div className="absolute bottom-12 right-12 w-2 h-2 border-b border-r border-yellow-500/20" />
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10 w-full">
@@ -65,37 +68,41 @@ export default function OurServices() {
 function ServiceCard({ service, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.05, duration: 0.5 }}
-      className={`${service.span} group relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 bg-zinc-950 min-h-[460px] sm:min-h-[440px] md:min-h-[450px] flex flex-col z-10 transition-all duration-500 hover:border-yellow-500/40`}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.03, duration: 0.4, ease: "easeOut" }}
+      className={`${service.span} group relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 bg-zinc-950 min-h-[460px] sm:min-h-[440px] md:min-h-[450px] flex flex-col z-10 transition-all duration-500 hover:border-yellow-500/40 transform-gpu`}
     >
-      {/* 100% COLORFUL BACKGROUND GRAPHICS ENGINE */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <img 
+      {/* NEXT.JS NATIVE HIGH-PERFORMANCE GRAPHICS ENGINE */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none transform-gpu">
+        <Image 
           src={service.img} 
           alt={service.name} 
-          className="w-full h-full object-cover opacity-100 scale-100 group-hover:scale-105 group-hover:saturate-110 transition-all duration-[1.2s] ease-out" 
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover opacity-100 scale-100 group-hover:scale-105 group-hover:saturate-110 transition-all duration-[1s] ease-out will-change-transform" 
+          priority={index < 2}
         />
-        {/* Balanced Mask Gradient for Crisp Contrast only */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
+        {/* Anti-Lag Balanced Flat Mask Shadow Layer */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/50 to-transparent pointer-events-none" />
         
-        {/* Dynamic Light Scan Wave Interaction */}
+        {/* Optimization Light Wave Effect */}
         <motion.div 
-          animate={{ y: ["0%", "300%"] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-100%] left-0 w-full h-[30%] bg-gradient-to-b from-transparent via-yellow-500/10 to-transparent z-10 pointer-events-none"
+          animate={{ y: ["0%", "280%"] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-100%] left-0 w-full h-[25%] bg-gradient-to-b from-transparent via-yellow-500/5 to-transparent z-10 pointer-events-none transform-gpu"
         />
       </div>
 
-      {/* CORE LAYER CARD LAYOUT CONTENT */}
-      <div className="relative z-20 p-6 sm:p-8 md:p-10 flex flex-col h-full justify-between flex-1">
+      {/* CORE CONTENT OVERLAY CONTAINER */}
+      <div className="relative z-20 p-6 sm:p-8 md:p-10 flex flex-col h-full justify-between flex-1 pointer-events-none">
         
-        {/* CARD TOP TEXT SPACE */}
+        {/* CARD TOP MAIN DETAILS */}
         <div className="w-full">
           <div className="flex justify-between items-start mb-8 md:mb-12">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-yellow-500 group-hover:bg-white group-hover:text-black transition-all duration-500 shadow-xl">
+            {/* Replaced Heavy Backdrop-Blur with Solid Deep Base for Framerate Locks */}
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-[#0a0a0a]/95 border border-white/10 flex items-center justify-center text-yellow-500 group-hover:bg-white group-hover:text-black transition-all duration-500 shadow-xl">
               {service.icon}
             </div>
             <span className="text-white/10 font-mono text-3xl md:text-5xl font-black tracking-tighter">
@@ -111,25 +118,25 @@ function ServiceCard({ service, index }) {
           </p>
         </div>
 
-        {/* CARD BOTTOM INTERACTIVE ARCHITECTURE */}
-        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
+        {/* CARD BOTTOM INTERACTIVE INTERFACE */}
+        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full pointer-events-auto">
           
-          {/* TOKENS GRID ENGINE - SCALES NATIVELY ON MOBILE BLOCKS */}
+          {/* TOKENS GENERATION BLUEPRINT */}
           <div className="flex flex-wrap items-center gap-1.5 opacity-90 max-w-xs sm:max-w-none">
             {service.features.map((feat, idx) => (
               <span 
                 key={idx} 
-                className="bg-black/60 backdrop-blur-sm border border-white/5 text-zinc-300 font-mono text-[8px] md:text-[9px] px-2.5 py-1 rounded uppercase tracking-wider group-hover:border-yellow-500/20 group-hover:text-white transition-colors"
+                className="bg-[#0a0a0a]/90 border border-white/5 text-zinc-300 font-mono text-[8px] md:text-[9px] px-2.5 py-1 rounded uppercase tracking-wider group-hover:border-yellow-500/20 group-hover:text-white transition-colors"
               >
                 {feat}
               </span>
             ))}
           </div>
           
-          {/* SAFELY PACKAGED RESPONSIBLE BUTTON ANCHOR */}
+          {/* SECURE BUTTON ENGINE */}
           <Link 
             href="#contact" 
-            className="group/link flex items-center justify-center sm:justify-start gap-2 bg-white/5 sm:bg-transparent border border-white/10 sm:border-none rounded-xl py-2 px-4 sm:p-0 pointer-events-auto transition-colors duration-300 hover:bg-yellow-500/10 sm:hover:bg-transparent"
+            className="group/link flex items-center justify-center sm:justify-start gap-2 bg-white/5 sm:bg-transparent border border-white/10 sm:border-none rounded-xl py-2 px-4 sm:p-0 transition-colors duration-300 hover:bg-yellow-500/10 sm:hover:bg-transparent"
           >
             <span className="text-[10px] font-mono font-bold text-zinc-300 tracking-wider uppercase group-hover/link:text-yellow-400 transition-colors">
               Talk with us
