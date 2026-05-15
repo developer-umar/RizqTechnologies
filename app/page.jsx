@@ -54,7 +54,7 @@ export default function Home() {
     <>
       <div id="home">
         <ScrollManager />
-        // <ClientCursor/>
+        {/* // <ClientCursor/> */}
         <Navbar />
         <HeroSection />
         <AboutUsFluid />
