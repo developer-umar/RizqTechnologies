@@ -18,8 +18,27 @@ const SERVICES = [
 export default function OurServices() {
   return (
     <section className="relative bg-[#020202] py-20 md:py-28 px-4 sm:px-6 md:px-10 overflow-hidden" id="services">
-      {/* Premium Ambient Core Lights */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-yellow-500/5 blur-[140px] rounded-full pointer-events-none" />
+      
+      {/* ULTRA-LIGHTWEIGHT HIGH-END CREATIVE BACKGROUND */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
+        
+        {/* Core Dot Structural Grid Matrix */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
+
+        {/* Multi-Layered Asymmetric Yellow Neon Flares (Hardware Accelerated) */}
+        <div className="absolute top-[-5%] left-[-10%] w-[50vw] h-[50vw] min-w-[380px] bg-yellow-500/[0.04] rounded-full blur-[130px] transform-gpu" />
+        <div className="absolute top-[40%] right-[-10%] w-[45vw] h-[45vw] min-w-[350px] bg-gradient-to-br from-amber-500/[0.03] to-yellow-600/[0.02] rounded-full blur-[150px] transform-gpu" />
+        <div className="absolute bottom-[-10%] left-[15%] w-[60vw] h-[35vw] bg-yellow-500/[0.02] rounded-full blur-[120px] transform-gpu" />
+
+        {/* Premium Tech Grid Construction Lines */}
+        <div className="absolute inset-y-0 left-1/4 w-px bg-gradient-to-b from-transparent via-white/[0.02] to-transparent" />
+        <div className="absolute inset-y-0 right-1/4 w-px bg-gradient-to-b from-transparent via-yellow-500/[0.03] to-transparent" />
+        <div className="absolute h-px top-1/3 left-0 w-full bg-gradient-to-r from-transparent via-white/[0.02] to-transparent" />
+        
+        {/* Minimalist Grid Intersection Marks (+) */}
+        <span className="absolute text-white/[0.06] font-mono font-light text-xs top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">+</span>
+        <span className="absolute text-yellow-500/[0.12] font-mono font-light text-xs top-1/3 right-1/4 transform -translate-x-1/2 -translate-y-1/2">+</span>
+      </div>
       
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <header className="mb-14 md:mb-20">
