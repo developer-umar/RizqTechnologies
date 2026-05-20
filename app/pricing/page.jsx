@@ -40,7 +40,6 @@ const plans = [
       "Modern Premium UI/UX",
       "Advanced SEO Optimization",
       "Business Email Setup",
-      "Lead Generation System",
       "Google Business Integration",
       "Speed Optimization",
       "Custom Logo Design",
